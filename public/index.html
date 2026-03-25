@@ -19,10 +19,15 @@
     --text-dim: #38383f;
     --accent: #8B5CF6;
     --accent-dim: rgba(139,92,246,0.1);
-    --accent-glow: rgba(139,92,246,0.05);
     --accent-hover: #9d74f7;
     --positive: #6ee7b7;
+    --positive-dim: rgba(110,231,183,0.1);
+    --warning: #fbbf24;
+    --warning-dim: rgba(251,191,36,0.1);
+    --danger: #f87171;
+    --danger-dim: rgba(248,113,113,0.1);
     --info: #93c5fd;
+    --info-dim: rgba(147,197,253,0.1);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -35,350 +40,215 @@
     font-weight: 300;
     min-height: 100vh;
     overflow-x: hidden;
+    padding-bottom: 48px;
   }
 
   .font-mono { font-family: 'DM Mono', monospace; }
 
-  /* ── SCREENS ── */
   .screen { display: none; min-height: 100vh; }
   .screen.active { display: flex; flex-direction: column; }
 
-  /* ══════════════════════════════════════
+  /* ══════════════════════════════
+     NAV + PROGRESS
+  ══════════════════════════════ */
+  .progress-bar {
+    position: fixed; top: 0; left: 0;
+    height: 1px; background: var(--accent);
+    transition: width 0.45s ease;
+    z-index: 200; opacity: 0.6;
+  }
+
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    padding: 18px 28px;
+    display: flex; align-items: center; justify-content: space-between;
+    z-index: 100;
+    background: linear-gradient(to bottom, rgba(10,10,11,0.97) 0%, transparent 100%);
+  }
+
+  .nav-logo {
+    font-size: 15px; font-weight: 600; letter-spacing: -0.02em;
+    color: var(--text); display: flex; align-items: center;
+  }
+  .nav-logo .dot { color: var(--accent); }
+
+  .nav-hint {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase;
+  }
+
+  /* ══════════════════════════════
      LANDING
-  ══════════════════════════════════════ */
+  ══════════════════════════════ */
   #landing {
-    align-items: center;
-    justify-content: center;
-    padding: 80px 24px 60px;
-    position: relative;
+    align-items: center; justify-content: center;
+    padding: 80px 24px 80px; position: relative;
   }
 
   #landing::after {
-    content: '';
-    position: fixed;
-    top: -280px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 560px;
-    height: 480px;
+    content: ''; position: fixed;
+    top: -300px; left: 50%; transform: translateX(-50%);
+    width: 560px; height: 480px;
     background: radial-gradient(ellipse at center, rgba(139,92,246,0.07) 0%, transparent 68%);
     pointer-events: none;
   }
 
   .landing-inner {
-    max-width: 600px;
-    width: 100%;
-    text-align: center;
-    animation: fadeUp 0.7s ease both;
+    max-width: 580px; width: 100%;
+    text-align: center; animation: fadeUp 0.7s ease both;
   }
 
   .signal-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    font-weight: 400;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    border: 1px solid var(--border2);
-    border-radius: 100px;
-    padding: 6px 16px;
-    margin-bottom: 44px;
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-muted); border: 1px solid var(--border2);
+    border-radius: 100px; padding: 6px 16px; margin-bottom: 40px;
     background: var(--surface);
   }
-
   .signal-badge::before {
-    content: '';
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--accent);
-    flex-shrink: 0;
+    content: ''; width: 5px; height: 5px;
+    border-radius: 50%; background: var(--accent); flex-shrink: 0;
   }
 
   .landing-title {
-    font-size: clamp(40px, 7vw, 64px);
-    font-weight: 600;
-    line-height: 1.0;
-    letter-spacing: -0.03em;
-    margin-bottom: 20px;
-    color: var(--text);
+    font-size: clamp(38px, 7vw, 62px); font-weight: 600;
+    line-height: 1.0; letter-spacing: -0.03em;
+    margin-bottom: 18px; color: var(--text);
   }
-
-  .landing-title .accent-word {
-    color: var(--accent);
-    display: block;
-  }
+  .landing-title .accent-word { color: var(--accent); display: block; }
 
   .landing-subtitle {
-    font-size: 16px;
-    font-weight: 300;
-    color: var(--text-muted);
-    line-height: 1.65;
-    max-width: 400px;
-    margin: 0 auto 52px;
+    font-size: 16px; font-weight: 300; color: var(--text-muted);
+    line-height: 1.65; max-width: 380px; margin: 0 auto 48px;
   }
 
   .cta-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    background: var(--accent);
-    color: #fff;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 500;
-    font-size: 15px;
-    letter-spacing: 0.01em;
-    padding: 13px 30px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    transition: background 0.18s ease, transform 0.18s ease;
+    display: inline-flex; align-items: center; gap: 9px;
+    background: var(--accent); color: #fff;
+    font-weight: 500; font-size: 15px;
+    padding: 13px 30px; border-radius: 6px;
+    border: none; cursor: pointer;
+    transition: background 0.18s, transform 0.18s;
   }
-
-  .cta-btn:hover {
-    background: var(--accent-hover);
-    transform: translateY(-1px);
-  }
-
-  .cta-btn svg { transition: transform 0.18s ease; }
+  .cta-btn:hover { background: var(--accent-hover); transform: translateY(-1px); }
+  .cta-btn svg { transition: transform 0.18s; }
   .cta-btn:hover svg { transform: translateX(3px); }
 
-  .landing-footer-note {
-    margin-top: 24px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--text-dim);
-    letter-spacing: 0.05em;
+  .landing-note {
+    margin-top: 20px; font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--text-dim); letter-spacing: 0.05em;
   }
 
   .how-it-works {
-    margin-top: 80px;
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-items: center;
+    margin-top: 72px; display: flex; gap: 8px;
+    justify-content: center; flex-wrap: wrap; align-items: center;
   }
-
   .step-pill {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 12px;
-    font-family: 'DM Mono', monospace;
-    color: var(--text-muted);
-    padding: 7px 14px;
-    border: 1px solid var(--border);
-    border-radius: 100px;
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12px; font-family: 'DM Mono', monospace;
+    color: var(--text-muted); padding: 7px 14px;
+    border: 1px solid var(--border); border-radius: 100px;
     background: var(--surface);
   }
-
   .step-pill .num {
-    font-size: 10px;
-    font-weight: 500;
-    color: var(--accent);
-    background: var(--accent-dim);
-    width: 17px;
-    height: 17px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
+    font-size: 10px; font-weight: 500; color: var(--accent);
+    background: var(--accent-dim); width: 17px; height: 17px;
+    border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; flex-shrink: 0;
   }
+  .step-arrow { color: var(--text-dim); font-size: 14px; }
 
-  .step-arrow {
-    color: var(--text-dim);
-    font-size: 14px;
-    line-height: 1;
-  }
-
-  /* ══════════════════════════════════════
-     FORM SCREEN
-  ══════════════════════════════════════ */
+  /* ══════════════════════════════
+     FORM
+  ══════════════════════════════ */
   #form-screen {
-    align-items: center;
-    justify-content: center;
-    padding: 80px 24px 60px;
+    align-items: center; justify-content: center; padding: 80px 24px 80px;
   }
 
   .form-container {
-    max-width: 520px;
-    width: 100%;
-    animation: fadeUp 0.45s ease both;
+    max-width: 500px; width: 100%; animation: fadeUp 0.45s ease both;
   }
 
   .back-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--text-dim);
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    margin-bottom: 44px;
-    letter-spacing: 0.06em;
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    color: var(--text-dim); background: none; border: none;
+    cursor: pointer; padding: 0; margin-bottom: 40px;
+    letter-spacing: 0.06em; text-transform: uppercase;
     transition: color 0.2s;
-    text-transform: uppercase;
   }
   .back-btn:hover { color: var(--text-muted); }
 
-  .form-header { margin-bottom: 36px; }
-
   .form-label-top {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    margin-bottom: 12px;
-    display: block;
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: 10px; display: block;
   }
-
   .form-title {
-    font-size: 26px;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    line-height: 1.15;
-    margin-bottom: 10px;
+    font-size: 24px; font-weight: 600;
+    letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 8px;
   }
+  .form-hint { font-size: 14px; color: var(--text-muted); line-height: 1.55; margin-bottom: 32px; }
 
-  .form-hint {
-    font-size: 14px;
-    color: var(--text-muted);
-    line-height: 1.55;
-  }
-
-  .field-group {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    margin-bottom: 28px;
-  }
-
-  .field {
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-  }
+  .field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
 
   .field label {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    color: var(--text-muted);
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-muted);
   }
-
   .field label .optional {
-    color: var(--text-dim);
-    text-transform: none;
-    letter-spacing: 0;
-    font-size: 10px;
-    margin-left: 5px;
+    color: var(--text-dim); text-transform: none;
+    letter-spacing: 0; font-size: 10px; margin-left: 5px;
   }
 
-  .field input,
-  .field textarea {
-    background: var(--surface);
-    border: 1px solid var(--border2);
-    border-radius: 5px;
-    padding: 13px 15px;
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    font-weight: 300;
-    outline: none;
-    transition: border-color 0.18s, background 0.18s;
-    width: 100%;
+  .field input, .field textarea {
+    background: var(--surface); border: 1px solid var(--border2);
+    border-radius: 5px; padding: 13px 15px;
+    color: var(--text); font-family: 'DM Sans', sans-serif;
+    font-size: 15px; font-weight: 300; outline: none;
+    transition: border-color 0.18s, background 0.18s; width: 100%;
   }
-
-  .field textarea {
-    resize: vertical;
-    min-height: 80px;
-    line-height: 1.55;
+  .field textarea { resize: vertical; min-height: 80px; line-height: 1.55; }
+  .field input::placeholder, .field textarea::placeholder { color: var(--text-dim); }
+  .field input:focus, .field textarea:focus {
+    border-color: rgba(139,92,246,0.4); background: var(--surface2);
   }
-
-  .field input::placeholder,
-  .field textarea::placeholder { color: var(--text-dim); }
-
-  .field input:focus,
-  .field textarea:focus {
-    border-color: rgba(139,92,246,0.4);
-    background: var(--surface2);
-  }
-
   .field-error { border-color: rgba(248,113,113,0.4) !important; }
 
   .submit-btn {
-    width: 100%;
-    background: var(--accent);
-    color: #fff;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 500;
-    font-size: 15px;
-    letter-spacing: 0.01em;
-    padding: 15px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    transition: background 0.18s ease, transform 0.18s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 9px;
+    width: 100%; background: var(--accent); color: #fff;
+    font-weight: 500; font-size: 15px; padding: 15px;
+    border-radius: 6px; border: none; cursor: pointer;
+    transition: background 0.18s, transform 0.18s;
+    display: flex; align-items: center; justify-content: center; gap: 9px;
+    margin-top: 8px;
   }
-
-  .submit-btn:hover:not(:disabled) {
-    background: var(--accent-hover);
-    transform: translateY(-1px);
-  }
-
+  .submit-btn:hover:not(:disabled) { background: var(--accent-hover); transform: translateY(-1px); }
   .submit-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-  /* ══════════════════════════════════════
-     LOADING SCREEN
-  ══════════════════════════════════════ */
+  /* ══════════════════════════════
+     LOADING
+  ══════════════════════════════ */
   #loading-screen {
-    align-items: center;
-    justify-content: center;
-    padding: 40px 24px;
-    flex-direction: column;
-    gap: 36px;
+    align-items: center; justify-content: center;
+    padding: 40px 24px; flex-direction: column; gap: 36px;
   }
 
   .loading-signal {
-    position: relative;
-    width: 72px;
-    height: 72px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative; width: 72px; height: 72px;
+    display: flex; align-items: center; justify-content: center;
   }
-
   .loading-signal .core {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 10px rgba(139,92,246,0.35);
-    z-index: 1;
-    position: relative;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent); box-shadow: 0 0 10px rgba(139,92,246,0.35);
+    z-index: 1; position: relative;
   }
-
   .ring {
-    position: absolute;
-    border-radius: 50%;
+    position: absolute; border-radius: 50%;
     border: 1px solid rgba(139,92,246,0.18);
     animation: expand 2.4s ease-out infinite;
   }
-
   .ring:nth-child(1) { width: 32px; height: 32px; animation-delay: 0s; }
   .ring:nth-child(2) { width: 52px; height: 52px; animation-delay: 0.7s; }
   .ring:nth-child(3) { width: 72px; height: 72px; animation-delay: 1.4s; }
@@ -389,563 +259,398 @@
   }
 
   .loading-text {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    color: var(--text-dim);
-    letter-spacing: 0.07em;
-    text-align: center;
+    font-family: 'DM Mono', monospace; font-size: 12px;
+    color: var(--text-dim); letter-spacing: 0.07em; text-align: center;
   }
-
   .loading-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-    max-width: 320px;
+    display: flex; flex-direction: column; gap: 10px;
+    width: 100%; max-width: 300px;
   }
-
   .loading-step {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--text-dim);
-    letter-spacing: 0.04em;
-    transition: color 0.35s;
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    color: var(--text-dim); letter-spacing: 0.04em; transition: color 0.35s;
   }
-
   .loading-step.done   { color: var(--text-muted); }
   .loading-step.active { color: var(--text); }
-
   .step-icon {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border: 1px solid var(--border2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    flex-shrink: 0;
-    transition: all 0.35s;
+    width: 20px; height: 20px; border-radius: 50%;
+    border: 1px solid var(--border2); display: flex;
+    align-items: center; justify-content: center;
+    font-size: 10px; flex-shrink: 0; transition: all 0.35s;
   }
-
   .loading-step.done .step-icon {
-    background: var(--accent-dim);
-    border-color: var(--accent);
-    color: var(--accent);
+    background: var(--accent-dim); border-color: var(--accent); color: var(--accent);
   }
-
   .loading-step.active .step-icon {
-    border-color: rgba(139,92,246,0.45);
-    animation: blink 1s ease-in-out infinite;
+    border-color: rgba(139,92,246,0.45); animation: blink 1s ease-in-out infinite;
   }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
 
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0.35; }
-  }
-
-  /* ══════════════════════════════════════
-     RESULTS SCREEN
-  ══════════════════════════════════════ */
+  /* ══════════════════════════════
+     RESULTS
+  ══════════════════════════════ */
   #results-screen {
-    padding: 72px 24px 96px;
-    align-items: center;
+    padding: 72px 24px 80px; align-items: center;
   }
 
   .results-container {
-    max-width: 660px;
-    width: 100%;
-    animation: fadeUp 0.5s ease both;
+    max-width: 660px; width: 100%; animation: fadeUp 0.5s ease both;
   }
 
-  .results-header { margin-bottom: 28px; }
-
-  /* ── Score block ── */
-  .score-block {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 32px;
-    padding: 18px 20px;
+  /* ── 1. DIAGNÓSTICO HERO ── */
+  .diag-block {
     background: var(--surface);
     border: 1px solid var(--border2);
-    border-radius: 8px;
-  }
-
-  .score-gauge-wrap {
+    border-radius: 10px;
+    padding: 28px 28px 24px;
+    margin-bottom: 10px;
     position: relative;
-    flex-shrink: 0;
+    overflow: hidden;
   }
 
-  .score-gauge {
-    width: 96px;
-    height: 58px;
-    display: block;
+  .diag-block::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
   }
 
-  .score-number-wrap {
-    position: absolute;
-    bottom: -2px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: baseline;
-    gap: 2px;
+  .diag-top {
+    display: flex; align-items: flex-start;
+    justify-content: space-between; gap: 20px; margin-bottom: 20px;
   }
 
-  .score-number {
-    font-size: 26px;
-    font-weight: 600;
-    letter-spacing: -0.03em;
-    color: var(--accent);
-    line-height: 1;
+  .diag-score-wrap { flex-shrink: 0; }
+
+  .diag-score-number {
+    font-size: 56px; font-weight: 600; letter-spacing: -0.04em;
+    line-height: 1; color: var(--accent);
+  }
+  .diag-score-denom {
+    font-family: 'DM Mono', monospace; font-size: 13px;
+    color: var(--text-dim); letter-spacing: 0.02em;
   }
 
-  .score-denom {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--text-dim);
-    letter-spacing: 0.02em;
+  .diag-right { flex: 1; padding-top: 4px; }
+
+  .diag-status-row {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 6px;
+  }
+  .diag-status-pill {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 100px;
+    border: 1px solid; display: inline-block;
+  }
+  .diag-status-pill.alto  { color: var(--positive); border-color: rgba(110,231,183,0.3); background: var(--positive-dim); }
+  .diag-status-pill.medio { color: var(--accent);   border-color: rgba(139,92,246,0.3); background: var(--accent-dim); }
+  .diag-status-pill.bajo  { color: var(--danger);   border-color: rgba(248,113,113,0.3); background: var(--danger-dim); }
+
+  .diag-headline {
+    font-size: 18px; font-weight: 500; letter-spacing: -0.01em;
+    line-height: 1.35; color: var(--text); margin-bottom: 6px;
   }
 
-  .score-info { flex: 1; }
-
-  .score-label {
-    font-size: 13px;
-    font-weight: 400;
-    color: var(--text);
-    margin-bottom: 4px;
-    line-height: 1.4;
+  .diag-insight {
+    font-size: 13px; color: var(--text-muted); line-height: 1.5;
   }
 
-  .score-sublabel {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--text-dim);
-    letter-spacing: 0.04em;
+  .diag-prediction {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 16px;
+    background: var(--surface2);
+    border-radius: 6px;
+    border: 1px solid var(--border);
   }
 
-  .results-title {
-    font-size: 22px;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    margin-bottom: 4px;
+  .diag-prediction-icon {
+    width: 28px; height: 28px; border-radius: 6px;
+    background: var(--positive-dim); border: 1px solid rgba(110,231,183,0.2);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 14px;
   }
 
-  .results-business {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--text-dim);
-    letter-spacing: 0.05em;
+  .diag-prediction-text {
+    font-size: 13px; color: var(--text); line-height: 1.4;
   }
 
-  /* ── Cards ── */
-  .results-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  .diag-prediction-text strong {
+    color: var(--positive); font-weight: 500;
   }
 
-  .result-card {
+  /* ── 2. ACCIONES ── */
+  .section-header {
+    display: flex; align-items: baseline; gap: 10px;
+    margin: 24px 0 10px;
+  }
+
+  .section-title {
+    font-size: 13px; font-weight: 500;
+    letter-spacing: -0.01em; color: var(--text);
+  }
+
+  .section-count {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    color: var(--text-dim); letter-spacing: 0.05em;
+  }
+
+  .actions-stack {
+    display: flex; flex-direction: column; gap: 6px;
+  }
+
+  .action-row {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 14px 16px;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 7px;
-    overflow: hidden;
     transition: border-color 0.18s;
   }
+  .action-row:hover { border-color: var(--border2); }
 
-  .result-card:hover { border-color: var(--border2); }
-
-  .card-header {
-    padding: 13px 18px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-  }
-
-  .card-label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-  }
-
-  .card-dot {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    flex-shrink: 0;
-    background: var(--text-dim);
-  }
-
-  .dot-seo    { background: var(--accent); }
-  .dot-web    { background: var(--info); }
-  .dot-ai     { background: var(--positive); }
-  .dot-action { background: rgba(139,92,246,0.45); }
-
-  .copy-btn {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    background: none;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 4px 9px;
-    cursor: pointer;
-    transition: color 0.18s, border-color 0.18s;
-    flex-shrink: 0;
-  }
-
-  .copy-btn:hover  { color: var(--text-muted); border-color: var(--border2); }
-  .copy-btn.copied { color: var(--positive);   border-color: rgba(110,231,183,0.3); }
-
-  .card-body { padding: 18px; }
-
-  .card-content {
-    font-size: 14px;
-    line-height: 1.65;
-    color: var(--text);
-    font-weight: 300;
-  }
-
-  .card-content.title-content {
-    font-size: 17px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    line-height: 1.35;
-  }
-
-  .card-content.meta-content {
-    font-size: 14px;
-    color: #b0b0bc;
-    line-height: 1.6;
-  }
-
-  .char-hint {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--text-dim);
-    margin-top: 9px;
-    letter-spacing: 0.03em;
-  }
-
-  .keywords-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
-  }
-
-  .keyword-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--text-muted);
-    background: var(--surface2);
-    border: 1px solid var(--border2);
-    border-radius: 4px;
-    padding: 5px 11px;
-    letter-spacing: 0.02em;
-    transition: border-color 0.18s, color 0.18s;
-    cursor: default;
-  }
-
-  .keyword-tag:hover {
-    border-color: rgba(139,92,246,0.3);
-    color: var(--text);
-  }
-
-  .section-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    margin-bottom: 12px;
-  }
-
-  .ai-description {
-    font-size: 14px;
-    line-height: 1.7;
-    color: #b0b0bc;
-    font-weight: 300;
-    padding: 14px 16px;
-    background: var(--surface2);
-    border-radius: 5px;
-    border-left: 2px solid rgba(147,197,253,0.3);
-  }
-
-  /* ── Actions card ── */
-  .actions-card { border-color: rgba(139,92,246,0.12); }
-
-  .actions-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .action-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 11px 13px;
-    background: var(--surface2);
-    border-radius: 5px;
-    border: 1px solid var(--border);
-  }
-
-  .action-num {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    font-weight: 500;
-    color: var(--accent);
+  .action-row-num {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    font-weight: 500; color: var(--accent);
     background: var(--accent-dim);
     border: 1px solid rgba(139,92,246,0.2);
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    margin-top: 1px;
+    width: 20px; height: 20px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 1px;
   }
 
-  .action-text {
-    font-size: 14px;
-    color: var(--text);
-    line-height: 1.55;
-    font-weight: 300;
+  .action-row-body { flex: 1; }
+
+  .action-row-text {
+    font-size: 14px; color: var(--text);
+    line-height: 1.5; font-weight: 300; margin-bottom: 8px;
   }
 
-  /* ── Bottom actions row ── */
-  .results-actions {
-    display: flex;
-    gap: 10px;
-    margin-top: 28px;
-    flex-wrap: wrap;
+  .action-row-tags {
+    display: flex; gap: 6px; flex-wrap: wrap;
   }
 
-  .action-btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 11px 18px;
-    border-radius: 6px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: border-color 0.18s, color 0.18s, background 0.18s, transform 0.18s;
-    border: 1px solid var(--border2);
+  .tag {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 4px; border: 1px solid;
+  }
+
+  .tag-impact-alto    { color: var(--positive); border-color: rgba(110,231,183,0.25); background: var(--positive-dim); }
+  .tag-impact-medio   { color: var(--warning);  border-color: rgba(251,191,36,0.25);  background: var(--warning-dim); }
+  .tag-impact-bajo    { color: var(--text-muted); border-color: var(--border2); background: var(--surface2); }
+  .tag-dif-facil      { color: var(--info);     border-color: rgba(147,197,253,0.25); background: var(--info-dim); }
+  .tag-dif-medio      { color: var(--warning);  border-color: rgba(251,191,36,0.25);  background: var(--warning-dim); }
+  .tag-dif-dificil    { color: var(--danger);   border-color: rgba(248,113,113,0.25); background: var(--danger-dim); }
+
+  /* ── 3. QUICK WIN ── */
+  .quickwin-block {
     background: var(--surface);
-    color: var(--text-muted);
-    flex: 1;
-    min-width: 148px;
-    justify-content: center;
+    border: 1px solid rgba(251,191,36,0.15);
+    border-radius: 7px; overflow: hidden;
+    margin-top: 6px;
   }
 
-  .action-btn:hover {
-    color: var(--text);
-    transform: translateY(-1px);
+  .quickwin-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center;
+    justify-content: space-between;
   }
 
-  .action-btn.primary {
-    background: var(--accent);
-    color: #fff;
-    border-color: var(--accent);
+  .quickwin-label {
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted);
   }
 
-  .action-btn.primary:hover {
-    background: var(--accent-hover);
-    border-color: var(--accent-hover);
-    transform: translateY(-1px);
+  .quickwin-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--warning); flex-shrink: 0; }
+
+  .quickwin-body { padding: 14px 16px; }
+
+  .quickwin-text {
+    font-size: 14px; color: var(--text); line-height: 1.6;
+    font-weight: 400; padding: 12px 14px;
+    background: rgba(251,191,36,0.04);
+    border-radius: 5px; border-left: 2px solid rgba(251,191,36,0.3);
   }
 
-  /* ── Quick Win card ── */
-  .quickwin-card { border-color: rgba(251,191,36,0.12); }
-  .dot-quickwin  { background: #fbbf24; }
-
-  .quickwin-content {
-    font-size: 14px;
-    line-height: 1.65;
-    color: var(--text);
-    font-weight: 400;
-    padding: 12px 14px;
-    background: rgba(251,191,36,0.05);
-    border-radius: 5px;
-    border-left: 2px solid rgba(251,191,36,0.3);
-  }
-
-  /* ── Aggressive card ── */
-  .aggressive-card { border-color: rgba(248,113,113,0.12); }
-  .dot-aggressive  { background: #f87171; }
-
+  /* ── 4. ALTERNATIVA AGRESIVA ── */
   .aggressive-block {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    background: var(--surface2);
-    border-radius: 5px;
-    border: 1px solid var(--border);
-    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid rgba(248,113,113,0.12);
+    border-radius: 7px; overflow: hidden;
+    margin-top: 6px;
   }
 
-  .aggressive-row {
-    display: grid;
-    grid-template-columns: 44px 1fr auto;
-    align-items: start;
-    gap: 12px;
-    padding: 13px 14px;
+  .aggressive-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center;
+    justify-content: space-between;
   }
 
   .aggressive-label {
-    font-size: 10px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    padding-top: 2px;
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted);
   }
 
-  .aggressive-row p {
-    font-size: 14px;
-    line-height: 1.55;
-    color: var(--text);
-    font-weight: 300;
+  .aggressive-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--danger); flex-shrink: 0; }
+
+  .aggressive-body { padding: 14px 16px; display: flex; flex-direction: column; gap: 0; }
+
+  .agg-row {
+    display: grid; grid-template-columns: 44px 1fr auto;
+    align-items: start; gap: 12px; padding: 10px 0;
+  }
+  .agg-row + .agg-row { border-top: 1px solid var(--border); }
+
+  .agg-label-text {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--text-dim); padding-top: 2px;
   }
 
-  .aggressive-divider {
-    height: 1px;
-    background: var(--border);
-    margin: 0 14px;
+  .agg-content {
+    font-size: 14px; line-height: 1.55;
+    color: var(--text); font-weight: 300;
   }
 
-  /* ── Score insight pill ── */
-  .score-insight {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--text-muted);
-    margin-top: 6px;
-    letter-spacing: 0.03em;
-    font-style: italic;
+  /* ── 5. DIVISOR "CONTENIDO GENERADO" ── */
+  .content-divider {
+    display: flex; align-items: center; gap: 12px;
+    margin: 28px 0 12px;
+  }
+  .content-divider-line {
+    flex: 1; height: 1px; background: var(--border);
+  }
+  .content-divider-label {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim);
+    white-space: nowrap;
   }
 
-  /* ── Kairo footer — always visible ── */
+  /* ── CARDS genéricas ── */
+  .result-cards { display: flex; flex-direction: column; gap: 6px; }
+
+  .result-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 7px; overflow: hidden; transition: border-color 0.18s;
+  }
+  .result-card:hover { border-color: var(--border2); }
+
+  .card-header {
+    padding: 12px 16px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+
+  .card-label {
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted);
+  }
+
+  .card-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+  .dot-seo    { background: var(--accent); }
+  .dot-web    { background: var(--info); }
+  .dot-ai     { background: var(--positive); }
+
+  .copy-btn {
+    display: flex; align-items: center; gap: 5px;
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--text-dim); background: none;
+    border: 1px solid var(--border); border-radius: 4px;
+    padding: 4px 9px; cursor: pointer; flex-shrink: 0;
+    transition: color 0.18s, border-color 0.18s;
+  }
+  .copy-btn:hover  { color: var(--text-muted); border-color: var(--border2); }
+  .copy-btn.copied { color: var(--positive);   border-color: rgba(110,231,183,0.3); }
+
+  .card-body { padding: 16px; }
+
+  .card-content { font-size: 14px; line-height: 1.65; color: var(--text); font-weight: 300; }
+  .card-content.title-content { font-size: 17px; font-weight: 500; letter-spacing: -0.01em; line-height: 1.35; }
+  .card-content.meta-content  { color: #b0b0bc; line-height: 1.6; }
+
+  .char-hint {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    color: var(--text-dim); margin-top: 8px; letter-spacing: 0.03em;
+  }
+
+  .keywords-list { display: flex; flex-wrap: wrap; gap: 7px; }
+
+  .keyword-tag {
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    color: var(--text-muted); background: var(--surface2);
+    border: 1px solid var(--border2); border-radius: 4px;
+    padding: 5px 10px; letter-spacing: 0.02em;
+    transition: border-color 0.18s, color 0.18s; cursor: default;
+  }
+  .keyword-tag:hover { border-color: rgba(139,92,246,0.3); color: var(--text); }
+
+  .section-sublabel {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: 10px;
+  }
+
+  .ai-description {
+    font-size: 14px; line-height: 1.7; color: #b0b0bc; font-weight: 300;
+    padding: 13px 15px; background: var(--surface2);
+    border-radius: 5px; border-left: 2px solid rgba(147,197,253,0.3);
+  }
+
+  /* ── BOTTOM ACTIONS ── */
+  .results-actions {
+    display: flex; gap: 10px; margin-top: 28px; flex-wrap: wrap;
+  }
+
+  .action-btn {
+    display: flex; align-items: center; gap: 8px;
+    padding: 11px 18px; border-radius: 6px;
+    font-size: 13px; font-weight: 500; cursor: pointer;
+    transition: color 0.18s, border-color 0.18s, background 0.18s, transform 0.18s;
+    border: 1px solid var(--border2); background: var(--surface);
+    color: var(--text-muted); flex: 1; min-width: 140px; justify-content: center;
+  }
+  .action-btn:hover { color: var(--text); transform: translateY(-1px); }
+  .action-btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .action-btn.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); transform: translateY(-1px); }
+
+  /* ── KAIRO FOOTER ── */
   .kairo-footer {
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
+    position: fixed; bottom: 0; left: 0; right: 0;
     padding: 12px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.06em;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.06em;
     background: linear-gradient(to top, rgba(10,10,11,0.98) 0%, transparent 100%);
-    z-index: 50;
-    pointer-events: none;
+    z-index: 50; pointer-events: none;
   }
-
   .kairo-footer * { pointer-events: auto; }
-
-  .kairo-product {
-    color: var(--text-muted);
-    font-weight: 500;
-  }
-
-  .kairo-sep { color: var(--text-dim); }
-
-  .kairo-by { color: var(--text-dim); }
-
-  .kairo-link {
-    color: var(--accent);
-    text-decoration: none;
-    transition: opacity 0.18s;
-  }
-
+  .kairo-product  { color: var(--text-muted); font-weight: 500; }
+  .kairo-sep      { color: var(--text-dim); }
+  .kairo-by       { color: var(--text-dim); }
+  .kairo-link     { color: var(--accent); text-decoration: none; transition: opacity 0.18s; }
   .kairo-link:hover { opacity: 0.7; }
+  .kairo-tagline  { color: var(--text-dim); font-style: italic; }
 
-  .kairo-tagline {
-    color: var(--text-dim);
-    font-style: italic;
-  }
-
-  /* ── Utilities ── */
+  /* ── UTILS ── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(16px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* Nav */
-  .nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    padding: 18px 28px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 100;
-    background: linear-gradient(to bottom, rgba(10,10,11,0.96) 0%, transparent 100%);
-  }
-
-  .nav-logo {
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    color: var(--text);
-    display: flex;
-    align-items: center;
-  }
-
-  .nav-logo .dot { color: var(--accent); }
-
-  .nav-hint {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--text-dim);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  /* Progress bar */
-  .progress-bar {
-    position: fixed;
-    top: 0; left: 0;
-    height: 1px;
-    background: var(--accent);
-    transition: width 0.45s ease;
-    z-index: 200;
-    opacity: 0.6;
-  }
-
-  /* Scrollbar */
   ::-webkit-scrollbar { width: 3px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
 
   @media (max-width: 480px) {
-    .landing-title   { font-size: 38px; }
+    .landing-title   { font-size: 36px; }
     .how-it-works    { gap: 6px; }
     .step-arrow      { display: none; }
     .results-actions { flex-direction: column; }
-    .score-block     { flex-direction: column; text-align: center; }
+    .diag-top        { flex-direction: column; gap: 16px; }
   }
 </style>
 </head>
@@ -954,11 +659,11 @@
 <div class="progress-bar" id="progressBar" style="width:0%"></div>
 
 <nav class="nav">
-  <div class="nav-logo">Signal<span class="dot">.</span></div>
+  <div class="nav-logo" onclick="goTo('landing', 0)" style="cursor:pointer">Signal<span class="dot">.</span></div>
   <div class="nav-hint" id="navHint">Beta</div>
 </nav>
 
-<!-- ══ SCREEN 1: LANDING ══ -->
+<!-- ══ LANDING ══ -->
 <div class="screen active" id="landing">
   <div class="landing-inner">
     <div class="signal-badge">Visibilidad inteligente</div>
@@ -974,58 +679,44 @@
         <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </button>
-    <p class="landing-footer-note">Sin registro · Sin costo · Resultado en segundos</p>
-
+    <p class="landing-note font-mono">Sin registro · Sin costo · Resultado en segundos</p>
     <div class="how-it-works">
-      <div class="step-pill">
-        <span class="num">1</span>
-        Describí tu negocio
-      </div>
+      <div class="step-pill"><span class="num">1</span>Describí tu negocio</div>
       <span class="step-arrow">→</span>
-      <div class="step-pill">
-        <span class="num">2</span>
-        Generamos tu perfil
-      </div>
+      <div class="step-pill"><span class="num">2</span>Generamos tu reporte</div>
       <span class="step-arrow">→</span>
-      <div class="step-pill">
-        <span class="num">3</span>
-        Copiá y usá
-      </div>
+      <div class="step-pill"><span class="num">3</span>Copiá y aplicá</div>
     </div>
   </div>
 </div>
 
-<!-- ══ SCREEN 2: FORM ══ -->
+<!-- ══ FORM ══ -->
 <div class="screen" id="form-screen">
   <div class="form-container">
     <button class="back-btn font-mono" onclick="goTo('landing', 0)">← Volver</button>
-    <div class="form-header">
-      <span class="form-label-top font-mono">Tu negocio</span>
-      <h2 class="form-title">Contanos de qué se trata.</h2>
-      <p class="form-hint">Usamos esta información para generar contenido listo para usar en Google y en sistemas de inteligencia artificial.</p>
+    <span class="form-label-top font-mono">Tu negocio</span>
+    <h2 class="form-title">Contanos de qué se trata.</h2>
+    <p class="form-hint">Generamos un reporte accionable para Google y para inteligencias artificiales.</p>
+
+    <div class="field">
+      <label for="bizName">Nombre del negocio o marca</label>
+      <input type="text" id="bizName" placeholder="Ej: Estudio Martín Diseño" autocomplete="off">
+    </div>
+    <div class="field">
+      <label for="bizWhat">¿Qué hacés o vendés? <span class="optional">· requerido</span></label>
+      <textarea id="bizWhat" placeholder="Ej: Soy diseñadora gráfica especializada en identidad de marca para emprendedores." rows="3"></textarea>
+    </div>
+    <div class="field">
+      <label for="bizLocation">Ubicación <span class="optional">· opcional</span></label>
+      <input type="text" id="bizLocation" placeholder="Ej: Buenos Aires, Argentina" autocomplete="off">
+    </div>
+    <div class="field">
+      <label for="bizWebsite">Sitio web <span class="optional">· opcional</span></label>
+      <input type="url" id="bizWebsite" placeholder="https://tu-sitio.com" autocomplete="off">
     </div>
 
-    <div class="field-group">
-      <div class="field">
-        <label for="bizName">Nombre del negocio o marca</label>
-        <input type="text" id="bizName" placeholder="Ej: Estudio Martín Diseño" autocomplete="off">
-      </div>
-      <div class="field">
-        <label for="bizWhat">¿Qué hacés o vendés? <span class="optional">· requerido</span></label>
-        <textarea id="bizWhat" placeholder="Ej: Soy diseñadora gráfica especializada en identidad de marca para emprendedores y pequeñas empresas." rows="3"></textarea>
-      </div>
-      <div class="field">
-        <label for="bizLocation">Ubicación <span class="optional">· opcional</span></label>
-        <input type="text" id="bizLocation" placeholder="Ej: Buenos Aires, Argentina" autocomplete="off">
-      </div>
-      <div class="field">
-        <label for="bizWebsite">Sitio web <span class="optional">· opcional</span></label>
-        <input type="url" id="bizWebsite" placeholder="https://tu-sitio.com" autocomplete="off">
-      </div>
-    </div>
-
-    <button class="submit-btn" onclick="submitForm()" id="submitBtn">
-      Generar mi visibilidad
+    <button class="submit-btn" onclick="submitForm()">
+      Generar reporte
       <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
         <path d="M8 1l7 7-7 7M1 8h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
@@ -1033,72 +724,114 @@
   </div>
 </div>
 
-<!-- ══ SCREEN 3: LOADING ══ -->
+<!-- ══ LOADING ══ -->
 <div class="screen" id="loading-screen">
   <div class="loading-signal">
-    <div class="ring"></div>
-    <div class="ring"></div>
-    <div class="ring"></div>
+    <div class="ring"></div><div class="ring"></div><div class="ring"></div>
     <div class="core"></div>
   </div>
   <p class="loading-text font-mono">Analizando tu negocio...</p>
-  <div class="loading-steps" id="loadingSteps">
-    <div class="loading-step" id="step-1">
-      <div class="step-icon">1</div>
-      <span>Analizando tu negocio</span>
-    </div>
-    <div class="loading-step" id="step-2">
-      <div class="step-icon">2</div>
-      <span>Identificando palabras clave</span>
-    </div>
-    <div class="loading-step" id="step-3">
-      <div class="step-icon">3</div>
-      <span>Optimizando para búsqueda</span>
-    </div>
-    <div class="loading-step" id="step-4">
-      <div class="step-icon">4</div>
-      <span>Preparando descripción para IA</span>
-    </div>
+  <div class="loading-steps">
+    <div class="loading-step" id="step-1"><div class="step-icon">1</div><span>Analizando tu negocio</span></div>
+    <div class="loading-step" id="step-2"><div class="step-icon">2</div><span>Identificando oportunidades</span></div>
+    <div class="loading-step" id="step-3"><div class="step-icon">3</div><span>Calculando impacto</span></div>
+    <div class="loading-step" id="step-4"><div class="step-icon">4</div><span>Generando reporte</span></div>
   </div>
 </div>
 
-<!-- ══ SCREEN 4: RESULTS ══ -->
+<!-- ══ RESULTS ══ -->
 <div class="screen" id="results-screen">
   <div class="results-container">
 
-    <!-- Score -->
-    <div class="score-block">
-      <div class="score-gauge-wrap">
-        <svg class="score-gauge" viewBox="0 0 120 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10 65 A50 50 0 0 1 110 65" stroke="#1e1e24" stroke-width="7" stroke-linecap="round"/>
-          <path id="gaugeFill" d="M10 65 A50 50 0 0 1 110 65" stroke="#8B5CF6" stroke-width="7"
-            stroke-linecap="round" stroke-dasharray="157" stroke-dashoffset="157"
-            style="transition: stroke-dashoffset 1.2s cubic-bezier(0.4,0,0.2,1), stroke 0.5s ease"/>
-        </svg>
-        <div class="score-number-wrap">
-          <span class="score-number" id="scoreNumber">—</span>
-          <span class="score-denom">/100</span>
+    <!-- 1. DIAGNÓSTICO HERO -->
+    <div class="diag-block">
+      <div class="diag-top">
+        <div class="diag-score-wrap">
+          <div class="diag-score-number" id="diagScore">—</div>
+          <div class="diag-score-denom font-mono">/100</div>
+        </div>
+        <div class="diag-right">
+          <div class="diag-status-row">
+            <span class="diag-status-pill" id="diagStatusPill">—</span>
+          </div>
+          <div class="diag-headline" id="diagHeadline">Analizando tu visibilidad...</div>
+          <div class="diag-insight" id="diagInsight"></div>
         </div>
       </div>
-      <div class="score-info">
-        <div class="score-label" id="scoreLabel">Calculando...</div>
-        <div class="score-sublabel font-mono" id="scoreSublabel"></div>
+      <div class="diag-prediction" id="diagPrediction">
+        <div class="diag-prediction-icon">↑</div>
+        <div class="diag-prediction-text" id="diagPredictionText">Calculando predicción...</div>
       </div>
     </div>
 
-    <!-- Header -->
-    <div class="results-header">
-      <h2 class="results-title" id="resultsTitle">Tu contenido está listo</h2>
-      <p class="results-business font-mono" id="resultsBusiness"></p>
+    <!-- 2. QUÉ HACER AHORA -->
+    <div class="section-header">
+      <span class="section-title">Qué hacer ahora</span>
+      <span class="section-count font-mono" id="actionsCount"></span>
+    </div>
+    <div class="actions-stack" id="actionsStack"></div>
+
+    <!-- 3. QUICK WIN -->
+    <div class="section-header" style="margin-top:20px">
+      <span class="section-title">Mejora rápida</span>
+      <span class="section-count font-mono">1 cambio · alto impacto</span>
+    </div>
+    <div class="quickwin-block">
+      <div class="quickwin-header">
+        <div class="quickwin-label"><span class="quickwin-dot"></span>Quick win</div>
+        <button class="copy-btn font-mono" onclick="copyText(this, 'quickWinText')">
+          <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>
+          Copiar
+        </button>
+      </div>
+      <div class="quickwin-body">
+        <p class="quickwin-text" id="quickWinText">—</p>
+      </div>
     </div>
 
-    <div class="results-grid">
+    <!-- 4. ALTERNATIVA AGRESIVA -->
+    <div class="section-header" style="margin-top:20px">
+      <span class="section-title">Alternativa agresiva</span>
+      <span class="section-count font-mono">orientada a conversión</span>
+    </div>
+    <div class="aggressive-block">
+      <div class="aggressive-header">
+        <div class="aggressive-label"><span class="aggressive-dot"></span>Posicionamiento fuerte</div>
+      </div>
+      <div class="aggressive-body">
+        <div class="agg-row">
+          <span class="agg-label-text font-mono">Título</span>
+          <p class="agg-content" id="aggTitle">—</p>
+          <button class="copy-btn font-mono" onclick="copyText(this, 'aggTitle')">
+            <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>
+            Copiar
+          </button>
+        </div>
+        <div class="agg-row">
+          <span class="agg-label-text font-mono">Meta</span>
+          <p class="agg-content" id="aggMeta">—</p>
+          <button class="copy-btn font-mono" onclick="copyText(this, 'aggMeta')">
+            <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>
+            Copiar
+          </button>
+        </div>
+      </div>
+    </div>
 
-      <!-- SEO Title -->
+    <!-- DIVISOR -->
+    <div class="content-divider">
+      <div class="content-divider-line"></div>
+      <span class="content-divider-label">Contenido generado</span>
+      <div class="content-divider-line"></div>
+    </div>
+
+    <!-- 5. CONTENIDO -->
+    <div class="result-cards">
+
       <div class="result-card">
         <div class="card-header">
           <div class="card-label"><span class="card-dot dot-seo"></span>Título SEO</div>
-          <button class="copy-btn font-mono" onclick="copyCard(this, 'seoTitle')">
+          <button class="copy-btn font-mono" onclick="copyText(this, 'seoTitle')">
             <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>
             Copiar
           </button>
@@ -1109,11 +842,10 @@
         </div>
       </div>
 
-      <!-- Meta Description -->
       <div class="result-card">
         <div class="card-header">
           <div class="card-label"><span class="card-dot dot-seo"></span>Meta descripción</div>
-          <button class="copy-btn font-mono" onclick="copyCard(this, 'metaDesc')">
+          <button class="copy-btn font-mono" onclick="copyText(this, 'metaDesc')">
             <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>
             Copiar
           </button>
@@ -1124,7 +856,6 @@
         </div>
       </div>
 
-      <!-- Keywords -->
       <div class="result-card">
         <div class="card-header">
           <div class="card-label"><span class="card-dot dot-seo"></span>Palabras clave</div>
@@ -1138,11 +869,10 @@
         </div>
       </div>
 
-      <!-- Web Paragraph -->
       <div class="result-card">
         <div class="card-header">
           <div class="card-label"><span class="card-dot dot-web"></span>Párrafo para tu web</div>
-          <button class="copy-btn font-mono" onclick="copyCard(this, 'webPara')">
+          <button class="copy-btn font-mono" onclick="copyText(this, 'webPara')">
             <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>
             Copiar
           </button>
@@ -1152,84 +882,29 @@
         </div>
       </div>
 
-      <!-- AI Description -->
       <div class="result-card">
         <div class="card-header">
           <div class="card-label"><span class="card-dot dot-ai"></span>Descripción para IA</div>
-          <button class="copy-btn font-mono" onclick="copyCard(this, 'aiDesc')">
+          <button class="copy-btn font-mono" onclick="copyText(this, 'aiDesc')">
             <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>
             Copiar
           </button>
         </div>
         <div class="card-body">
-          <p class="section-label font-mono">Para ChatGPT · Perplexity · AI Search</p>
+          <p class="section-sublabel font-mono">Para ChatGPT · Perplexity · AI Search</p>
           <div class="ai-description" id="aiDesc">—</div>
         </div>
       </div>
 
-      <!-- Actions -->
-      <div class="result-card actions-card">
-        <div class="card-header">
-          <div class="card-label"><span class="card-dot dot-action"></span>Qué hacer ahora</div>
-        </div>
-        <div class="card-body">
-          <p class="section-label font-mono" style="margin-bottom:14px">4 pasos para empezar a aparecer</p>
-          <ol class="actions-list" id="actionsList"></ol>
-        </div>
-      </div>
+    </div><!-- /result-cards -->
 
-      <!-- Quick Win -->
-      <div class="result-card quickwin-card">
-        <div class="card-header">
-          <div class="card-label"><span class="card-dot dot-quickwin"></span>Mejora rápida</div>
-          <button class="copy-btn font-mono" onclick="copyCard(this, 'quickWin')">
-            <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>
-            Copiar
-          </button>
-        </div>
-        <div class="card-body">
-          <p class="section-label font-mono" style="margin-bottom:10px">1 cambio · alto impacto</p>
-          <p class="card-content quickwin-content" id="quickWin">—</p>
-        </div>
-      </div>
-
-      <!-- Aggressive Alternative -->
-      <div class="result-card aggressive-card">
-        <div class="card-header">
-          <div class="card-label"><span class="card-dot dot-aggressive"></span>Alternativa más agresiva</div>
-        </div>
-        <div class="card-body">
-          <p class="section-label font-mono" style="margin-bottom:12px">Orientada a conversión</p>
-          <div class="aggressive-block">
-            <div class="aggressive-row">
-              <span class="aggressive-label font-mono">Título</span>
-              <p id="aggTitle">—</p>
-              <button class="copy-btn font-mono" onclick="copyCard(this, 'aggTitle')">
-                <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>
-                Copiar
-              </button>
-            </div>
-            <div class="aggressive-divider"></div>
-            <div class="aggressive-row">
-              <span class="aggressive-label font-mono">Meta</span>
-              <p id="aggMeta">—</p>
-              <button class="copy-btn font-mono" onclick="copyCard(this, 'aggMeta')">
-                <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>
-                Copiar
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /results-grid -->
-
+    <!-- BOTTOM ACTIONS -->
     <div class="results-actions">
       <button class="action-btn" onclick="goTo('form-screen', 33)">
         <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
           <path d="M3 8h10M7 4l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        Nueva búsqueda
+        Nuevo reporte
       </button>
       <button class="action-btn primary" onclick="copyAll(this)">
         <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
@@ -1243,7 +918,7 @@
   </div>
 </div>
 
-<!-- ══ KAIRO FOOTER — always visible ══ -->
+<!-- KAIRO FOOTER -->
 <footer class="kairo-footer">
   <span class="kairo-product">Signal</span>
   <span class="kairo-sep">·</span>
@@ -1253,28 +928,20 @@
 </footer>
 
 <script>
-  // ── STATE ──
   let resultData = {};
 
   // ── NAVIGATION ──
-  function goTo(screenId, progress) {
+  function goTo(id, progress) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-    document.getElementById(screenId).classList.add('active');
+    document.getElementById(id).classList.add('active');
     document.getElementById('progressBar').style.width = progress + '%';
     window.scrollTo({ top: 0, behavior: 'instant' });
-
-    const hints = {
-      'landing':        'Beta',
-      'form-screen':    'Paso 1 · 1',
-      'loading-screen': 'Generando...',
-      'results-screen': 'Listo'
-    };
-    document.getElementById('navHint').textContent = hints[screenId] || '';
-
-    if (screenId === 'form-screen') resetLoadingSteps();
+    const hints = { landing: 'Beta', 'form-screen': 'Tu negocio', 'loading-screen': 'Analizando...', 'results-screen': 'Reporte listo' };
+    document.getElementById('navHint').textContent = hints[id] || '';
+    if (id === 'form-screen') resetSteps();
   }
 
-  // ── FORM SUBMIT ──
+  // ── SUBMIT ──
   async function submitForm() {
     const name     = document.getElementById('bizName').value.trim();
     const what     = document.getElementById('bizWhat').value.trim();
@@ -1291,286 +958,292 @@
 
     goTo('loading-screen', 66);
 
-    // Run API + loading animation in parallel — whichever finishes last wins
     const [result] = await Promise.all([
-      callClaudeAPI(name, what, location, website).catch(err => {
-        console.error('API error:', err);
-        return null;
-      }),
+      callAPI(name, what, location, website).catch(err => { console.error(err); return null; }),
       runLoadingSequence()
     ]);
 
     if (!result) {
-      showError('No pudimos generar el contenido. Revisá tu conexión e intentá de nuevo.');
+      showError('No pudimos generar el reporte. Revisá tu conexión e intentá de nuevo.');
       goTo('form-screen', 33);
       return;
     }
 
     resultData = result;
-    renderResults(name, result);
+    render(name, result);
     goTo('results-screen', 100);
   }
 
-  // ── LOADING ANIMATION ──
+  // ── LOADING ──
   function runLoadingSequence() {
     return new Promise(resolve => {
-      const steps = ['step-1', 'step-2', 'step-3', 'step-4'];
+      const steps = ['step-1','step-2','step-3','step-4'];
       let i = 0;
-
       function tick() {
         if (i > 0) {
-          const prev = document.getElementById(steps[i - 1]);
-          prev.classList.remove('active');
-          prev.classList.add('done');
-          prev.querySelector('.step-icon').textContent = '✓';
+          const p = document.getElementById(steps[i-1]);
+          p.classList.remove('active'); p.classList.add('done');
+          p.querySelector('.step-icon').textContent = '✓';
         }
         if (i < steps.length) {
           document.getElementById(steps[i]).classList.add('active');
-          i++;
-          setTimeout(tick, 950);
-        } else {
-          setTimeout(resolve, 200);
-        }
+          i++; setTimeout(tick, 950);
+        } else { setTimeout(resolve, 200); }
       }
       tick();
     });
   }
 
-  function resetLoadingSteps() {
-    ['step-1', 'step-2', 'step-3', 'step-4'].forEach((id, idx) => {
+  function resetSteps() {
+    ['step-1','step-2','step-3','step-4'].forEach((id, i) => {
       const el = document.getElementById(id);
-      el.classList.remove('active', 'done');
-      el.querySelector('.step-icon').textContent = idx + 1;
+      el.classList.remove('active','done');
+      el.querySelector('.step-icon').textContent = i + 1;
     });
   }
 
-  // ── CLAUDE API CALL ──
-  // PRODUCTION NOTE: Move this to a backend endpoint (e.g. POST /api/generate).
-  // Never expose an API key in client-side code outside of this sandbox.
-  async function callClaudeAPI(name, what, location, website) {
-    const bizContext = [
+  // ── API ──
+  async function callAPI(name, what, location, website) {
+    const ctx = [
       name     ? `Nombre: ${name}`        : '',
       what     ? `Actividad: ${what}`     : '',
       location ? `Ubicación: ${location}` : '',
       website  ? `Web: ${website}`        : ''
     ].filter(Boolean).join('\n');
 
-    const systemPrompt = `Actuás como un experto senior en SEO, posicionamiento en Google, optimización para motores de IA (ChatGPT, Perplexity), copywriting y crecimiento digital.
-Tu objetivo NO es generar texto. Tu objetivo es generar claridad, dirección y ventaja competitiva.
+    const system = `Actuás como un experto en SEO, posicionamiento y diseño de producto SaaS.
+Tu objetivo es generar un reporte que NO solo informe, sino que explique el estado actual, indique qué hacer y proyecte mejora realista.
 
-PRINCIPIOS NO NEGOCIABLES:
-* Prohibido usar frases vacías: "somos líderes", "soluciones integrales", "estrategias innovadoras"
-* Escribir como alguien que entiende negocio, no como agencia
-* Priorizar claridad sobre creatividad innecesaria
-* Todo debe tener intención de uso real
-* NO uses lenguaje técnico innecesario
-* NO expliques lo que haces
-* NO agregues texto fuera del JSON
-* Responde SOLO con JSON válido
+REGLAS DE SCORE (0–100) — basado en 5 factores:
+1. Claridad del posicionamiento (¿se entiende qué hace el negocio?)
+2. Especificidad (¿es genérico o concreto?)
+3. Uso de keywords (¿hay intención de búsqueda real?)
+4. Propuesta de valor (¿está clara?)
+5. Diferenciación (¿se distingue o es igual a todos?)
 
-FILTRO FINAL: Antes de responder, validar internamente:
-"¿Esto le ahorra tiempo real al usuario?"
-"¿Esto es mejor que una agencia promedio?"
-Si no lo es → mejorar.`;
+INTERPRETACIÓN:
+- 0–40 → Bajo (confuso / genérico)
+- 41–70 → Medio (correcto pero mejorable)
+- 71–100 → Alto (claro y competitivo)
 
-    const userPrompt = `CONTEXTO DEL NEGOCIO:
-${bizContext}
+El score NO puede ser random. Debe estar alineado con el diagnóstico y las mejoras sugeridas.
 
-${bizContext.includes('Web:') ? 'Hay URL disponible: analizar servicios, posicionamiento, errores y oportunidades. Evitar repetir lo que ya está bien.' : 'Sin URL: construir posicionamiento claro desde cero. Evitar genérico. Asumir caso realista y competitivo.'}
+PREDICCIÓN DE MEJORA (reglas estrictas):
+- Score 0–40: puede subir +20 a +30 puntos
+- Score 41–70: puede subir +10 a +20 puntos
+- Score 71–100: puede subir +5 a +10 puntos
 
-Devuelve SOLO un JSON válido con esta estructura exacta (sin markdown, sin backticks):
+REGLAS DE IMPACTO:
+- Alto → cambia posicionamiento (título, propuesta, enfoque)
+- Medio → mejora contenido o claridad
+- Bajo → ajustes menores
+
+REGLAS DE DIFICULTAD:
+- Fácil → cambiar texto
+- Medio → crear contenido nuevo
+- Difícil → rediseño o cambios estructurales
+
+PROHIBIDO:
+- inventar métricas sin lógica
+- escribir genérico
+- dar recomendaciones vacías
+- usar frases tipo "somos líderes", "soluciones integrales"
+
+Solo JSON válido, sin texto adicional.`;
+
+    const user = `NEGOCIO:
+${ctx}
+
+Devuelve SOLO un JSON válido (sin markdown, sin backticks):
 {
-  "visibilityScore": 65,
-  "status": "Moderado",
-  "insight": "Una línea explicando por qué está en ese nivel de visibilidad.",
-  "seoTitle": "Título con intención de búsqueda real. Servicio + ubicación si aplica. Máx 60 caracteres. Concreto, no genérico.",
-  "metaDescription": "140-155 caracteres. Qué hacés y qué resultado generás. Lenguaje claro y directo.",
-  "keywords": ["keyword con intención real 1", "keyword 2", "keyword 3", "keyword local", "long tail 1", "long tail 2"],
-  "webParagraph": "3-4 líneas. Qué hacés, para quién, qué resultado generás. Lenguaje humano y directo. Sin frases vacías.",
-  "aiDescription": "Máx 5 líneas. Clara, estructurada y escaneable para motores de IA. Qué hace, para quién, dónde, qué lo diferencia.",
+  "visibilityScore": 68,
+  "status": "Medio",
+  "insight": "1 línea directa explicando el problema principal de visibilidad.",
+  "prediction": "Con estos cambios podés pasar de [score actual] a [score proyectado] en [tiempo realista].",
   "actions": [
-    "Acción específica 1 con ejemplo concreto de qué hacer exactamente",
-    "Acción específica 2",
-    "Acción específica 3",
-    "Acción específica 4"
+    {
+      "text": "Acción concreta y específica — exactamente qué hacer",
+      "impact": "Alto",
+      "difficulty": "Fácil"
+    },
+    {
+      "text": "Acción 2",
+      "impact": "Medio",
+      "difficulty": "Medio"
+    },
+    {
+      "text": "Acción 3",
+      "impact": "Alto",
+      "difficulty": "Fácil"
+    },
+    {
+      "text": "Acción 4",
+      "impact": "Medio",
+      "difficulty": "Difícil"
+    }
   ],
-  "quickWin": "1 recomendación simple de alto impacto. Ejemplo: qué cambiar exactamente y por qué mejora la visibilidad.",
+  "quickWin": "1 cambio concreto de alto impacto aplicable hoy. Sin genérico.",
   "aggressive": {
-    "title": "Título SEO alternativo más orientado a conversión. Máx 60 caracteres.",
-    "meta": "Meta descripción más directa y orientada a acción. 140-155 caracteres."
-  }
+    "title": "Título SEO más directo y orientado a conversión. Máx 60 car.",
+    "meta": "Meta más directa y orientada a acción. 140-155 car."
+  },
+  "seoTitle": "Título SEO principal. Servicio + ubicación si aplica. Máx 60 car.",
+  "metaDescription": "140-155 car. Qué hacés y qué resultado generás. Claro y directo.",
+  "keywords": ["keyword 1", "keyword 2", "keyword 3", "keyword local", "long tail 1", "long tail 2"],
+  "webParagraph": "3-4 líneas. Qué hacés, para quién, qué resultado. Humano y directo. Sin frases vacías.",
+  "aiDescription": "Máx 5 líneas para motores de IA. Clara, estructurada, escaneable. Qué hace, para quién, dónde, qué lo diferencia."
 }
 
-REGLAS:
-* visibilityScore: 0-100 basado en claridad, foco y posicionamiento del negocio
-* status: exactamente "Bajo", "Moderado" o "Alto"
-* insight: 1 línea, explica el nivel sin tecnicismos
-* actions: específicas, accionables, con ejemplo si aplica. No decir "mejorar SEO", decir exactamente qué hacer
-* quickWin: 1 sola recomendación, alto impacto, aplicable hoy
-* aggressive.title y aggressive.meta: más directos, más orientados a conversión que los principales
-* Todo en español, claro y directo`;
+REGLAS DEL JSON:
+* visibilityScore: número 0–100 basado en los 5 factores, alineado con el diagnóstico
+* status: exactamente "Bajo", "Medio" o "Alto"
+* prediction: proyección concreta siguiendo las reglas de rango (Bajo +20/+30, Medio +10/+20, Alto +5/+10)
+* actions[].impact: exactamente "Alto", "Medio" o "Bajo" — siguiendo las reglas de impacto
+* actions[].difficulty: exactamente "Fácil", "Medio" o "Difícil" — siguiendo las reglas de dificultad
+* Todo en español`;
 
-    const response = await fetch('/api/generate', {
+    const res = await fetch('/api/generate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
-        max_tokens: 1200,
-        system: systemPrompt,
-        messages: [{ role: 'user', content: userPrompt }]
+        max_tokens: 1600,
+        system,
+        messages: [{ role: 'user', content: user }]
       })
     });
 
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-
-    const data    = await response.json();
-    const rawText = data.content.map(b => b.text || '').join('');
-    const cleaned = rawText.replace(/```json|```/g, '').trim();
-    return JSON.parse(cleaned);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    const raw  = data.content.map(b => b.text || '').join('');
+    return JSON.parse(raw.replace(/```json|```/g, '').trim());
   }
 
-  // ── RENDER RESULTS ──
-  function renderResults(name, data) {
-    document.getElementById('resultsTitle').textContent    = 'Tu contenido está listo';
-    document.getElementById('resultsBusiness').textContent = name ? `// ${name}` : '';
+  // ── RENDER ──
+  function render(name, d) {
+    // 1. Diagnóstico
+    const score = Math.min(100, Math.max(0, parseInt(d.visibilityScore) || 60));
+    document.getElementById('diagScore').textContent = score;
 
-    // Score gauge — now 0-100
-    const score  = Math.min(100, Math.max(0, parseInt(data.visibilityScore) || 60));
-    document.getElementById('scoreNumber').textContent = score;
+    const status = d.status || 'Moderado';
+    const pill   = document.getElementById('diagStatusPill');
+    pill.textContent = status;
+    pill.className   = 'diag-status-pill ' + status.toLowerCase();
 
-    const pct    = score / 100;
-    const offset = 157 - pct * 157;
-    const color  = score >= 70 ? '#6ee7b7' : score >= 45 ? '#8B5CF6' : '#f87171';
+    const color = status === 'Alto' ? '#6ee7b7' : status === 'Bajo' ? '#f87171' : '#8B5CF6';
+    document.getElementById('diagScore').style.color = color;
 
-    requestAnimationFrame(() => setTimeout(() => {
-      const fill = document.getElementById('gaugeFill');
-      fill.style.strokeDashoffset = offset;
-      fill.style.stroke           = color;
-      document.getElementById('scoreNumber').style.color = color;
-    }, 80));
+    document.getElementById('diagHeadline').textContent =
+      `Tu visibilidad es ${score}/100 — ${status === 'Alto' ? 'buen punto de partida.' : status === 'Bajo' ? 'hay mucho por mejorar.' : 'podés crecer rápido.'}`;
+    document.getElementById('diagInsight').textContent = d.insight || '';
+    document.getElementById('diagPredictionText').innerHTML =
+      `<strong>${d.prediction || 'Aplicá estos cambios para mejorar tu visibilidad.'}</strong>`;
 
-    // Status + insight
-    const status = data.status || 'Moderado';
-    const statusColor = status === 'Alto' ? '#6ee7b7' : status === 'Bajo' ? '#f87171' : '#8B5CF6';
-    document.getElementById('scoreLabel').innerHTML =
-      `<span style="color:${statusColor};font-weight:500">${status}</span>`;
-    document.getElementById('scoreSublabel').textContent = data.insight || '';
+    // 2. Acciones
+    const stack = document.getElementById('actionsStack');
+    stack.innerHTML = '';
+    document.getElementById('actionsCount').textContent = `${(d.actions||[]).length} acciones`;
 
-    // SEO Title
-    document.getElementById('seoTitle').textContent = data.seoTitle || '—';
-    const tLen = (data.seoTitle || '').length;
+    (d.actions || []).forEach((a, i) => {
+      const impactClass = { 'Alto': 'tag-impact-alto', 'Medio': 'tag-impact-medio', 'Bajo': 'tag-impact-bajo' }[a.impact] || 'tag-impact-bajo';
+      const difClass    = { 'Fácil': 'tag-dif-facil', 'Medio': 'tag-dif-medio', 'Difícil': 'tag-dif-dificil' }[a.difficulty] || 'tag-dif-medio';
+
+      const row = document.createElement('div');
+      row.className = 'action-row';
+      row.innerHTML = `
+        <div class="action-row-num">${i + 1}</div>
+        <div class="action-row-body">
+          <div class="action-row-text">${a.text}</div>
+          <div class="action-row-tags">
+            <span class="tag ${impactClass}">Impacto ${a.impact}</span>
+            <span class="tag ${difClass}">${a.difficulty}</span>
+          </div>
+        </div>`;
+      stack.appendChild(row);
+    });
+
+    // 3. Quick win
+    document.getElementById('quickWinText').textContent = d.quickWin || '—';
+
+    // 4. Aggressive
+    document.getElementById('aggTitle').textContent = d.aggressive?.title || '—';
+    document.getElementById('aggMeta').textContent  = d.aggressive?.meta  || '—';
+
+    // 5. Contenido
+    document.getElementById('seoTitle').textContent = d.seoTitle || '—';
+    const tLen = (d.seoTitle || '').length;
     document.getElementById('seoTitleLen').textContent =
       `${tLen} car. · ideal 50–60` + (tLen > 60 ? ' · un poco largo' : tLen < 40 ? ' · podría ser más específico' : ' · ✓');
 
-    // Meta Description
-    document.getElementById('metaDesc').textContent = data.metaDescription || '—';
-    const mLen = (data.metaDescription || '').length;
+    document.getElementById('metaDesc').textContent = d.metaDescription || '—';
+    const mLen = (d.metaDescription || '').length;
     document.getElementById('metaDescLen').textContent =
       `${mLen} car. · ideal 140–155` + (mLen > 160 ? ' · recortá un poco' : mLen < 120 ? ' · podría ser más completo' : ' · ✓');
 
-    // Keywords
     const kwList = document.getElementById('keywordsList');
     kwList.innerHTML = '';
-    (data.keywords || []).forEach(kw => {
-      const tag = document.createElement('span');
-      tag.className   = 'keyword-tag font-mono';
-      tag.textContent = kw;
-      kwList.appendChild(tag);
+    (d.keywords || []).forEach(kw => {
+      const t = document.createElement('span');
+      t.className = 'keyword-tag font-mono'; t.textContent = kw;
+      kwList.appendChild(t);
     });
 
-    // Web paragraph
-    document.getElementById('webPara').textContent = data.webParagraph || '—';
-
-    // AI description
-    document.getElementById('aiDesc').textContent = data.aiDescription || '—';
-
-    // Actions
-    const list = document.getElementById('actionsList');
-    list.innerHTML = '';
-    (data.actions || []).forEach((action, i) => {
-      const li   = document.createElement('li');
-      li.className = 'action-item';
-      li.innerHTML = `<span class="action-num font-mono">${i + 1}</span><span class="action-text">${action}</span>`;
-      list.appendChild(li);
-    });
-
-    // Quick win
-    document.getElementById('quickWin').textContent = data.quickWin || '—';
-
-    // Aggressive alternative
-    document.getElementById('aggTitle').textContent = data.aggressive?.title || '—';
-    document.getElementById('aggMeta').textContent  = data.aggressive?.meta  || '—';
+    document.getElementById('webPara').textContent = d.webParagraph || '—';
+    document.getElementById('aiDesc').textContent  = d.aiDescription || '—';
   }
 
-  // ── COPY HELPERS ──
-  const COPY_ICON  = `<svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>`;
+  // ── COPY ──
   const CHECK_ICON = `<svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 
-  function flashCopied(btn, originalHTML) {
+  function flash(btn, orig) {
     btn.classList.add('copied');
     btn.innerHTML = `${CHECK_ICON} Copiado`;
-    setTimeout(() => {
-      btn.classList.remove('copied');
-      btn.innerHTML = originalHTML;
-    }, 2000);
+    setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = orig; }, 2000);
   }
 
-  function copyCard(btn, elementId) {
-    const el = document.getElementById(elementId);
+  function copyText(btn, id) {
+    const el = document.getElementById(id);
     if (!el) return;
-    const original = btn.innerHTML;
-    navigator.clipboard.writeText(el.textContent.trim())
-      .then(() => flashCopied(btn, original))
-      .catch(err => console.error('Clipboard:', err));
+    const orig = btn.innerHTML;
+    navigator.clipboard.writeText(el.textContent.trim()).then(() => flash(btn, orig));
   }
 
   function copyKeywords(btn) {
-    const text = Array.from(document.querySelectorAll('.keyword-tag'))
-      .map(t => t.textContent).join(', ');
-    const original = btn.innerHTML;
-    navigator.clipboard.writeText(text)
-      .then(() => flashCopied(btn, original))
-      .catch(err => console.error('Clipboard:', err));
+    const text = Array.from(document.querySelectorAll('.keyword-tag')).map(t => t.textContent).join(', ');
+    const orig = btn.innerHTML;
+    navigator.clipboard.writeText(text).then(() => flash(btn, orig));
   }
 
   function copyAll(btn) {
     const g = id => (document.getElementById(id)?.textContent || '').trim();
-    const actions = Array.from(document.querySelectorAll('.action-item'))
-      .map((el, i) => `${i + 1}. ${el.querySelector('.action-text').textContent.trim()}`)
-      .join('\n');
+    const actions = Array.from(document.querySelectorAll('.action-row-text'))
+      .map((el, i) => `${i+1}. ${el.textContent.trim()}`).join('\n');
 
-    const output = [
+    const out = [
+      `SCORE: ${g('diagScore')}/100 — ${document.getElementById('diagStatusPill')?.textContent}`,
+      `PREDICCIÓN\n${g('diagPredictionText')}`,
+      `QUÉ HACER AHORA\n${actions}`,
+      `QUICK WIN\n${g('quickWinText')}`,
+      `ALTERNATIVA AGRESIVA\nTítulo: ${g('aggTitle')}\nMeta: ${g('aggMeta')}`,
       `TÍTULO SEO\n${g('seoTitle')}`,
       `META DESCRIPCIÓN\n${g('metaDesc')}`,
-      `PALABRAS CLAVE\n${Array.from(document.querySelectorAll('.keyword-tag')).map(t => t.textContent).join(', ')}`,
+      `PALABRAS CLAVE\n${Array.from(document.querySelectorAll('.keyword-tag')).map(t=>t.textContent).join(', ')}`,
       `PÁRRAFO WEB\n${g('webPara')}`,
       `DESCRIPCIÓN PARA IA\n${g('aiDesc')}`,
-      `QUÉ HACER AHORA\n${actions}`,
-      `MEJORA RÁPIDA\n${g('quickWin')}`,
-      `ALTERNATIVA MÁS AGRESIVA\nTítulo: ${g('aggTitle')}\nMeta: ${g('aggMeta')}`,
       `---\nBuilt by Kairo · Make it simple.`
     ].join('\n\n---\n\n');
 
-    const original = btn.innerHTML;
-    navigator.clipboard.writeText(output)
-      .then(() => flashCopied(btn, original))
-      .catch(err => console.error('Clipboard:', err));
+    const orig = btn.innerHTML;
+    navigator.clipboard.writeText(out).then(() => flash(btn, orig));
   }
 
-  // ── ERROR TOAST ──
+  // ── ERROR ──
   function showError(msg) {
-    const toast = document.createElement('div');
-    toast.style.cssText = [
-      'position:fixed', 'bottom:24px', 'left:50%', 'transform:translateX(-50%)',
-      'background:#16161a', 'border:1px solid rgba(248,113,113,0.25)',
-      'color:#fca5a5', "font-family:'DM Mono',monospace", 'font-size:11px',
-      'padding:11px 18px', 'border-radius:6px', 'z-index:9999',
-      'letter-spacing:0.04em', 'max-width:380px', 'text-align:center',
-      'animation:fadeUp 0.3s ease both'
-    ].join(';');
-    toast.textContent = msg;
-    document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 5000);
+    const t = document.createElement('div');
+    t.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#16161a;border:1px solid rgba(248,113,113,0.25);color:#fca5a5;font-family:DM Mono,monospace;font-size:11px;padding:11px 18px;border-radius:6px;z-index:9999;letter-spacing:0.04em;max-width:380px;text-align:center';
+    t.textContent = msg;
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 5000);
   }
 </script>
 </body>
