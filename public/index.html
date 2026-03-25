@@ -774,6 +774,93 @@
     transform: translateY(-1px);
   }
 
+  /* ── Quick Win card ── */
+  .quickwin-card { border-color: rgba(251,191,36,0.12); }
+  .dot-quickwin  { background: #fbbf24; }
+
+  .quickwin-content {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--text);
+    font-weight: 400;
+    padding: 12px 14px;
+    background: rgba(251,191,36,0.05);
+    border-radius: 5px;
+    border-left: 2px solid rgba(251,191,36,0.3);
+  }
+
+  /* ── Aggressive card ── */
+  .aggressive-card { border-color: rgba(248,113,113,0.12); }
+  .dot-aggressive  { background: #f87171; }
+
+  .aggressive-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    background: var(--surface2);
+    border-radius: 5px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .aggressive-row {
+    display: grid;
+    grid-template-columns: 44px 1fr auto;
+    align-items: start;
+    gap: 12px;
+    padding: 13px 14px;
+  }
+
+  .aggressive-label {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding-top: 2px;
+  }
+
+  .aggressive-row p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text);
+    font-weight: 300;
+  }
+
+  .aggressive-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 0 14px;
+  }
+
+  /* ── Score insight pill ── */
+  .score-insight {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    letter-spacing: 0.03em;
+    font-style: italic;
+  }
+
+  /* ── Kairo footer ── */
+  .kairo-footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.06em;
+    text-align: center;
+  }
+
+  .kairo-brand {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
   /* ── Utilities ── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(16px); }
@@ -964,7 +1051,7 @@
         </svg>
         <div class="score-number-wrap">
           <span class="score-number" id="scoreNumber">—</span>
-          <span class="score-denom">/85</span>
+          <span class="score-denom">/100</span>
         </div>
       </div>
       <div class="score-info">
@@ -1065,7 +1152,56 @@
         </div>
       </div>
 
+      <!-- Quick Win -->
+      <div class="result-card quickwin-card">
+        <div class="card-header">
+          <div class="card-label"><span class="card-dot dot-quickwin"></span>Mejora rápida</div>
+          <button class="copy-btn font-mono" onclick="copyCard(this, 'quickWin')">
+            <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>
+            Copiar
+          </button>
+        </div>
+        <div class="card-body">
+          <p class="section-label font-mono" style="margin-bottom:10px">1 cambio · alto impacto</p>
+          <p class="card-content quickwin-content" id="quickWin">—</p>
+        </div>
+      </div>
+
+      <!-- Aggressive Alternative -->
+      <div class="result-card aggressive-card">
+        <div class="card-header">
+          <div class="card-label"><span class="card-dot dot-aggressive"></span>Alternativa más agresiva</div>
+        </div>
+        <div class="card-body">
+          <p class="section-label font-mono" style="margin-bottom:12px">Orientada a conversión</p>
+          <div class="aggressive-block">
+            <div class="aggressive-row">
+              <span class="aggressive-label font-mono">Título</span>
+              <p id="aggTitle">—</p>
+              <button class="copy-btn font-mono" onclick="copyCard(this, 'aggTitle')">
+                <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>
+                Copiar
+              </button>
+            </div>
+            <div class="aggressive-divider"></div>
+            <div class="aggressive-row">
+              <span class="aggressive-label font-mono">Meta</span>
+              <p id="aggMeta">—</p>
+              <button class="copy-btn font-mono" onclick="copyCard(this, 'aggMeta')">
+                <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>
+                Copiar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div><!-- /results-grid -->
+
+    <!-- Kairo footer -->
+    <div class="kairo-footer font-mono">
+      Built by <span class="kairo-brand">Kairo</span> &nbsp;·&nbsp; Make it simple.
+    </div>
 
     <div class="results-actions">
       <button class="action-btn" onclick="goTo('form-screen', 33)">
@@ -1189,40 +1325,60 @@
       website  ? `Web: ${website}`        : ''
     ].filter(Boolean).join('\n');
 
-    const systemPrompt = `Eres un experto en SEO moderno y visibilidad en buscadores e inteligencia artificial (ChatGPT, Perplexity, etc).
-IMPORTANTE:
+    const systemPrompt = `Actuás como un experto senior en SEO, posicionamiento en Google, optimización para motores de IA (ChatGPT, Perplexity), copywriting y crecimiento digital.
+Tu objetivo NO es generar texto. Tu objetivo es generar claridad, dirección y ventaja competitiva.
+
+PRINCIPIOS NO NEGOCIABLES:
+* Prohibido usar frases vacías: "somos líderes", "soluciones integrales", "estrategias innovadoras"
+* Escribir como alguien que entiende negocio, no como agencia
+* Priorizar claridad sobre creatividad innecesaria
+* Todo debe tener intención de uso real
 * NO uses lenguaje técnico innecesario
 * NO expliques lo que haces
 * NO agregues texto fuera del JSON
 * Responde SOLO con JSON válido
-Tu objetivo es ayudar a que un negocio "empiece a aparecer" en resultados de búsqueda y sistemas de IA.`;
+
+FILTRO FINAL: Antes de responder, validar internamente:
+"¿Esto le ahorra tiempo real al usuario?"
+"¿Esto es mejor que una agencia promedio?"
+Si no lo es → mejorar.`;
 
     const userPrompt = `CONTEXTO DEL NEGOCIO:
 ${bizContext}
 
-TAREA: Analiza el negocio y genera contenido optimizado para Google y sistemas de IA.
+${bizContext.includes('Web:') ? 'Hay URL disponible: analizar servicios, posicionamiento, errores y oportunidades. Evitar repetir lo que ya está bien.' : 'Sin URL: construir posicionamiento claro desde cero. Evitar genérico. Asumir caso realista y competitivo.'}
 
 Devuelve SOLO un JSON válido con esta estructura exacta (sin markdown, sin backticks):
 {
-  "seoTitle": "Título optimizado (50-60 caracteres). Incluye qué hace el negocio y, si aplica, ubicación.",
-  "metaDescription": "Descripción atractiva (140-155 caracteres) que invite a hacer clic. Clara, directa, sin relleno.",
-  "keywords": ["keyword principal", "keyword secundaria", "keyword local", "variación relevante", "intención de búsqueda", "long tail", "otra relevante"],
-  "webParagraph": "Párrafo de 2-3 oraciones listo para pegar en una web. Incluye palabras clave de forma natural. Claro, humano y directo.",
-  "aiDescription": "Descripción pensada para sistemas de IA. Explica claramente qué hace el negocio, para quién es, dónde opera (si aplica) y qué lo diferencia. Fácil de entender y citable por IA.",
   "visibilityScore": 65,
+  "status": "Moderado",
+  "insight": "Una línea explicando por qué está en ese nivel de visibilidad.",
+  "seoTitle": "Título con intención de búsqueda real. Servicio + ubicación si aplica. Máx 60 caracteres. Concreto, no genérico.",
+  "metaDescription": "140-155 caracteres. Qué hacés y qué resultado generás. Lenguaje claro y directo.",
+  "keywords": ["keyword con intención real 1", "keyword 2", "keyword 3", "keyword local", "long tail 1", "long tail 2"],
+  "webParagraph": "3-4 líneas. Qué hacés, para quién, qué resultado generás. Lenguaje humano y directo. Sin frases vacías.",
+  "aiDescription": "Máx 5 líneas. Clara, estructurada y escaneable para motores de IA. Qué hace, para quién, dónde, qué lo diferencia.",
   "actions": [
-    "Acción concreta 1",
-    "Acción concreta 2",
-    "Acción concreta 3",
-    "Acción concreta 4"
-  ]
+    "Acción específica 1 con ejemplo concreto de qué hacer exactamente",
+    "Acción específica 2",
+    "Acción específica 3",
+    "Acción específica 4"
+  ],
+  "quickWin": "1 recomendación simple de alto impacto. Ejemplo: qué cambiar exactamente y por qué mejora la visibilidad.",
+  "aggressive": {
+    "title": "Título SEO alternativo más orientado a conversión. Máx 60 caracteres.",
+    "meta": "Meta descripción más directa y orientada a acción. 140-155 caracteres."
+  }
 }
 
 REGLAS:
-* visibilityScore: número entre 40 y 85 según qué tan bien está planteado el negocio para aparecer en búsquedas
-* actions: 4 pasos simples, concretos, sin conocimientos técnicos requeridos
-* Todo en español, claro y directo
-* Nada de jerga técnica`;
+* visibilityScore: 0-100 basado en claridad, foco y posicionamiento del negocio
+* status: exactamente "Bajo", "Moderado" o "Alto"
+* insight: 1 línea, explica el nivel sin tecnicismos
+* actions: específicas, accionables, con ejemplo si aplica. No decir "mejorar SEO", decir exactamente qué hacer
+* quickWin: 1 sola recomendación, alto impacto, aplicable hoy
+* aggressive.title y aggressive.meta: más directos, más orientados a conversión que los principales
+* Todo en español, claro y directo`;
 
     const response = await fetch('/api/generate', {
       method: 'POST',
@@ -1248,13 +1404,13 @@ REGLAS:
     document.getElementById('resultsTitle').textContent    = 'Tu contenido está listo';
     document.getElementById('resultsBusiness').textContent = name ? `// ${name}` : '';
 
-    // Score gauge
-    const score  = Math.min(85, Math.max(40, parseInt(data.visibilityScore) || 60));
+    // Score gauge — now 0-100
+    const score  = Math.min(100, Math.max(0, parseInt(data.visibilityScore) || 60));
     document.getElementById('scoreNumber').textContent = score;
 
-    const pct    = (score - 40) / 45;
+    const pct    = score / 100;
     const offset = 157 - pct * 157;
-    const color  = score >= 75 ? '#6ee7b7' : score >= 60 ? '#8B5CF6' : '#f9a8d4';
+    const color  = score >= 70 ? '#6ee7b7' : score >= 45 ? '#8B5CF6' : '#f87171';
 
     requestAnimationFrame(() => setTimeout(() => {
       const fill = document.getElementById('gaugeFill');
@@ -1263,17 +1419,12 @@ REGLAS:
       document.getElementById('scoreNumber').style.color = color;
     }, 80));
 
-    const tier = score >= 75 ? 'high' : score >= 60 ? 'mid' : 'low';
-    document.getElementById('scoreLabel').textContent = {
-      high: 'Buena base de visibilidad',
-      mid:  'Visibilidad moderada',
-      low:  'Visibilidad por desarrollar'
-    }[tier];
-    document.getElementById('scoreSublabel').textContent = {
-      high: 'Aplicá estos contenidos y vas a aparecer',
-      mid:  'Con estas mejoras vas a crecer rápido',
-      low:  'Seguí los pasos para empezar a aparecer'
-    }[tier];
+    // Status + insight
+    const status = data.status || 'Moderado';
+    const statusColor = status === 'Alto' ? '#6ee7b7' : status === 'Bajo' ? '#f87171' : '#8B5CF6';
+    document.getElementById('scoreLabel').innerHTML =
+      `<span style="color:${statusColor};font-weight:500">${status}</span>`;
+    document.getElementById('scoreSublabel').textContent = data.insight || '';
 
     // SEO Title
     document.getElementById('seoTitle').textContent = data.seoTitle || '—';
@@ -1312,6 +1463,13 @@ REGLAS:
       li.innerHTML = `<span class="action-num font-mono">${i + 1}</span><span class="action-text">${action}</span>`;
       list.appendChild(li);
     });
+
+    // Quick win
+    document.getElementById('quickWin').textContent = data.quickWin || '—';
+
+    // Aggressive alternative
+    document.getElementById('aggTitle').textContent = data.aggressive?.title || '—';
+    document.getElementById('aggMeta').textContent  = data.aggressive?.meta  || '—';
   }
 
   // ── COPY HELPERS ──
@@ -1357,7 +1515,10 @@ REGLAS:
       `PALABRAS CLAVE\n${Array.from(document.querySelectorAll('.keyword-tag')).map(t => t.textContent).join(', ')}`,
       `PÁRRAFO WEB\n${g('webPara')}`,
       `DESCRIPCIÓN PARA IA\n${g('aiDesc')}`,
-      `QUÉ HACER AHORA\n${actions}`
+      `QUÉ HACER AHORA\n${actions}`,
+      `MEJORA RÁPIDA\n${g('quickWin')}`,
+      `ALTERNATIVA MÁS AGRESIVA\nTítulo: ${g('aggTitle')}\nMeta: ${g('aggMeta')}`,
+      `---\nBuilt by Kairo · Make it simple.`
     ].join('\n\n---\n\n');
 
     const original = btn.innerHTML;
