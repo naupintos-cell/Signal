@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Signal — Que te encuentren.</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='16' fill='%238B5CF6'/><text x='16' y='22' font-family='Georgia,serif' font-size='18' font-weight='700' text-anchor='middle' fill='%23000000'>S</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -845,20 +846,45 @@
     font-style: italic;
   }
 
-  /* ── Kairo footer ── */
+  /* ── Kairo footer — always visible ── */
   .kairo-footer {
-    margin-top: 48px;
-    padding-top: 24px;
-    border-top: 1px solid var(--border);
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'DM Mono', monospace;
     font-size: 11px;
-    color: var(--text-dim);
     letter-spacing: 0.06em;
-    text-align: center;
+    background: linear-gradient(to top, rgba(10,10,11,0.98) 0%, transparent 100%);
+    z-index: 50;
+    pointer-events: none;
   }
 
-  .kairo-brand {
-    color: var(--accent);
+  .kairo-footer * { pointer-events: auto; }
+
+  .kairo-product {
+    color: var(--text-muted);
     font-weight: 500;
+  }
+
+  .kairo-sep { color: var(--text-dim); }
+
+  .kairo-by { color: var(--text-dim); }
+
+  .kairo-link {
+    color: var(--accent);
+    text-decoration: none;
+    transition: opacity 0.18s;
+  }
+
+  .kairo-link:hover { opacity: 0.7; }
+
+  .kairo-tagline {
+    color: var(--text-dim);
+    font-style: italic;
   }
 
   /* ── Utilities ── */
@@ -1198,11 +1224,6 @@
 
     </div><!-- /results-grid -->
 
-    <!-- Kairo footer -->
-    <div class="kairo-footer font-mono">
-      Built by <span class="kairo-brand">Kairo</span> &nbsp;·&nbsp; Make it simple.
-    </div>
-
     <div class="results-actions">
       <button class="action-btn" onclick="goTo('form-screen', 33)">
         <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
@@ -1221,6 +1242,15 @@
 
   </div>
 </div>
+
+<!-- ══ KAIRO FOOTER — always visible ══ -->
+<footer class="kairo-footer">
+  <span class="kairo-product">Signal</span>
+  <span class="kairo-sep">·</span>
+  <span class="kairo-by">by <a href="https://kairo.lat" target="_blank" class="kairo-link">Kairo</a></span>
+  <span class="kairo-sep">·</span>
+  <span class="kairo-tagline">Make it simple.</span>
+</footer>
 
 <script>
   // ── STATE ──
