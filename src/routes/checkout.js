@@ -1,13 +1,20 @@
 // ── Mercado Pago checkout ──
-// Genera una preferencia de pago y devuelve la init_point (URL de pago)
+// Usa APP_ENV=production → token prod + init_point
+// Usa APP_ENV=development → token test + sandbox_init_point
 
 const MP_API = 'https://api.mercadopago.com/checkout/preferences';
+
+const isProd = process.env.APP_ENV === 'production';
+
+const MP_TOKEN = isProd
+  ? process.env.MP_ACCESS_TOKEN_PROD
+  : process.env.MP_ACCESS_TOKEN_TEST;
 
 export async function checkout(req, res) {
   const { reportId, email } = req.body;
 
-  if (!process.env.MP_ACCESS_TOKEN) {
-    console.error('Missing MP_ACCESS_TOKEN');
+  if (!MP_TOKEN) {
+    console.error(`Missing ${isProd ? 'MP_ACCESS_TOKEN_PROD' : 'MP_ACCESS_TOKEN_TEST'}`);
     return res.status(500).json({ error: 'Server configuration error' });
   }
 
@@ -18,11 +25,11 @@ export async function checkout(req, res) {
       items: [
         {
           id: 'signal-pro',
-          title: 'Signal Pro — Reporte completo',
-          description: 'Acceso completo al reporte de visibilidad digital',
+          title: 'Signal — Ver mi plan completo',
+          description: 'Acciones concretas y contenido listo para usar para tu negocio',
           quantity: 1,
-          currency_id: 'ARS',
-          unit_price: 14900,
+          currency_id: 'USD',
+          unit_price: 19,
         },
       ],
       payer: email ? { email } : undefined,
@@ -40,7 +47,7 @@ export async function checkout(req, res) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${process.env.MP_ACCESS_TOKEN}`,
+        Authorization: `Bearer ${MP_TOKEN}`,
       },
       body: JSON.stringify(preference),
     });
@@ -52,10 +59,13 @@ export async function checkout(req, res) {
       return res.status(response.status).json({ error: data?.message || 'MP error' });
     }
 
+    // prod → init_point (pago real)
+    // dev  → sandbox_init_point (pago simulado)
     return res.json({
-      url: data.init_point,
+      url: isProd ? data.init_point : data.sandbox_init_point,
       id: data.id,
     });
+
   } catch (err) {
     console.error('Checkout error:', err);
     return res.status(500).json({ error: 'Internal server error' });
