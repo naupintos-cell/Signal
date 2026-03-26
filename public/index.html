@@ -635,6 +635,92 @@
   .kairo-link:hover { opacity: 0.7; }
   .kairo-tagline  { color: var(--text-dim); font-style: italic; }
 
+  /* ── PAYWALL ── */
+  .paywall-gate {
+    position: relative;
+    margin-top: 6px;
+  }
+
+  .paywall-blur {
+    filter: blur(5px);
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.5;
+  }
+
+  .paywall-inline {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid rgba(139,92,246,0.25);
+    border-radius: 8px;
+    padding: 20px 20px 18px;
+    margin-top: 8px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .paywall-inline::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+
+  .paywall-eyebrow {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: 8px;
+  }
+
+  .paywall-title {
+    font-size: 15px; font-weight: 600;
+    letter-spacing: -0.01em; color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .paywall-desc {
+    font-size: 13px; color: var(--text-muted);
+    line-height: 1.5; margin-bottom: 16px;
+  }
+
+  .paywall-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent); color: #fff;
+    font-weight: 500; font-size: 14px;
+    padding: 11px 24px; border-radius: 6px;
+    border: none; cursor: pointer;
+    transition: background 0.18s, transform 0.18s;
+    width: 100%; justify-content: center;
+  }
+  .paywall-btn:hover { background: var(--accent-hover); transform: translateY(-1px); }
+  .paywall-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+  .paywall-microcopy {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    color: var(--text-dim); letter-spacing: 0.04em;
+    margin-top: 10px;
+  }
+
+  .locked-section {
+    position: relative;
+  }
+
+  .lock-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 0%, rgba(10,10,11,0.85) 60%);
+    border-radius: 7px;
+    display: flex; align-items: flex-end;
+    justify-content: center; padding-bottom: 12px;
+    pointer-events: none;
+  }
+
+  .lock-badge {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--text-dim); background: var(--surface2);
+    border: 1px solid var(--border2); border-radius: 100px;
+    padding: 4px 12px; display: flex; align-items: center; gap: 6px;
+  }
+
   /* ── UTILS ── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(16px); }
@@ -769,7 +855,33 @@
       <span class="section-title">Qué hacer ahora</span>
       <span class="section-count font-mono" id="actionsCount"></span>
     </div>
+
+    <!-- Acciones FREE (1-2) -->
     <div class="actions-stack" id="actionsStack"></div>
+
+    <!-- Acciones LOCKED (3-4) — blur + paywall -->
+    <div class="paywall-gate" id="paywallGate">
+      <div class="locked-section">
+        <div class="actions-stack paywall-blur" id="actionsStackLocked"></div>
+        <div class="lock-overlay">
+          <span class="lock-badge">🔒 Plan Pro</span>
+        </div>
+      </div>
+
+      <!-- PAYWALL INLINE -->
+      <div class="paywall-inline" id="paywallInline">
+        <div class="paywall-eyebrow">Estás viendo 2 de 4 acciones</div>
+        <div class="paywall-title">Las más importantes están bloqueadas</div>
+        <div class="paywall-desc">Desbloqueá el reporte completo — acciones prioritarias, alternativa agresiva y todo el contenido generado.</div>
+        <button class="paywall-btn" id="paywallBtn" onclick="handleUpgrade()">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+            <path d="M8 1l7 7-7 7M1 8h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Desbloqueá el reporte completo
+        </button>
+        <div class="paywall-microcopy">$29/mes · Cancelás cuando querés · Acceso inmediato</div>
+      </div>
+    </div>
 
     <!-- 3. QUICK WIN -->
     <div class="section-header" style="margin-top:20px">
@@ -789,32 +901,29 @@
       </div>
     </div>
 
-    <!-- 4. ALTERNATIVA AGRESIVA -->
+    <!-- 4. ALTERNATIVA AGRESIVA — locked -->
     <div class="section-header" style="margin-top:20px">
       <span class="section-title">Alternativa agresiva</span>
       <span class="section-count font-mono">orientada a conversión</span>
     </div>
-    <div class="aggressive-block">
-      <div class="aggressive-header">
-        <div class="aggressive-label"><span class="aggressive-dot"></span>Posicionamiento fuerte</div>
+    <div class="locked-section" id="aggressiveSection">
+      <div class="aggressive-block paywall-blur">
+        <div class="aggressive-header">
+          <div class="aggressive-label"><span class="aggressive-dot"></span>Posicionamiento fuerte</div>
+        </div>
+        <div class="aggressive-body">
+          <div class="agg-row">
+            <span class="agg-label-text font-mono">Título</span>
+            <p class="agg-content" id="aggTitle">—</p>
+          </div>
+          <div class="agg-row">
+            <span class="agg-label-text font-mono">Meta</span>
+            <p class="agg-content" id="aggMeta">—</p>
+          </div>
+        </div>
       </div>
-      <div class="aggressive-body">
-        <div class="agg-row">
-          <span class="agg-label-text font-mono">Título</span>
-          <p class="agg-content" id="aggTitle">—</p>
-          <button class="copy-btn font-mono" onclick="copyText(this, 'aggTitle')">
-            <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>
-            Copiar
-          </button>
-        </div>
-        <div class="agg-row">
-          <span class="agg-label-text font-mono">Meta</span>
-          <p class="agg-content" id="aggMeta">—</p>
-          <button class="copy-btn font-mono" onclick="copyText(this, 'aggMeta')">
-            <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>
-            Copiar
-          </button>
-        </div>
+      <div class="lock-overlay">
+        <span class="lock-badge">🔒 Plan Pro</span>
       </div>
     </div>
 
@@ -825,78 +934,62 @@
       <div class="content-divider-line"></div>
     </div>
 
-    <!-- 5. CONTENIDO -->
-    <div class="result-cards">
+    <!-- 5. CONTENIDO — locked -->
+    <div class="locked-section" id="contentSection">
+      <div class="result-cards paywall-blur">
 
-      <div class="result-card">
-        <div class="card-header">
-          <div class="card-label"><span class="card-dot dot-seo"></span>Título SEO</div>
-          <button class="copy-btn font-mono" onclick="copyText(this, 'seoTitle')">
-            <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>
-            Copiar
-          </button>
+        <div class="result-card">
+          <div class="card-header">
+            <div class="card-label"><span class="card-dot dot-seo"></span>Título SEO</div>
+          </div>
+          <div class="card-body">
+            <p class="card-content title-content" id="seoTitle">—</p>
+            <p class="char-hint font-mono" id="seoTitleLen"></p>
+          </div>
         </div>
-        <div class="card-body">
-          <p class="card-content title-content" id="seoTitle">—</p>
-          <p class="char-hint font-mono" id="seoTitleLen"></p>
+
+        <div class="result-card">
+          <div class="card-header">
+            <div class="card-label"><span class="card-dot dot-seo"></span>Meta descripción</div>
+          </div>
+          <div class="card-body">
+            <p class="card-content meta-content" id="metaDesc">—</p>
+          </div>
         </div>
+
+        <div class="result-card">
+          <div class="card-header">
+            <div class="card-label"><span class="card-dot dot-seo"></span>Palabras clave</div>
+          </div>
+          <div class="card-body">
+            <div class="keywords-list" id="keywordsList"></div>
+          </div>
+        </div>
+
+        <div class="result-card">
+          <div class="card-header">
+            <div class="card-label"><span class="card-dot dot-web"></span>Párrafo para tu web</div>
+          </div>
+          <div class="card-body">
+            <p class="card-content" id="webPara">—</p>
+          </div>
+        </div>
+
+        <div class="result-card">
+          <div class="card-header">
+            <div class="card-label"><span class="card-dot dot-ai"></span>Descripción para IA</div>
+          </div>
+          <div class="card-body">
+            <p class="section-sublabel font-mono">Para ChatGPT · Perplexity · AI Search</p>
+            <div class="ai-description" id="aiDesc">—</div>
+          </div>
+        </div>
+
       </div>
-
-      <div class="result-card">
-        <div class="card-header">
-          <div class="card-label"><span class="card-dot dot-seo"></span>Meta descripción</div>
-          <button class="copy-btn font-mono" onclick="copyText(this, 'metaDesc')">
-            <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>
-            Copiar
-          </button>
-        </div>
-        <div class="card-body">
-          <p class="card-content meta-content" id="metaDesc">—</p>
-          <p class="char-hint font-mono" id="metaDescLen"></p>
-        </div>
+      <div class="lock-overlay" style="align-items:center;justify-content:center;padding:0">
+        <span class="lock-badge">🔒 Plan Pro · Desbloqueá con un click</span>
       </div>
-
-      <div class="result-card">
-        <div class="card-header">
-          <div class="card-label"><span class="card-dot dot-seo"></span>Palabras clave</div>
-          <button class="copy-btn font-mono" onclick="copyKeywords(this)">
-            <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>
-            Copiar todas
-          </button>
-        </div>
-        <div class="card-body">
-          <div class="keywords-list" id="keywordsList"></div>
-        </div>
-      </div>
-
-      <div class="result-card">
-        <div class="card-header">
-          <div class="card-label"><span class="card-dot dot-web"></span>Párrafo para tu web</div>
-          <button class="copy-btn font-mono" onclick="copyText(this, 'webPara')">
-            <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>
-            Copiar
-          </button>
-        </div>
-        <div class="card-body">
-          <p class="card-content" id="webPara">—</p>
-        </div>
-      </div>
-
-      <div class="result-card">
-        <div class="card-header">
-          <div class="card-label"><span class="card-dot dot-ai"></span>Descripción para IA</div>
-          <button class="copy-btn font-mono" onclick="copyText(this, 'aiDesc')">
-            <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>
-            Copiar
-          </button>
-        </div>
-        <div class="card-body">
-          <p class="section-sublabel font-mono">Para ChatGPT · Perplexity · AI Search</p>
-          <div class="ai-description" id="aiDesc">—</div>
-        </div>
-      </div>
-
-    </div><!-- /result-cards -->
+    </div>
 
     <!-- BOTTOM ACTIONS -->
     <div class="results-actions">
@@ -928,10 +1021,340 @@
 </footer>
 
 <script>
+  // ── STATE ──
   let resultData = {};
+  let isPro      = false;
 
   // ── NAVIGATION ──
   function goTo(id, progress) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.getElementById('progressBar').style.width = progress + '%';
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    const hints = { landing: 'Beta', 'form-screen': 'Tu negocio', 'loading-screen': 'Analizando...', 'results-screen': 'Reporte listo' };
+    document.getElementById('navHint').textContent = hints[id] || '';
+    if (id === 'form-screen') resetSteps();
+  }
+
+  // ── SUBMIT ──
+  async function submitForm() {
+    const name     = document.getElementById('bizName').value.trim();
+    const what     = document.getElementById('bizWhat').value.trim();
+    const location = document.getElementById('bizLocation').value.trim();
+    const website  = document.getElementById('bizWebsite').value.trim();
+
+    if (!what) {
+      const el = document.getElementById('bizWhat');
+      el.classList.add('field-error');
+      el.focus();
+      setTimeout(() => el.classList.remove('field-error'), 2400);
+      return;
+    }
+
+    goTo('loading-screen', 66);
+
+    const [result] = await Promise.all([
+      callAPI(name, what, location, website).catch(err => { console.error(err); return null; }),
+      runLoadingSequence()
+    ]);
+
+    if (!result) {
+      showError('No pudimos generar el reporte. Revisá tu conexión e intentá de nuevo.');
+      goTo('form-screen', 33);
+      return;
+    }
+
+    resultData = result;
+    render(result, isPro);
+    goTo('results-screen', 100);
+  }
+
+  // ── LOADING ──
+  function runLoadingSequence() {
+    return new Promise(resolve => {
+      const steps = ['step-1','step-2','step-3','step-4'];
+      let i = 0;
+      function tick() {
+        if (i > 0) {
+          const p = document.getElementById(steps[i-1]);
+          p.classList.remove('active'); p.classList.add('done');
+          p.querySelector('.step-icon').textContent = '✓';
+        }
+        if (i < steps.length) {
+          document.getElementById(steps[i]).classList.add('active');
+          i++; setTimeout(tick, 950);
+        } else { setTimeout(resolve, 200); }
+      }
+      tick();
+    });
+  }
+
+  function resetSteps() {
+    ['step-1','step-2','step-3','step-4'].forEach((id, i) => {
+      const el = document.getElementById(id);
+      el.classList.remove('active','done');
+      el.querySelector('.step-icon').textContent = i + 1;
+    });
+  }
+
+  // ── API ──
+  async function callAPI(name, what, location, website) {
+    const ctx = [
+      name     ? `Nombre: ${name}`        : '',
+      what     ? `Actividad: ${what}`     : '',
+      location ? `Ubicación: ${location}` : '',
+      website  ? `Web: ${website}`        : ''
+    ].filter(Boolean).join('\n');
+
+    const system = `Actuás como un experto en SEO, posicionamiento y diseño de producto SaaS.
+Tu objetivo es generar un reporte que NO solo informe, sino que explique el estado actual, indique qué hacer y proyecte mejora realista.
+
+REGLAS DE SCORE (0–100) — basado en 5 factores:
+1. Claridad del posicionamiento (¿se entiende qué hace el negocio?)
+2. Especificidad (¿es genérico o concreto?)
+3. Uso de keywords (¿hay intención de búsqueda real?)
+4. Propuesta de valor (¿está clara?)
+5. Diferenciación (¿se distingue o es igual a todos?)
+
+INTERPRETACIÓN: 0–40 Bajo · 41–70 Medio · 71–100 Alto
+Score alineado con diagnóstico y mejoras.
+
+PREDICCIÓN: Bajo +20/+30 · Medio +10/+20 · Alto +5/+10
+
+IMPACTO: Alto=cambia posicionamiento · Medio=mejora contenido · Bajo=ajustes menores
+DIFICULTAD: Fácil=cambiar texto · Medio=crear contenido · Difícil=rediseño estructural
+
+PROHIBIDO: métricas inventadas, texto genérico, frases vacías.
+Solo JSON válido, sin texto adicional.`;
+
+    const user = `NEGOCIO:\n${ctx}\n\nDevuelve SOLO JSON válido (sin markdown):\n{"visibilityScore":68,"status":"Medio","insight":"1 línea directa del problema principal.","prediction":"Con estos cambios podés pasar de X a Y en Z semanas.","actions":[{"text":"Acción concreta 1","impact":"Alto","difficulty":"Fácil"},{"text":"Acción 2","impact":"Medio","difficulty":"Medio"},{"text":"Acción 3","impact":"Alto","difficulty":"Fácil"},{"text":"Acción 4","impact":"Medio","difficulty":"Difícil"}],"quickWin":"1 cambio concreto aplicable hoy.","aggressive":{"title":"Título agresivo. Máx 60 car.","meta":"Meta agresiva. 140-155 car."},"seoTitle":"Título SEO. Máx 60 car.","metaDescription":"140-155 car.","keywords":["kw1","kw2","kw3","local","long tail 1","long tail 2"],"webParagraph":"3-4 líneas directas.","aiDescription":"Máx 5 líneas para IA."}\n\nREGLAS: status exactamente "Bajo"/"Medio"/"Alto" · impact "Alto"/"Medio"/"Bajo" · difficulty "Fácil"/"Medio"/"Difícil" · todo en español`;
+
+    const res = await fetch('/api/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1600,
+        system,
+        messages: [{ role: 'user', content: user }]
+      })
+    });
+
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    const raw  = data.content.map(b => b.text || '').join('');
+    return JSON.parse(raw.replace(/```json|```/g, '').trim());
+  }
+
+  // ── RENDER ──
+  function render(d, pro) {
+    const score  = Math.min(100, Math.max(0, parseInt(d.visibilityScore) || 60));
+    const status = d.status || 'Medio';
+    const color  = status === 'Alto' ? '#6ee7b7' : status === 'Bajo' ? '#f87171' : '#8B5CF6';
+
+    document.getElementById('diagScore').textContent   = score;
+    document.getElementById('diagScore').style.color   = color;
+    const pill = document.getElementById('diagStatusPill');
+    pill.textContent = status;
+    pill.className   = 'diag-status-pill ' + status.toLowerCase();
+
+    document.getElementById('diagHeadline').textContent =
+      `Tu visibilidad es ${score}/100 — ${status === 'Alto' ? 'buen punto de partida.' : status === 'Bajo' ? 'hay mucho por mejorar.' : 'podés crecer rápido.'}`;
+    document.getElementById('diagInsight').textContent = d.insight || '';
+    document.getElementById('diagPredictionText').innerHTML =
+      `<strong>${d.prediction || 'Aplicá estos cambios para mejorar tu visibilidad.'}</strong>`;
+
+    // Acciones free (1-2) y locked (3-4)
+    const all    = d.actions || [];
+    document.getElementById('actionsCount').textContent = `${all.length} acciones`;
+    buildActions(all.slice(0, 2), 'actionsStack',       0);
+    buildActions(all.slice(2),    'actionsStackLocked',  2);
+
+    // Quick win
+    document.getElementById('quickWinText').textContent = d.quickWin || '—';
+
+    // Aggressive + contenido (siempre poblar, blur lo cubre)
+    document.getElementById('aggTitle').textContent = d.aggressive?.title || '—';
+    document.getElementById('aggMeta').textContent  = d.aggressive?.meta  || '—';
+    document.getElementById('seoTitle').textContent = d.seoTitle || '—';
+    document.getElementById('metaDesc').textContent = d.metaDescription || '—';
+    document.getElementById('webPara').textContent  = d.webParagraph || '—';
+    document.getElementById('aiDesc').textContent   = d.aiDescription || '—';
+
+    const tLen = (d.seoTitle || '').length;
+    document.getElementById('seoTitleLen').textContent =
+      `${tLen} car. · ideal 50–60` + (tLen > 60 ? ' · largo' : tLen < 40 ? ' · podría ser más específico' : ' · ✓');
+
+    const kwList = document.getElementById('keywordsList');
+    kwList.innerHTML = '';
+    (d.keywords || []).forEach(kw => {
+      const t = document.createElement('span');
+      t.className = 'keyword-tag font-mono'; t.textContent = kw;
+      kwList.appendChild(t);
+    });
+
+    applyAccess(pro);
+  }
+
+  function buildActions(actions, containerId, offset) {
+    const el = document.getElementById(containerId);
+    if (!el) return;
+    el.innerHTML = '';
+    actions.forEach((a, i) => {
+      const ic = { Alto:'tag-impact-alto', Medio:'tag-impact-medio', Bajo:'tag-impact-bajo' }[a.impact] || 'tag-impact-bajo';
+      const dc = { Fácil:'tag-dif-facil', Medio:'tag-dif-medio', Difícil:'tag-dif-dificil' }[a.difficulty] || 'tag-dif-medio';
+      const row = document.createElement('div');
+      row.className = 'action-row';
+      row.innerHTML = `
+        <div class="action-row-num">${i + offset + 1}</div>
+        <div class="action-row-body">
+          <div class="action-row-text">${a.text}</div>
+          <div class="action-row-tags">
+            <span class="tag ${ic}">Impacto ${a.impact}</span>
+            <span class="tag ${dc}">${a.difficulty}</span>
+          </div>
+        </div>`;
+      el.appendChild(row);
+    });
+  }
+
+  function applyAccess(pro) {
+    if (!pro) return;  // free: dejar blur/locks intactos
+
+    // Quitar blur y overlays
+    document.querySelectorAll('.paywall-blur').forEach(el => el.classList.remove('paywall-blur'));
+    document.querySelectorAll('.lock-overlay').forEach(el => el.remove());
+
+    // Quitar paywall inline
+    document.getElementById('paywallInline')?.remove();
+
+    // Agregar botones de copiar a alternativa agresiva
+    ['aggTitle','aggMeta'].forEach(id => {
+      const row = document.getElementById(id)?.closest('.agg-row');
+      if (row && !row.querySelector('.copy-btn'))
+        row.insertAdjacentHTML('beforeend', mkCopyBtn(id));
+    });
+
+    // Agregar botones de copiar a contenido
+    [['seoTitle'],['metaDesc'],['webPara'],['aiDesc']].forEach(([id]) => {
+      const header = document.getElementById(id)?.closest('.result-card')?.querySelector('.card-header');
+      if (header && !header.querySelector('.copy-btn'))
+        header.insertAdjacentHTML('beforeend', mkCopyBtn(id));
+    });
+    const kwHeader = document.getElementById('keywordsList')?.closest('.result-card')?.querySelector('.card-header');
+    if (kwHeader && !kwHeader.querySelector('.copy-btn'))
+      kwHeader.insertAdjacentHTML('beforeend',
+        `<button class="copy-btn font-mono" onclick="copyKeywords(this)"><svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>Copiar todas</button>`
+      );
+  }
+
+  function mkCopyBtn(id) {
+    return `<button class="copy-btn font-mono" onclick="copyText(this,'${id}')"><svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>Copiar</button>`;
+  }
+
+  // ── UPGRADE → MERCADO PAGO ──
+  async function handleUpgrade() {
+    const btn  = document.getElementById('paywallBtn');
+    const orig = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = 'Redirigiendo...';
+
+    try {
+      const res = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ reportId: Date.now().toString() })
+      });
+      const { url, error } = await res.json();
+      if (error || !url) throw new Error(error || 'No URL');
+
+      sessionStorage.setItem('signal_report', JSON.stringify(resultData));
+      window.location.href = url;
+
+    } catch (err) {
+      console.error(err);
+      btn.disabled = false;
+      btn.innerHTML = orig;
+      showError('No pudimos iniciar el pago. Intentá de nuevo.');
+    }
+  }
+
+  // ── RETORNO DE PAGO ──
+  function checkPaymentReturn() {
+    const params  = new URLSearchParams(window.location.search);
+    const payment = params.get('payment');
+    const saved   = sessionStorage.getItem('signal_report');
+
+    if (payment === 'success' && saved) {
+      isPro      = true;
+      resultData = JSON.parse(saved);
+      sessionStorage.removeItem('signal_report');
+      window.history.replaceState({}, '', '/');
+      render(resultData, true);
+      goTo('results-screen', 100);
+    } else if (payment === 'failure' || payment === 'pending') {
+      window.history.replaceState({}, '', '/');
+      showError(payment === 'pending'
+        ? 'Tu pago está pendiente. Te avisamos cuando se confirme.'
+        : 'El pago no se completó. Podés intentarlo de nuevo.');
+    }
+  }
+
+  checkPaymentReturn();
+
+  // ── COPY ──
+  const CHECK_ICON = `<svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+  function flash(btn, orig) {
+    btn.classList.add('copied');
+    btn.innerHTML = `${CHECK_ICON} Copiado`;
+    setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = orig; }, 2000);
+  }
+
+  function copyText(btn, id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const orig = btn.innerHTML;
+    navigator.clipboard.writeText(el.textContent.trim()).then(() => flash(btn, orig));
+  }
+
+  function copyKeywords(btn) {
+    const text = Array.from(document.querySelectorAll('.keyword-tag')).map(t => t.textContent).join(', ');
+    const orig = btn.innerHTML;
+    navigator.clipboard.writeText(text).then(() => flash(btn, orig));
+  }
+
+  function copyAll(btn) {
+    if (!isPro) { handleUpgrade(); return; }
+    const g = id => (document.getElementById(id)?.textContent || '').trim();
+    const actions = Array.from(document.querySelectorAll('.action-row-text'))
+      .map((el, i) => `${i+1}. ${el.textContent.trim()}`).join('\n');
+    const out = [
+      `SCORE: ${g('diagScore')}/100 — ${document.getElementById('diagStatusPill')?.textContent}`,
+      `PREDICCIÓN\n${g('diagPredictionText')}`,
+      `QUÉ HACER AHORA\n${actions}`,
+      `QUICK WIN\n${g('quickWinText')}`,
+      `ALTERNATIVA AGRESIVA\nTítulo: ${g('aggTitle')}\nMeta: ${g('aggMeta')}`,
+      `TÍTULO SEO\n${g('seoTitle')}`,
+      `META DESCRIPCIÓN\n${g('metaDesc')}`,
+      `PALABRAS CLAVE\n${Array.from(document.querySelectorAll('.keyword-tag')).map(t=>t.textContent).join(', ')}`,
+      `PÁRRAFO WEB\n${g('webPara')}`,
+      `DESCRIPCIÓN PARA IA\n${g('aiDesc')}`,
+      `---\nBuilt by Kairo · Make it simple.`
+    ].join('\n\n---\n\n');
+    const orig = btn.innerHTML;
+    navigator.clipboard.writeText(out).then(() => flash(btn, orig));
+  }
+
+  // ── ERROR TOAST ──
+  function showError(msg) {
+    const t = document.createElement('div');
+    t.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#16161a;border:1px solid rgba(248,113,113,0.25);color:#fca5a5;font-family:DM Mono,monospace;font-size:11px;padding:11px 18px;border-radius:6px;z-index:9999;letter-spacing:0.04em;max-width:380px;text-align:center';
+    t.textContent = msg;
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 5000);
+  }
+</script>
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.getElementById(id).classList.add('active');
     document.getElementById('progressBar').style.width = progress + '%';
