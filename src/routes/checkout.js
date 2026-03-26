@@ -25,11 +25,11 @@ export async function checkout(req, res) {
       items: [
         {
           id: 'signal-pro',
-          title: 'Signal Pro — Reporte completo',
-          description: 'Acceso completo al reporte de visibilidad digital',
+          title: 'Signal — Ver mi plan completo',
+          description: 'Acciones concretas y contenido listo para usar para tu negocio',
           quantity: 1,
-          currency_id: 'ARS',
-          unit_price: 14900,
+          currency_id: 'USD',
+          unit_price: 19,
         },
       ],
       payer: email ? { email } : undefined,
