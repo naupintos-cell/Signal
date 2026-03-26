@@ -29,7 +29,7 @@ export async function checkout(req, res) {
           description: 'Acciones concretas y contenido listo para usar para tu negocio',
           quantity: 1,
           currency_id: 'ARS',
-          unit_price: 1,
+          unit_price: 27170,
         },
       ],
       payer: email ? { email } : undefined,
