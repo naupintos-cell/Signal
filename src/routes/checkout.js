@@ -3,11 +3,7 @@
 
 const MP_API = 'https://api.mercadopago.com/checkout/preferences';
 
-export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
-
+export async function checkout(req, res) {
   const { reportId, email } = req.body;
 
   if (!process.env.MP_ACCESS_TOKEN) {
@@ -25,9 +21,9 @@ export default async function handler(req, res) {
           title: 'Signal Pro — Reporte completo',
           description: 'Acceso completo al reporte de visibilidad digital',
           quantity: 1,
-          currency_id: 'ARS',         // cambiá a USD si tu cuenta es en dólares
-          unit_price: 14900,          // $14.900 ARS ≈ $29 USD — ajustá según tu mercado
-        }
+          currency_id: 'ARS',
+          unit_price: 14900,
+        },
       ],
       payer: email ? { email } : undefined,
       back_urls: {
@@ -44,7 +40,7 @@ export default async function handler(req, res) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.MP_ACCESS_TOKEN}`,
+        Authorization: `Bearer ${process.env.MP_ACCESS_TOKEN}`,
       },
       body: JSON.stringify(preference),
     });
@@ -56,13 +52,10 @@ export default async function handler(req, res) {
       return res.status(response.status).json({ error: data?.message || 'MP error' });
     }
 
-    // init_point = URL de pago real
-    // sandbox_init_point = URL de prueba (solo en cuentas de test)
     return res.json({
       url: data.init_point,
-      id:  data.id,
+      id: data.id,
     });
-
   } catch (err) {
     console.error('Checkout error:', err);
     return res.status(500).json({ error: 'Internal server error' });
