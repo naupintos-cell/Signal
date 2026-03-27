@@ -101,28 +101,28 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='16' fill='%238B5CF6'/><text x='16' y='22' font-family='Georgia,serif' font-size='18' font-weight='700' text-anchor='middle' fill='%23000000'>S</text></svg>">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0a0a0b;
-    --surface: #111113;
-    --surface2: #16161a;
-    --border: #1e1e24;
-    --border2: #27272f;
-    --text: #eeeef0;
-    --text-muted: #64646e;
-    --text-dim: #38383f;
-    --accent: #8B5CF6;
-    --accent-dim: rgba(139,92,246,0.1);
-    --accent-hover: #9d74f7;
-    --positive: #6ee7b7;
-    --positive-dim: rgba(110,231,183,0.1);
-    --warning: #fbbf24;
-    --warning-dim: rgba(251,191,36,0.1);
-    --danger: #f87171;
-    --danger-dim: rgba(248,113,113,0.1);
-    --info: #93c5fd;
-    --info-dim: rgba(147,197,253,0.1);
+    --bg: #f2f2f0;
+    --surface: #ffffff;
+    --surface2: #f8f8f6;
+    --border: #e8e8e4;
+    --border2: #e2e2de;
+    --text: #1a1a1a;
+    --text-muted: #666666;
+    --text-dim: #aaaaaa;
+    --accent: #6b4fa8;
+    --accent-dim: rgba(107,79,168,0.1);
+    --accent-hover: #7d5fc0;
+    --positive: #1a7a4a;
+    --positive-dim: rgba(26,122,74,0.1);
+    --warning: #7a4f0a;
+    --warning-dim: rgba(122,79,10,0.1);
+    --danger: #a32d2d;
+    --danger-dim: rgba(163,45,45,0.1);
+    --info: #1a4a7a;
+    --info-dim: rgba(26,74,122,0.1);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -135,7 +135,7 @@
     font-weight: 300;
     min-height: 100vh;
     overflow-x: hidden;
-    padding-bottom: 48px;
+    padding-bottom: 0;
   }
 
   .font-mono { font-family: 'DM Mono', monospace; }
@@ -158,11 +158,14 @@
     padding: 18px 28px;
     display: flex; align-items: center; justify-content: space-between;
     z-index: 100;
-    background: linear-gradient(to bottom, rgba(10,10,11,0.97) 0%, transparent 100%);
+    background: rgba(242,242,240,0.97);
+    border-bottom: 1px solid var(--border2);
+    backdrop-filter: blur(8px);
   }
 
   .nav-logo {
-    font-size: 15px; font-weight: 600; letter-spacing: -0.02em;
+    font-family: 'Instrument Serif', serif;
+    font-size: 18px; font-weight: 400; letter-spacing: 0.04em;
     color: var(--text); display: flex; align-items: center;
   }
   .nav-logo .dot { color: var(--accent); }
@@ -178,15 +181,10 @@
   #landing {
     align-items: center; justify-content: center;
     padding: 80px 24px 80px; position: relative;
+    background: var(--bg);
   }
 
-  #landing::after {
-    content: ''; position: fixed;
-    top: -300px; left: 50%; transform: translateX(-50%);
-    width: 560px; height: 480px;
-    background: radial-gradient(ellipse at center, rgba(139,92,246,0.07) 0%, transparent 68%);
-    pointer-events: none;
-  }
+  #landing::after { display: none; }
 
   .landing-inner {
     max-width: 580px; width: 100%;
@@ -259,6 +257,9 @@
   ══════════════════════════════ */
   #form-screen {
     align-items: center; justify-content: center; padding: 80px 24px 80px;
+    background: var(--surface);
+    border-top: 1px solid var(--border2);
+    border-bottom: 1px solid var(--border2);
   }
 
   .form-container {
@@ -328,6 +329,7 @@
   #loading-screen {
     align-items: center; justify-content: center;
     padding: 40px 24px; flex-direction: column; gap: 36px;
+    background: var(--bg);
   }
 
   .loading-signal {
@@ -387,6 +389,7 @@
   ══════════════════════════════ */
   #results-screen {
     padding: 72px 24px 80px; align-items: center;
+    background: var(--bg);
   }
 
   .results-container {
@@ -713,21 +716,37 @@
   .action-btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
   .action-btn.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); transform: translateY(-1px); }
 
-  /* ── KAIRO FOOTER ── */
+  /* ── KAIRO ECOSYSTEM FOOTER ── */
   .kairo-footer {
-    position: fixed; bottom: 0; left: 0; right: 0;
-    padding: 12px 24px;
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.06em;
-    background: linear-gradient(to top, rgba(10,10,11,0.98) 0%, transparent 100%);
-    z-index: 50; pointer-events: none;
+    border-top: 1px solid var(--border2);
+    padding: 22px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--surface);
+    font-family: 'DM Sans', sans-serif;
   }
-  .kairo-footer * { pointer-events: auto; }
-  .kairo-product  { color: var(--text-muted); font-weight: 500; }
-  .kairo-sep      { color: var(--text-dim); }
-  .kairo-by       { color: var(--text-dim); }
-  .kairo-link     { color: var(--accent); text-decoration: none; transition: opacity 0.18s; }
-  .kairo-link:hover { opacity: 0.7; }
+  .eco-mark { display: flex; align-items: center; gap: 16px; }
+  .eco-item {
+    font-family: 'Instrument Serif', serif;
+    font-size: 13px; letter-spacing: -0.01em;
+    text-decoration: none; color: var(--text);
+    opacity: 0.28; transition: opacity 0.18s;
+  }
+  .eco-item:hover { opacity: 0.55; }
+  .eco-active { opacity: 1 !important; font-size: 14px; }
+  .eco-dot-signal { color: #6b4fa8; }
+  .eco-dot-pulse  { color: #4a7fc1; }
+  .eco-dot-crece  { color: #357a52; }
+  .eco-dot-closer { color: #7a6f3a; }
+  .foot-links { display: flex; align-items: center; gap: 18px; }
+  .foot-links a { font-size: 12px; color: var(--text-dim); text-decoration: none; transition: color 0.18s; }
+  .foot-links a:hover { color: var(--text-muted); }
+  .foot-kairo { color: var(--text-muted) !important; }
+  .foot-kairo strong { font-weight: 700; color: var(--text); }
+  @media (max-width: 600px) {
+    .kairo-footer { flex-direction: column; gap: 16px; text-align: center; }
+    .eco-mark { justify-content: center; flex-wrap: wrap; }
+    .foot-links { flex-wrap: wrap; justify-content: center; }
+  }
   .kairo-tagline  { color: var(--text-dim); font-style: italic; }
 
   /* ── IMPACT INDICATORS ── */
@@ -885,8 +904,7 @@
 <div class="progress-bar" id="progressBar" style="width:0%"></div>
 
 <nav class="nav">
-  <div class="nav-logo" onclick="goTo('landing', 0)" style="cursor:pointer">Signal<span class="dot">.</span></div>
-  <div class="nav-hint" id="navHint">Beta</div>
+  <div class="nav-logo" onclick="goTo('landing', 0)" style="cursor:pointer">SIGNAL<span class="dot">.</span></div>
 </nav>
 
 <!-- ══ LANDING ══ -->
@@ -1193,11 +1211,17 @@
 
 <!-- KAIRO FOOTER -->
 <footer class="kairo-footer">
-  <span class="kairo-product">Signal</span>
-  <span class="kairo-sep">·</span>
-  <span class="kairo-by">by <a href="https://kairo.lat" target="_blank" class="kairo-link">Kairo</a></span>
-  <span class="kairo-sep">·</span>
-  <span class="kairo-tagline">Make it simple.</span>
+  <div class="eco-mark">
+    <a href="#" class="eco-item eco-active">SIGNAL<span class="eco-dot-signal">.</span></a>
+    <a href="https://getpulseapp.lat" target="_blank" class="eco-item">PULSE<span class="eco-dot-pulse">.</span></a>
+    <a href="#" class="eco-item">CRECE<span class="eco-dot-crece">.</span></a>
+    <a href="#" class="eco-item">CLOSER<span class="eco-dot-closer">.</span></a>
+  </div>
+  <div class="foot-links">
+    <a href="https://kairo.lat" target="_blank" class="foot-kairo"><strong>KAIRO</strong> — Make it simple</a>
+    <a href="#">Privacidad</a>
+    <a href="#">Contacto</a>
+  </div>
 </footer>
 
 <script>
@@ -1211,8 +1235,9 @@
     document.getElementById(id).classList.add('active');
     document.getElementById('progressBar').style.width = progress + '%';
     window.scrollTo({ top: 0, behavior: 'instant' });
-    const hints = { landing: 'Beta', 'form-screen': 'Tu negocio', 'loading-screen': 'Analizando...', 'results-screen': 'Tu diagnóstico' };
-    document.getElementById('navHint').textContent = hints[id] || '';
+    const hints = { landing: '', 'form-screen': '', 'loading-screen': '', 'results-screen': '' };
+    const hintEl = document.getElementById('navHint');
+    if (hintEl) hintEl.textContent = hints[id] || '';
     if (id === 'form-screen') resetSteps();
   }
 
