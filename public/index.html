@@ -737,6 +737,8 @@
   .eco-dot-pulse  { color: #4a7fc1; }
   .eco-dot-crece  { color: #357a52; }
   .eco-dot-closer { color: #7a6f3a; }
+  .eco-dot-watch  { color: #888; }
+  .eco-inactive   { opacity: 0.2 !important; cursor: default; }
   .foot-links { display: flex; align-items: center; gap: 18px; }
   .foot-links a { font-size: 12px; color: var(--text-dim); text-decoration: none; transition: color 0.18s; }
   .foot-links a:hover { color: var(--text-muted); }
@@ -1213,14 +1215,14 @@
 <footer class="kairo-footer">
   <div class="eco-mark">
     <a href="#" class="eco-item eco-active">SIGNAL<span class="eco-dot-signal">.</span></a>
-    <a href="https://getpulseapp.lat" target="_blank" class="eco-item">PULSE<span class="eco-dot-pulse">.</span></a>
-    <a href="#" class="eco-item">CRECE<span class="eco-dot-crece">.</span></a>
-    <a href="#" class="eco-item">CLOSER<span class="eco-dot-closer">.</span></a>
+    <a href="https://getpulseapp.lat/" target="_blank" rel="noopener" class="eco-item">PULSE<span class="eco-dot-pulse">.</span></a>
+    <a href="https://getcreceapp.com/" target="_blank" rel="noopener" class="eco-item">CRECE<span class="eco-dot-crece">.</span></a>
+    <span class="eco-item eco-inactive">WATCH<span class="eco-dot-watch">.</span></span>
+    <span class="eco-item eco-inactive">CLOSER<span class="eco-dot-closer">.</span></span>
   </div>
   <div class="foot-links">
-    <a href="https://kairo.lat" target="_blank" class="foot-kairo"><strong>KAIRO</strong> — Make it simple</a>
+    <a href="https://kairo.lat/" target="_blank" rel="noopener" class="foot-kairo">Built by <strong>KAIRO</strong> · Make it simple</a>
     <a href="#">Privacidad</a>
-    <a href="#">Contacto</a>
   </div>
 </footer>
 
