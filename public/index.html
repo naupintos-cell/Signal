@@ -354,22 +354,19 @@ nav{position:sticky;top:0;z-index:100;background:rgba(242,242,240,.96);backdrop-
     <p class="section-sub">Sin registro. Sin tarjeta. En 30 segundos sabés dónde estás perdiendo clientes.</p>
     <div class="demo-layout">
 
-      <!-- FORM: al submit guarda en sessionStorage y redirige a /app -->
+      <!-- FORM: 2 campos, sitio web obligatorio -->
       <div class="demo-form">
         <div class="form-group">
           <label class="form-label" for="landingSearch">¿Qué hacés o vendés? <span style="color:var(--accent)">*</span></label>
           <input class="form-input" type="text" id="landingSearch" placeholder="Ej: restaurante italiano, psicóloga infantil, taller mecánico..." autocomplete="off">
         </div>
         <div class="form-group">
-          <label class="form-label" for="landingName">Nombre de tu negocio <span class="form-optional">· opcional</span></label>
-          <input class="form-input" type="text" id="landingName" placeholder="Ej: El Porteño, Dra. García, Mecánica Ríos..." autocomplete="off">
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="landingWebsite">Sitio web <span class="form-optional">· opcional</span></label>
+          <label class="form-label" for="landingWebsite">Tu sitio web <span style="color:var(--accent)">*</span></label>
           <input class="form-input" type="url" id="landingWebsite" placeholder="https://tunegocio.com" autocomplete="off">
+          <span id="websiteHint" style="font-family:var(--mono);font-size:10px;color:var(--dim);margin-top:5px;display:block;letter-spacing:.03em">Necesario para analizar tu posicionamiento real</span>
         </div>
         <button class="btn-primary" style="width:100%;margin-top:8px" onclick="submitLandingForm()">
-          Ver por qué no aparezco en Google <span class="btn-arrow">→</span>
+          Analizar mi visibilidad gratis <span class="btn-arrow">→</span>
         </button>
         <p style="text-align:center;font-family:var(--mono);font-size:10px;color:var(--dim);margin-top:12px;letter-spacing:.04em">Sin registro · Resultado inmediato · 100% gratis</p>
       </div>
@@ -565,10 +562,9 @@ function scrollToForm() {
 // ── SUBMIT: guarda datos y redirige a /app ──
 function submitLandingForm() {
   const search  = document.getElementById('landingSearch').value.trim();
-  const name    = document.getElementById('landingName').value.trim();
   const website = document.getElementById('landingWebsite').value.trim();
 
-  // Validación mínima
+  // Validar rubro
   if (!search) {
     const el = document.getElementById('landingSearch');
     el.classList.add('input-error');
@@ -577,15 +573,34 @@ function submitLandingForm() {
     return;
   }
 
-  // Guardar en sessionStorage para que app.html lo lea al cargar
-  sessionStorage.setItem('signal_prefill', JSON.stringify({ search, name, website }));
+  // Validar sitio web
+  if (!website) {
+    const el = document.getElementById('landingWebsite');
+    el.classList.add('input-error');
+    el.focus();
+    document.getElementById('websiteHint').style.color = 'var(--danger)';
+    document.getElementById('websiteHint').textContent = 'El sitio web es necesario para el análisis';
+    setTimeout(() => {
+      el.classList.remove('input-error');
+      document.getElementById('websiteHint').style.color = 'var(--dim)';
+      document.getElementById('websiteHint').textContent = 'Necesario para analizar tu posicionamiento real';
+    }, 3000);
+    return;
+  }
 
-  // Redirigir a la app — ella arranca directo en análisis
+  // Normalizar URL
+  let url = website;
+  if (!/^https?:\/\//i.test(url)) url = 'https://' + url;
+
+  // Guardar en sessionStorage para que app.html lo lea al cargar
+  sessionStorage.setItem('signal_prefill', JSON.stringify({ search, name: '', website: url }));
+
+  // Redirigir a la app
   window.location.href = '/app';
 }
 
-// Enter en cualquier campo del form también dispara
-['landingSearch','landingName','landingWebsite'].forEach(id => {
+// Enter en cualquier campo también dispara
+['landingSearch','landingWebsite'].forEach(id => {
   document.getElementById(id).addEventListener('keydown', e => {
     if (e.key === 'Enter') submitLandingForm();
   });
