@@ -276,7 +276,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="urgency-bar" id="urgencyBar">
   <span>🔒 Precio de lanzamiento: <strong id="urgencyPrice">$24.900 ARS</strong></span>
   <div class="urgency-countdown" id="urgencyCountdown">
-    <div class="countdown-unit"><span class="countdown-num" id="cdHours">---</span><span class="countdown-label">horas</span></div>
+    <div class="countdown-unit"><span class="countdown-num" id="cdDays">--</span><span class="countdown-label">días</span></div>
+    <span class="countdown-sep">:</span>
+    <div class="countdown-unit"><span class="countdown-num" id="cdHours">--</span><span class="countdown-label">hs</span></div>
     <span class="countdown-sep">:</span>
     <div class="countdown-unit"><span class="countdown-num" id="cdMins">--</span><span class="countdown-label">min</span></div>
     <span class="countdown-sep">:</span>
@@ -568,8 +570,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <span class="eco-item eco-inactive">CLOSER<span class="eco-dot-closer">.</span></span>
   </div>
   <div class="foot-links">
-    <a href="https://kairo.lat/" target="_blank" rel="noopener" class="foot-kairo">Built by <strong>KAIRO</strong> · Make it simple</a>
-    <a href="#">Privacidad</a>
+    <a href="https://kairoinc.lat/" target="_blank" rel="noopener" class="foot-kairo">Built by <strong>KAIRO</strong> · Make it simple</a>
+    <a href="/privacidad">Privacidad</a>
   </div>
 </footer>
 
@@ -649,13 +651,14 @@ function submitLandingForm() {
     const diff = DEADLINE - new Date();
     if (diff <= 0) { onExpired(); return; }
 
-    // Total de horas restantes (ej: 745), luego minutos y segundos del resto
-    const totalHours = Math.floor(diff / 3600000);
-    const mins       = Math.floor((diff % 3600000) / 60000);
-    const secs       = Math.floor((diff % 60000)   / 1000);
+    const days  = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins  = Math.floor((diff % 3600000)  / 60000);
+    const secs  = Math.floor((diff % 60000)    / 1000);
 
     const el = id => document.getElementById(id);
-    if (el('cdHours')) el('cdHours').textContent = totalHours;   // sin pad — 745 se ve mejor sin ceros
+    if (el('cdDays'))  el('cdDays').textContent  = pad2(days);
+    if (el('cdHours')) el('cdHours').textContent = pad2(hours);
     if (el('cdMins'))  el('cdMins').textContent  = pad2(mins);
     if (el('cdSecs'))  el('cdSecs').textContent  = pad2(secs);
 
