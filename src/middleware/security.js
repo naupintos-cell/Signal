@@ -29,12 +29,36 @@ export function rateLimit(options = {}) {
 
 // ─── Validación y sanitización de input ────────────────────────────────────
 export function validateGenerateInput(req, res, next) {
-  const { name = '', what = '', location = '', website = '' } = req.body ?? {};
+  const { model, max_tokens, system, messages } = req.body ?? {};
 
-  // Campo requerido
-  if (!what || typeof what !== 'string' || what.trim().length < 3) {
-    return res.status(400).json({ error: 'Descripción del negocio requerida.' });
+  if (!Array.isArray(messages) || messages.length === 0) {
+    return res.status(400).json({ error: 'messages es requerido.' });
   }
+
+  const userContent = messages.find(m => m.role === 'user')?.content ?? '';
+  if (typeof userContent !== 'string' || userContent.trim().length < 3) {
+    return res.status(400).json({ error: 'Contenido del mensaje requerido.' });
+  }
+  if (userContent.length > 4000) {
+    return res.status(400).json({ error: 'Input demasiado largo.' });
+  }
+  if (system && system.length > 6000) {
+    return res.status(400).json({ error: 'System prompt demasiado largo.' });
+  }
+
+  const clean = (s) => String(s).replace(/[\u0000-\u001F<>]/g, '').trim();
+  req.body = {
+    model:      model || 'claude-sonnet-4-5',
+    max_tokens: Math.min(parseInt(max_tokens) || 1600, 2048),
+    system:     system ? clean(system) : undefined,
+    messages:   messages.map(m => ({
+      role:    m.role,
+      content: clean(m.content),
+    })),
+  };
+
+  next();
+}
 
   // Límites de longitud — evita tokens inflados y prompt injection
   if (
