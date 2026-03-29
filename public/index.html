@@ -256,7 +256,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(242,242,240,.96);backdrop-
 
 <!-- 1. URGENCY -->
 <div class="urgency-bar">
-  🔒 Precio de lanzamiento: <strong>$24.900 ARS</strong> — Sube a $34.900 el 30 de abril · Quedan <strong id="spots">47</strong> cupos
+  🔒 Precio de lanzamiento: <strong>$24.900 ARS</strong> — Sube a $34.900 el 30 de abril
 </div>
 
 <!-- 2. NAV -->
@@ -286,7 +286,11 @@ nav{position:sticky;top:0;z-index:100;background:rgba(242,242,240,.96);backdrop-
   <div class="hero-visual">
     <div class="score-card">
       <div class="score-header">
-        <div><div class="score-biz">Restaurante El Porteño</div><div class="score-biz-sub">Palermo · Buenos Aires</div></div>
+        <div>
+          <div class="score-biz">Restaurante El Porteño</div>
+          <div class="score-biz-sub">Palermo · Buenos Aires</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--dim);letter-spacing:.06em;text-transform:uppercase;margin-top:3px">Ejemplo real</div>
+        </div>
         <div><div class="score-number">34<span>/100</span></div><div class="score-label">Visibilidad actual</div></div>
       </div>
       <div class="score-channels">
@@ -324,7 +328,55 @@ nav{position:sticky;top:0;z-index:100;background:rgba(242,242,240,.96);backdrop-
   </div>
 </div>
 
-<!-- 5. STATS -->
+<!-- 5. POR QUÉ EXISTE SIGNAL — antes de stats para construir confianza temprano -->
+<div class="origin-section">
+  <div class="origin-inner">
+    <div>
+      <div class="origin-label">Nuestra historia</div>
+      <h2 class="origin-title">Por qué<br>existe <em>Signal.</em></h2>
+      <div class="origin-body">
+        <p class="origin-para">
+          Durante años, las agencias le cobraron miles de dólares a negocios pequeños para decirles siempre lo mismo: <strong>"tenés que mejorar tu SEO"</strong>. Sin explicar qué, sin mostrar cómo, sin dar nada concreto para hacer al día siguiente.
+        </p>
+        <p class="origin-para">
+          Signal existe para una sola cosa: que <strong>cualquier negocio en LATAM</strong> entienda en 30 segundos exactamente por qué no aparece — y tenga en la mano lo que necesita para cambiarlo hoy.
+        </p>
+        <p class="origin-para">
+          Sin agencia. Sin suscripción. Sin que te expliquen algo que ya sabías con otras palabras.
+        </p>
+        <div class="origin-quote">
+          <div class="origin-quote-text">"La visibilidad no debería ser un privilegio de quien puede pagar una agencia."</div>
+          <div class="origin-quote-attr">Equipo Kairo · Buenos Aires</div>
+        </div>
+      </div>
+    </div>
+    <div class="origin-stats">
+      <div class="origin-stat reveal">
+        <div class="origin-stat-num">78%</div>
+        <div class="origin-stat-body">
+          <div class="origin-stat-title">de los negocios LATAM fallan en 3+ canales</div>
+          <div class="origin-stat-desc">Google, Maps y ChatGPT — y no lo saben hasta que alguien se los dice.</div>
+        </div>
+      </div>
+      <div class="origin-stat reveal reveal-delay-1">
+        <div class="origin-stat-num">$300k</div>
+        <div class="origin-stat-body">
+          <div class="origin-stat-title">cobra una agencia por lo mismo</div>
+          <div class="origin-stat-desc">Signal lo hace en 30 segundos, por $24.900 ARS, con el contenido listo para copiar.</div>
+        </div>
+      </div>
+      <div class="origin-stat reveal reveal-delay-2">
+        <div class="origin-stat-num">1h</div>
+        <div class="origin-stat-body">
+          <div class="origin-stat-title">es todo lo que necesitás para implementar</div>
+          <div class="origin-stat-desc">Sin contratar a nadie. Sin saber de SEO. Con lo que te damos, alcanza.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 6. STATS -->
 <div class="stats-band">
   <div class="stats-inner">
     <div class="stat-item reveal"><span class="stat-num">1.<em>847</em></span><span class="stat-label">Negocios LATAM<br>analizados en 30 días</span></div>
@@ -346,7 +398,15 @@ nav{position:sticky;top:0;z-index:100;background:rgba(242,242,240,.96);backdrop-
   </div>
 </section>
 
-<!-- 7. FORMULARIO -->
+<!-- 7. MID-PAGE CTA -->
+<div style="background:var(--accent-dim);border-top:1px solid var(--accent-border);border-bottom:1px solid var(--accent-border);padding:32px 5%;text-align:center">
+  <p style="font-family:var(--serif);font-size:22px;font-weight:600;color:var(--ink);margin-bottom:14px;letter-spacing:-.01em">¿Tu negocio aparece cuando alguien te busca en Google?</p>
+  <button class="btn-primary" onclick="scrollToForm()" style="margin:0 auto">
+    Descubrilo gratis en 30 segundos <span class="btn-arrow">→</span>
+  </button>
+</div>
+
+<!-- 8. FORMULARIO -->
 <div class="demo-section" id="analizar">
   <div class="demo-inner">
     <div class="section-label">Probalo ahora</div>
@@ -439,54 +499,6 @@ nav{position:sticky;top:0;z-index:100;background:rgba(242,242,240,.96);backdrop-
   </div>
 </section>
 
-<!-- 10. POR QUÉ EXISTE SIGNAL -->
-<div class="origin-section">
-  <div class="origin-inner">
-    <div>
-      <div class="origin-label">Nuestra historia</div>
-      <h2 class="origin-title">Por qué<br>existe <em>Signal.</em></h2>
-      <div class="origin-body">
-        <p class="origin-para">
-          Durante años, las agencias le cobraron miles de dólares a negocios pequeños para decirles siempre lo mismo: <strong>"tenés que mejorar tu SEO"</strong>. Sin explicar qué, sin mostrar cómo, sin dar nada concreto para hacer al día siguiente.
-        </p>
-        <p class="origin-para">
-          Signal existe para una sola cosa: que <strong>cualquier negocio en LATAM</strong> entienda en 30 segundos exactamente por qué no aparece — y tenga en la mano lo que necesita para cambiarlo hoy.
-        </p>
-        <p class="origin-para">
-          Sin agencia. Sin suscripción. Sin que te expliquen algo que ya sabías con otras palabras.
-        </p>
-        <div class="origin-quote">
-          <div class="origin-quote-text">"La visibilidad no debería ser un privilegio de quien puede pagar una agencia."</div>
-          <div class="origin-quote-attr">Equipo Kairo · Buenos Aires</div>
-        </div>
-      </div>
-    </div>
-    <div class="origin-stats">
-      <div class="origin-stat reveal">
-        <div class="origin-stat-num">78%</div>
-        <div class="origin-stat-body">
-          <div class="origin-stat-title">de los negocios LATAM fallan en 3+ canales</div>
-          <div class="origin-stat-desc">Google, Maps y ChatGPT — y no lo saben hasta que alguien se los dice.</div>
-        </div>
-      </div>
-      <div class="origin-stat reveal reveal-delay-1">
-        <div class="origin-stat-num">$300k</div>
-        <div class="origin-stat-body">
-          <div class="origin-stat-title">cobra una agencia por lo mismo</div>
-          <div class="origin-stat-desc">Signal lo hace en 30 segundos, por $24.900 ARS, con el contenido listo para copiar.</div>
-        </div>
-      </div>
-      <div class="origin-stat reveal reveal-delay-2">
-        <div class="origin-stat-num">1h</div>
-        <div class="origin-stat-body">
-          <div class="origin-stat-title">es todo lo que necesitás para implementar</div>
-          <div class="origin-stat-desc">Sin contratar a nadie. Sin saber de SEO. Con lo que te damos, alcanza.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- 11. FAQ -->
 <div class="faq-section">
   <div class="faq-inner">
@@ -542,16 +554,6 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: .1 });
 reveals.forEach(r => obs.observe(r));
-
-// ── SPOTS COUNTER ──
-let spots = 47;
-const spotsEl = document.getElementById('spots');
-setInterval(() => {
-  if (Math.random() < .3 && spots > 12) {
-    spots--;
-    if (spotsEl) spotsEl.textContent = spots;
-  }
-}, 45000);
 
 // ── SCROLL TO FORM ──
 function scrollToForm() {
