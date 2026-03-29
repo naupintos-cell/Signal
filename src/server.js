@@ -1,9 +1,9 @@
 import express from 'express';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
-import { generate } from './src/routes/generate.js';
-import { checkout } from './src/routes/checkout.js';
-import { securityHeaders, rateLimit, validateGenerateInput } from './src/middleware/security.js';
+import { generate } from './routes/generate.js';
+import { checkout } from './routes/checkout.js';
+import { securityHeaders, rateLimit, validateGenerateInput } from './middleware/security.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app  = express();
@@ -24,21 +24,21 @@ app.post('/api/generate', validateGenerateInput, generate);
 app.post('/api/checkout', checkout);
 
 // Archivos estáticos
-app.use(express.static(join(__dirname, 'public')));
+app.use(express.static(join(__dirname, '../public')));
 
 // Landing page → /
 app.get('/', (req, res) => {
-  res.sendFile(join(__dirname, 'public/index.html'));
+  res.sendFile(join(__dirname, '../public/index.html'));
 });
 
 // Producto (app) → /app
 app.get('/app', (req, res) => {
-  res.sendFile(join(__dirname, 'public/app.html'));
+  res.sendFile(join(__dirname, '../public/app.html'));
 });
 
 // Fallback
 app.get('*', (req, res) => {
-  res.sendFile(join(__dirname, 'public/index.html'));
+  res.sendFile(join(__dirname, '../public/index.html'));
 });
 
 app.listen(PORT, () => {
