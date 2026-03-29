@@ -3,6 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T29MKNN4');</script>
+<!-- End Google Tag Manager -->
 <title>Signal — Tu diagnóstico de visibilidad</title>
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='16' fill='%236b4fa8'/><text x='16' y='22' font-family='Georgia,serif' font-size='18' font-weight='700' text-anchor='middle' fill='%23fff'>S</text></svg>">
@@ -264,6 +271,10 @@ nav{position:fixed;top:0;left:0;right:0;padding:0 5%;display:flex;align-items:ce
 </style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T29MKNN4"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <div class="progress-bar" id="progressBar" style="width:0%"></div>
 
@@ -1131,6 +1142,179 @@ checkPaymentReturn();
 if (!checkPrefill()) {
   // Normal flow: show landing
 }
+</script>
+
+<!-- ══ SIGNAL GTM TRACKING — APP ══ -->
+<script>
+(function() {
+  window.dataLayer = window.dataLayer || [];
+  function push(obj) { window.dataLayer.push(obj); }
+
+  // ── 1. Page view ──
+  push({
+    event: 'page_view',
+    page_type: 'app',
+    page_title: document.title,
+    page_path: window.location.pathname
+  });
+
+  // ── 2. Wrap goTo to track screen transitions ──
+  var _origGoTo = window.goTo;
+  window.goTo = function(screen, delay) {
+    var screenNames = {
+      'landing': 'app_landing',
+      'form-screen': 'form',
+      'loading-screen': 'loading',
+      'results-screen': 'results'
+    };
+    push({
+      event: 'screen_view',
+      screen_name: screenNames[screen] || screen,
+      page_type: 'app'
+    });
+    if (_origGoTo) return _origGoTo.apply(this, arguments);
+  };
+
+  // ── 3. Form submit en app ──
+  var _origSubmitForm = window.submitForm;
+  window.submitForm = function() {
+    var search  = (document.getElementById('bizSearch')?.value  || '').trim();
+    var website = (document.getElementById('bizWebsite')?.value || '').trim();
+    var name    = (document.getElementById('bizName')?.value    || '').trim();
+    push({
+      event: 'analysis_requested',
+      search_query: search,
+      website_domain: website.replace(/^https?:\/\//, '').split('/')[0],
+      has_biz_name: !!name,
+      page_type: 'app'
+    });
+    if (_origSubmitForm) return _origSubmitForm.apply(this, arguments);
+  };
+
+  // ── 4. Wrap runAnalysis para trackear inicio y fin ──
+  var _origRunAnalysis = window.runAnalysis;
+  window.runAnalysis = function(params) {
+    push({
+      event: 'analysis_start',
+      is_prefill: true,
+      website_domain: (params.website || '').replace(/^https?:\/\//, '').split('/')[0],
+      page_type: 'app'
+    });
+    return _origRunAnalysis.apply(this, arguments);
+  };
+
+  // ── 5. Wrap render para trackear cuando llegan resultados ──
+  var _origRender = window.render;
+  window.render = function(d, pro, searchQuery, esCompetencia) {
+    var result = _origRender ? _origRender.apply(this, arguments) : undefined;
+    push({
+      event: 'analysis_complete',
+      visibility_score: d.visibilityScore,
+      visibility_status: d.status,
+      clientes_perdidos_min: d.clientesPerdidosMin,
+      clientes_perdidos_max: d.clientesPerdidosMax,
+      is_pro: !!pro,
+      is_competitor: !!esCompetencia,
+      search_query: searchQuery,
+      page_type: 'app'
+    });
+    return result;
+  };
+
+  // ── 6. Wrap handleUpgrade para trackear intento de pago ──
+  var _origHandleUpgrade = window.handleUpgrade;
+  window.handleUpgrade = function() {
+    var score = document.getElementById('diagScore')?.textContent;
+    var status = document.getElementById('diagStatusPill')?.textContent;
+    push({
+      event: 'upgrade_click',
+      visibility_score: score ? parseInt(score) : null,
+      visibility_status: status || null,
+      page_type: 'app'
+    });
+    if (_origHandleUpgrade) return _origHandleUpgrade.apply(this, arguments);
+  };
+
+  // ── 7. Pago exitoso (payment=success en URL) ──
+  if (new URLSearchParams(window.location.search).get('payment') === 'success') {
+    push({
+      event: 'purchase',
+      transaction_id: Date.now().toString(),
+      value: 24900,
+      currency: 'ARS',
+      page_type: 'app'
+    });
+  }
+
+  // ── 8. Pago fallido / pendiente ──
+  var paymentStatus = new URLSearchParams(window.location.search).get('payment');
+  if (paymentStatus === 'failure' || paymentStatus === 'pending') {
+    push({
+      event: 'payment_failed',
+      payment_status: paymentStatus,
+      page_type: 'app'
+    });
+  }
+
+  // ── 9. Copy buttons ──
+  document.addEventListener('click', function(e) {
+    var copyBtn = e.target.closest('[onclick*="copy"], [onclick*="Copy"]');
+    if (copyBtn) {
+      push({
+        event: 'content_copy',
+        copy_element: copyBtn.getAttribute('onclick') || '',
+        page_type: 'app'
+      });
+    }
+  });
+
+  // ── 10. Share buttons ──
+  document.addEventListener('click', function(e) {
+    var shareBtn = e.target.closest('.share-btn');
+    if (shareBtn) {
+      var channel = shareBtn.id === 'shareWa' ? 'whatsapp'
+                  : shareBtn.id === 'shareLi' ? 'linkedin'
+                  : 'link';
+      push({
+        event: 'result_share',
+        share_channel: channel,
+        page_type: 'app'
+      });
+    }
+  });
+
+  // ── 11. Example pills click ──
+  document.addEventListener('click', function(e) {
+    var pill = e.target.closest('.example-pill');
+    if (pill) {
+      push({
+        event: 'example_pill_click',
+        example_text: pill.textContent.trim(),
+        page_type: 'app'
+      });
+    }
+  });
+
+  // ── 12. Competitor toggle ──
+  var compToggle = document.getElementById('competenciaToggle');
+  if (compToggle) {
+    compToggle.addEventListener('change', function() {
+      push({
+        event: 'competitor_mode_toggle',
+        enabled: this.checked,
+        page_type: 'app'
+      });
+    });
+  }
+
+  // ── 13. Time on page ──
+  [30, 60, 120].forEach(function(sec) {
+    setTimeout(function() {
+      push({ event: 'time_on_page', seconds: sec, page_type: 'app' });
+    }, sec * 1000);
+  });
+
+})();
 </script>
 </body>
 </html>
