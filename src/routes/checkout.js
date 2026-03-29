@@ -1,4 +1,3 @@
-// ── Mercado Pago checkout ──
 const MP_API = 'https://api.mercadopago.com/checkout/preferences';
 const isProd = process.env.APP_ENV === 'production';
 const MP_TOKEN = isProd
@@ -24,7 +23,7 @@ export async function checkout(req, res) {
           description: 'Contenido listo para copiar: SEO, Maps, ChatGPT y Perplexity',
           quantity: 1,
           currency_id: 'ARS',
-          unit_price: 24900, // ← actualizado (era 27170)
+          unit_price: 24900,
         },
       ],
       payer: email ? { email } : undefined,
@@ -37,8 +36,8 @@ export async function checkout(req, res) {
       statement_descriptor: 'SIGNAL KAIRO',
       external_reference: reportId || 'signal-pro',
       payment_methods: {
-        excluded_payment_types: [], // acepta todo: tarjeta, débito, MP saldo
-        installments: 1,            // ← sin cuotas (pago único)
+        excluded_payment_types: [],
+        installments: 1,
       },
       expires: false,
     };
@@ -69,18 +68,3 @@ export async function checkout(req, res) {
     return res.status(500).json({ error: 'Internal server error' });
   }
 }
-```
-
-Los únicos 3 cambios respecto al tuyo:
-
-1. **`unit_price: 24900`** — de $27.170 a $24.900
-2. **`payment_methods: { installments: 1 }`** — fuerza pago único, evita que MP ofrezca cuotas que confunden en un ticket bajo
-3. **`description`** más específica — mejor para el estado de cuenta del usuario y para reducir chargebacks
-
----
-
-Verificá que en Railway Variables tengas:
-```
-APP_ENV=production
-MP_ACCESS_TOKEN_PROD=APP_USR-tu-token-real
-APP_URL=https://getsignalatam.lat
