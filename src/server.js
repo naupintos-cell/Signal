@@ -1,35 +1,46 @@
 import express from 'express';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
-import { generate } from './routes/generate.js';
-import { checkout } from './routes/checkout.js';
-import { securityHeaders, rateLimit, validateGenerateInput } from './middleware/security.js';
+import { generate } from './src/routes/generate.js';
+import { checkout } from './src/routes/checkout.js';
+import { securityHeaders, rateLimit, validateGenerateInput } from './src/middleware/security.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app  = express();
 const PORT = process.env.PORT || 3000;
 
-// ─── CRÍTICO para Railway: leer IP real detrás del proxy ──────────────────
+// Railway: leer IP real detrás del proxy
 app.set('trust proxy', 1);
 
-// ─── Middlewares globales ──────────────────────────────────────────────────
+// Middlewares globales
 app.use(express.json({ limit: '10kb' }));
 app.use(securityHeaders);
 
-// ─── Rate limit solo en /api ───────────────────────────────────────────────
+// Rate limit solo en /api
 app.use('/api/', rateLimit({ windowMs: 60_000, max: 8 }));
 
-// ─── Rutas ────────────────────────────────────────────────────────────────
+// Rutas API
 app.post('/api/generate', validateGenerateInput, generate);
 app.post('/api/checkout', checkout);
 
-// ─── Static + SPA fallback ────────────────────────────────────────────────
-app.use(express.static(join(__dirname, '../public')));
-app.get('*', (req, res) => {
-  res.sendFile(join(__dirname, '../public/index.html'));
+// Archivos estáticos
+app.use(express.static(join(__dirname, 'public')));
+
+// Landing page → /
+app.get('/', (req, res) => {
+  res.sendFile(join(__dirname, 'public/index.html'));
 });
 
-// ─── Start ────────────────────────────────────────────────────────────────
+// Producto (app) → /app
+app.get('/app', (req, res) => {
+  res.sendFile(join(__dirname, 'public/app.html'));
+});
+
+// Fallback
+app.get('*', (req, res) => {
+  res.sendFile(join(__dirname, 'public/index.html'));
+});
+
 app.listen(PORT, () => {
   console.log(`Signal running on http://localhost:${PORT}`);
 });
