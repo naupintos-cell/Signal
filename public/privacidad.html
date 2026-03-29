@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Política de Privacidad — Signal</title>
+<meta name="description" content="Política de privacidad de Signal. Cómo recopilamos, usamos y protegemos tu información.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='16' fill='%236b4fa8'/><text x='16' y='22' font-family='Georgia,serif' font-size='18' font-weight='700' text-anchor='middle' fill='%23fff'>S</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f2f2f0;--surface:#ffffff;--surface2:#f8f8f6;
+  --ink:#1a1a1a;--muted:#666666;--dim:#aaaaaa;
+  --border:#e8e8e4;--border2:#e2e2de;
+  --accent:#6b4fa8;--accent-hover:#7d5fc0;
+  --accent-dim:rgba(107,79,168,.10);--accent-border:rgba(107,79,168,.22);
+  --serif:'Instrument Serif',Georgia,serif;
+  --mono:'DM Mono',monospace;--sans:'DM Sans',system-ui,sans-serif;
+  --radius:8px;--radius-lg:12px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(242,242,240,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border2);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:62px}
+.nav-logo{font-family:var(--mono);font-size:15px;letter-spacing:.06em;color:var(--ink);text-decoration:none}
+.nav-logo .dot{color:var(--accent)}
+.nav-back{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .18s}
+.nav-back:hover{color:var(--accent)}
+
+/* CONTENT */
+.privacy-wrap{max-width:720px;margin:0 auto;padding:64px 5% 96px}
+.privacy-eyebrow{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.privacy-title{font-family:var(--serif);font-size:clamp(32px,5vw,48px);font-weight:600;line-height:1.08;letter-spacing:-.02em;color:var(--ink);margin-bottom:12px}
+.privacy-meta{font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.04em;margin-bottom:48px;padding-bottom:24px;border-bottom:1px solid var(--border2)}
+
+.privacy-section{margin-bottom:40px}
+.privacy-section h2{font-family:var(--serif);font-size:22px;font-weight:600;letter-spacing:-.01em;color:var(--ink);margin-bottom:12px;padding-top:8px}
+.privacy-section p{font-size:15px;color:var(--muted);line-height:1.75;font-weight:300;margin-bottom:12px}
+.privacy-section p:last-child{margin-bottom:0}
+.privacy-section ul{list-style:none;display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.privacy-section ul li{font-size:15px;color:var(--muted);line-height:1.65;font-weight:300;padding-left:18px;position:relative}
+.privacy-section ul li::before{content:'·';position:absolute;left:4px;color:var(--accent);font-weight:700}
+.privacy-section a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-border);transition:border-color .18s}
+.privacy-section a:hover{border-color:var(--accent)}
+
+.highlight-box{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:20px 24px;margin:16px 0}
+.highlight-box p{color:var(--ink) !important;font-weight:400 !important}
+
+/* FOOTER */
+.privacy-footer{border-top:1px solid var(--border2);padding:22px 5%;display:flex;align-items:center;justify-content:space-between;background:var(--surface);font-family:var(--mono);font-size:11px;color:var(--dim)}
+.privacy-footer a{color:var(--dim);text-decoration:none;transition:color .18s}
+.privacy-footer a:hover{color:var(--muted)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">SIGNAL<span class="dot">.</span></a>
+  <a href="/" class="nav-back">← Volver al inicio</a>
+</nav>
+
+<div class="privacy-wrap">
+  <div class="privacy-eyebrow">Legal</div>
+  <h1 class="privacy-title">Política de Privacidad</h1>
+  <div class="privacy-meta">
+    Última actualización: 29 de marzo de 2026 · Vigente para getsignalatam.lat
+  </div>
+
+  <div class="privacy-section">
+    <h2>1. Quiénes somos</h2>
+    <p>Signal es un producto de diagnóstico de visibilidad digital operado bajo el dominio <strong>getsignalatam.lat</strong>. Para cualquier consulta relacionada con esta política podés escribirnos a <a href="mailto:hola@getsignalatam.lat">hola@getsignalatam.lat</a>.</p>
+  </div>
+
+  <div class="privacy-section">
+    <h2>2. Qué información recopilamos</h2>
+    <p>Recopilamos únicamente los datos necesarios para brindarte el servicio:</p>
+    <ul>
+      <li><strong>Rubro o búsqueda objetivo:</strong> el texto que ingresás en el formulario de análisis (ej: "psicóloga en Palermo").</li>
+      <li><strong>URL de tu sitio web:</strong> necesaria para analizar tu posicionamiento real en Google, Maps y herramientas de IA.</li>
+      <li><strong>Email:</strong> solo si lo proporcionás voluntariamente para recibir tu reporte o comunicaciones de Signal.</li>
+      <li><strong>Datos de uso:</strong> información técnica anónima como páginas visitadas, acciones realizadas y dispositivo utilizado, recopilada a través de Google Analytics vía Google Tag Manager.</li>
+    </ul>
+    <div class="highlight-box">
+      <p>No recopilamos datos sensibles. No pedimos nombre, dirección, teléfono ni documento de identidad para usar Signal.</p>
+    </div>
+  </div>
+
+  <div class="privacy-section">
+    <h2>3. Para qué usamos tu información</h2>
+    <p>Los datos que recopilamos se usan exclusivamente para:</p>
+    <ul>
+      <li>Generar tu diagnóstico de visibilidad personalizado.</li>
+      <li>Enviarte tu reporte si nos proporcionás un email.</li>
+      <li>Mejorar el producto en base a patrones de uso agregados y anónimos.</li>
+      <li>Comunicarnos con vos si solicitás soporte o tenés consultas sobre tu compra.</li>
+    </ul>
+    <p>No usamos tu información para publicidad de terceros ni la vendemos bajo ninguna circunstancia.</p>
+  </div>
+
+  <div class="privacy-section">
+    <h2>4. Datos de pago</h2>
+    <p>Los pagos son procesados por <strong>Mercado Pago</strong>. Signal no almacena ni tiene acceso a tus datos de tarjeta de crédito, débito ni información bancaria. Toda la transacción ocurre en la plataforma segura de Mercado Pago, sujeta a su propia <a href="https://www.mercadopago.com.ar/privacidad" target="_blank" rel="noopener">política de privacidad</a>.</p>
+  </div>
+
+  <div class="privacy-section">
+    <h2>5. Cookies y herramientas de análisis</h2>
+    <p>Utilizamos <strong>Google Analytics</strong> (a través de Google Tag Manager) para entender cómo se usa el sitio. Esta herramienta puede recopilar información como tu dirección IP anonimizada, tipo de dispositivo, país de origen y páginas visitadas.</p>
+    <p>No utilizamos cookies de publicidad ni de seguimiento entre sitios. Podés desactivar Google Analytics instalando la <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">extensión de exclusión de Google Analytics</a> en tu navegador.</p>
+  </div>
+
+  <div class="privacy-section">
+    <h2>6. Compartir información con terceros</h2>
+    <p>No compartimos tu información personal con terceros, excepto en los siguientes casos estrictamente necesarios:</p>
+    <ul>
+      <li><strong>Anthropic (Claude API):</strong> el rubro y URL que ingresás son procesados por la API de Claude para generar tu diagnóstico. Esta información se usa exclusivamente para generar la respuesta y no es utilizada para entrenar modelos según los <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener">términos de Anthropic</a>.</li>
+      <li><strong>Google Analytics:</strong> datos de uso anónimos y agregados para análisis de producto.</li>
+      <li><strong>Mercado Pago:</strong> procesamiento de pagos cuando contratás Signal Pro.</li>
+    </ul>
+  </div>
+
+  <div class="privacy-section">
+    <h2>7. Retención de datos</h2>
+    <p>Los datos de tu análisis (rubro y URL) se almacenan temporalmente en tu navegador mediante <code>sessionStorage</code> y se eliminan automáticamente al cerrar la pestaña. No los almacenamos en servidores propios de forma permanente asociados a tu identidad.</p>
+    <p>Si nos proporcionás tu email, lo conservamos mientras mantengas una relación activa con Signal o hasta que solicites su eliminación.</p>
+  </div>
+
+  <div class="privacy-section">
+    <h2>8. Tus derechos</h2>
+    <p>Tenés derecho a:</p>
+    <ul>
+      <li>Acceder a los datos que tenemos sobre vos.</li>
+      <li>Solicitar la corrección de datos inexactos.</li>
+      <li>Solicitar la eliminación de tus datos personales.</li>
+      <li>Revocar el consentimiento para el uso de tu email en cualquier momento.</li>
+    </ul>
+    <p>Para ejercer cualquiera de estos derechos escribinos a <a href="mailto:hola@getsignalatam.lat">hola@getsignalatam.lat</a> y respondemos dentro de los 10 días hábiles.</p>
+  </div>
+
+  <div class="privacy-section">
+    <h2>9. Seguridad</h2>
+    <p>El sitio opera bajo protocolo HTTPS. Tomamos medidas razonables para proteger la información que nos proporcionás, aunque ningún sistema de transmisión por internet es 100% seguro.</p>
+  </div>
+
+  <div class="privacy-section">
+    <h2>10. Cambios a esta política</h2>
+    <p>Podemos actualizar esta política ante cambios en el producto o en la legislación aplicable. La fecha de última actualización siempre estará visible al inicio de este documento. Si los cambios son significativos y tenemos tu email, te avisamos.</p>
+  </div>
+
+  <div class="privacy-section">
+    <h2>11. Contacto</h2>
+    <p>Para cualquier consulta sobre privacidad o protección de datos:</p>
+    <div class="highlight-box">
+      <p>📧 <a href="mailto:hola@getsignalatam.lat">hola@getsignalatam.lat</a><br>
+      🌐 <a href="https://getsignalatam.lat">getsignalatam.lat</a></p>
+    </div>
+  </div>
+
+</div>
+
+<footer class="privacy-footer">
+  <span>© 2026 Signal · getsignalatam.lat</span>
+  <a href="/">← Volver al inicio</a>
+</footer>
+
+</body>
+</html>
