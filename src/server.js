@@ -1,25 +1,17 @@
 import express from 'express';
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
-import { generate } from './routes/generate.js';
-import { checkout } from './routes/checkout.js';
+import { securityHeaders, rateLimit } from './middleware/security.js'; // ← AGREGAR
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+const app = express();
 
-const app  = express();
-const PORT = process.env.PORT || 3000;
+// ─── CRÍTICO para Railway: leer IP real detrás del proxy ───────────────────
+app.set('trust proxy', 1); // ← AGREGAR — sin esto el rate limit no funciona
 
-app.use(express.json());
+// ─── Middlewares globales ──────────────────────────────────────────────────
+app.use(express.json({ limit: '10kb' })); // ← limit evita payloads gigantes
+app.use(express.static('public'));
+app.use(securityHeaders); // ← AGREGAR
 
-app.post('/api/generate',  generate);
-app.post('/api/checkout',  checkout);
+// ─── Rate limit solo en /api ───────────────────────────────────────────────
+app.use('/api/', rateLimit({ windowMs: 60_000, max: 8 })); // ← AGREGAR
 
-app.use(express.static(join(__dirname, '../public')));
-
-app.get('*', (req, res) => {
-  res.sendFile(join(__dirname, '../public/index.html'));
-});
-
-app.listen(PORT, () => {
-  console.log(`Signal running on http://localhost:${PORT}`);
-});
+// ... resto de tus routes (no tocar)
