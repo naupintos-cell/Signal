@@ -3,6 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T29MKNN4');</script>
+<!-- End Google Tag Manager -->
 <title>Signal — Tu negocio invisible tiene solución</title>
 <meta name="description" content="En 30 segundos sabés exactamente por qué no aparecés en Google, Maps y ChatGPT — y qué cambiar hoy.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='16' fill='%236b4fa8'/><text x='16' y='22' font-family='Georgia,serif' font-size='18' font-weight='700' text-anchor='middle' fill='%23fff'>S</text></svg>">
@@ -253,6 +260,10 @@ nav{position:sticky;top:0;z-index:100;background:rgba(242,242,240,.96);backdrop-
 </style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T29MKNN4"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <!-- 1. URGENCY -->
 <div class="urgency-bar">
@@ -607,6 +618,144 @@ function submitLandingForm() {
     if (e.key === 'Enter') submitLandingForm();
   });
 });
+</script>
+
+<!-- ══ SIGNAL GTM TRACKING ══ -->
+<script>
+(function() {
+  window.dataLayer = window.dataLayer || [];
+
+  // ── Helpers ──
+  function push(obj) { window.dataLayer.push(obj); }
+  function getSearchVal() { return (document.getElementById('landingSearch')?.value || '').trim(); }
+  function getWebsiteVal() { return (document.getElementById('landingWebsite')?.value || '').trim(); }
+
+  // ── 1. Page view enriquecido ──
+  push({
+    event: 'page_view',
+    page_type: 'landing',
+    page_title: document.title,
+    page_path: window.location.pathname
+  });
+
+  // ── 2. Scroll depth (25 / 50 / 75 / 90 %) ──
+  var scrollFired = {};
+  window.addEventListener('scroll', function() {
+    var pct = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+    [25, 50, 75, 90].forEach(function(t) {
+      if (pct >= t && !scrollFired[t]) {
+        scrollFired[t] = true;
+        push({ event: 'scroll_depth', scroll_threshold: t, page_type: 'landing' });
+      }
+    });
+  }, { passive: true });
+
+  // ── 3. CTA clicks — todos los botones / links que llaman scrollToForm ──
+  document.addEventListener('click', function(e) {
+    var el = e.target.closest('[onclick*="scrollToForm"], .btn-primary, .btn-nav, .btn-pricing-primary, .btn-pricing-outline');
+    if (!el) return;
+    push({
+      event: 'cta_click',
+      cta_text: el.innerText.trim().substring(0, 80),
+      cta_location: el.closest('section, div[class]')?.className?.split(' ')[0] || 'unknown',
+      page_type: 'landing'
+    });
+  });
+
+  // ── 4. Form interactions ──
+  var formStarted = false;
+  ['landingSearch', 'landingWebsite'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('focus', function() {
+      if (!formStarted) {
+        formStarted = true;
+        push({ event: 'form_start', form_id: 'landing_form', page_type: 'landing' });
+      }
+    });
+  });
+
+  // ── 5. Intercept submitLandingForm para trackear intento y éxito ──
+  var _origSubmit = window.submitLandingForm;
+  window.submitLandingForm = function() {
+    var search  = getSearchVal();
+    var website = getWebsiteVal();
+    push({
+      event: 'form_submit_attempt',
+      form_id: 'landing_form',
+      has_search: !!search,
+      has_website: !!website,
+      page_type: 'landing'
+    });
+    if (search && website) {
+      push({
+        event: 'form_submit_success',
+        form_id: 'landing_form',
+        search_query: search,
+        website_domain: website.replace(/^https?:\/\//, '').split('/')[0],
+        page_type: 'landing'
+      });
+    }
+    _origSubmit.apply(this, arguments);
+  };
+
+  // ── 6. Pricing section — view y click ──
+  var pricingObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        push({ event: 'pricing_section_view', page_type: 'landing' });
+        pricingObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+  var pricingEl = document.querySelector('.pricing-section');
+  if (pricingEl) pricingObserver.observe(pricingEl);
+
+  // ── 7. FAQ interactions ──
+  document.addEventListener('click', function(e) {
+    var faqQ = e.target.closest('.faq-q');
+    if (faqQ) {
+      push({
+        event: 'faq_click',
+        faq_question: faqQ.innerText.trim(),
+        page_type: 'landing'
+      });
+    }
+  });
+
+  // ── 8. Time on page (30s / 60s / 120s) ──
+  [30, 60, 120].forEach(function(sec) {
+    setTimeout(function() {
+      push({ event: 'time_on_page', seconds: sec, page_type: 'landing' });
+    }, sec * 1000);
+  });
+
+  // ── 9. Urgency bar view ──
+  var urgencyObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        push({ event: 'urgency_bar_view', page_type: 'landing' });
+        urgencyObserver.disconnect();
+      }
+    });
+  }, { threshold: 1 });
+  var urgencyEl = document.querySelector('.urgency-bar');
+  if (urgencyEl) urgencyObserver.observe(urgencyEl);
+
+  // ── 10. Footer ecosystem clicks ──
+  document.addEventListener('click', function(e) {
+    var ecoLink = e.target.closest('.eco-item[href]');
+    if (ecoLink) {
+      push({
+        event: 'ecosystem_click',
+        product: ecoLink.textContent.trim(),
+        destination: ecoLink.href,
+        page_type: 'landing'
+      });
+    }
+  });
+
+})();
 </script>
 </body>
 </html>
