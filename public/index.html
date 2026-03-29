@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Signal — Tu negocio invisible tiene solución</title>
 <meta name="description" content="En 30 segundos sabés exactamente por qué no aparecés en Google, Maps y ChatGPT — y qué cambiar hoy.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='16' fill='%236b4fa8'/><text x='16' y='22' font-family='Georgia,serif' font-size='18' font-weight='700' text-anchor='middle' fill='%23fff'>S</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -145,6 +146,9 @@ nav{position:sticky;top:0;z-index:100;background:rgba(242,242,240,.96);backdrop-
 .promise-title{font-size:15px;font-weight:500;color:var(--ink);margin-bottom:4px}
 .promise-body{font-size:13px;color:var(--muted);line-height:1.6;font-weight:300}
 
+/* FORM ERROR */
+.input-error{border-color:rgba(163,45,45,.4)!important;box-shadow:0 0 0 3px rgba(163,45,45,.08)!important}
+
 /* TESTIMONIALS */
 .testi-section{padding:88px 5%;background:var(--bg)}
 .testi-inner{max-width:1120px;margin:0 auto}
@@ -160,7 +164,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(242,242,240,.96);backdrop-
 .testi-role{font-family:var(--mono);font-size:11px;color:var(--dim)}
 .testi-result{display:inline-block;margin-top:14px;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--green);background:var(--green-soft);padding:3px 10px;border-radius:100px;border:1px solid rgba(26,122,74,.2)}
 
-/* PRICING — solo 2 cards */
+/* PRICING */
 .pricing-section{padding:88px 5%;max-width:1120px;margin:0 auto}
 .pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;max-width:700px}
 @media(max-width:768px){.pricing-grid{grid-template-columns:1fr}}
@@ -221,6 +225,27 @@ nav{position:sticky;top:0;z-index:100;background:rgba(242,242,240,.96);backdrop-
 .foot-kairo strong{font-weight:700;color:var(--ink)}
 @media(max-width:600px){.kairo-footer{flex-direction:column;gap:16px;padding:22px 20px}.eco-mark{justify-content:center;flex-wrap:wrap}.foot-links{flex-wrap:wrap;justify-content:center}}
 
+/* POR QUÉ EXISTE SIGNAL */
+.origin-section{padding:88px 5%;background:var(--ink)}
+.origin-inner{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+@media(max-width:768px){.origin-inner{grid-template-columns:1fr;gap:48px}}
+.origin-label{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(167,139,250,.7);margin-bottom:14px}
+.origin-title{font-family:var(--serif);font-size:clamp(28px,4vw,42px);line-height:1.1;letter-spacing:-.02em;color:#fff;font-weight:600;margin-bottom:20px}
+.origin-title em{font-style:italic;color:#a78bfa}
+.origin-body{display:flex;flex-direction:column;gap:16px}
+.origin-para{font-size:15px;color:rgba(255,255,255,.55);line-height:1.75;font-weight:300}
+.origin-para strong{color:rgba(255,255,255,.85);font-weight:500}
+.origin-quote{border-left:2px solid rgba(167,139,250,.4);padding:16px 20px;margin-top:8px}
+.origin-quote-text{font-family:var(--serif);font-size:19px;font-style:italic;color:#fff;line-height:1.5;margin-bottom:8px}
+.origin-quote-attr{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(167,139,250,.6)}
+.origin-stats{display:flex;flex-direction:column;gap:1px;border-radius:var(--radius-lg);overflow:hidden}
+.origin-stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);padding:22px 24px;display:flex;align-items:flex-start;gap:18px;transition:background .2s}
+.origin-stat:hover{background:rgba(255,255,255,.07)}
+.origin-stat-num{font-family:var(--serif);font-size:38px;font-weight:600;color:#a78bfa;line-height:1;flex-shrink:0;min-width:72px}
+.origin-stat-body{}
+.origin-stat-title{font-size:14px;font-weight:500;color:#fff;margin-bottom:4px}
+.origin-stat-desc{font-size:12px;color:rgba(255,255,255,.4);line-height:1.5;font-weight:300}
+
 /* REVEAL */
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
 .reveal.visible{opacity:1;transform:none}
@@ -236,10 +261,10 @@ nav{position:sticky;top:0;z-index:100;background:rgba(242,242,240,.96);backdrop-
 
 <!-- 2. NAV -->
 <nav>
-  <a href="#" class="nav-logo">SIGNAL<span class="dot">.</span></a>
+  <a href="/" class="nav-logo">SIGNAL<span class="dot">.</span></a>
   <div class="nav-right">
     <span class="nav-count">Más de <strong>1.847</strong> negocios analizados</span>
-    <a href="#analizar" class="btn-nav">Analizar gratis →</a>
+    <button class="btn-nav" onclick="scrollToForm()">Analizar gratis →</button>
   </div>
 </nav>
 
@@ -250,7 +275,9 @@ nav{position:sticky;top:0;z-index:100;background:rgba(242,242,240,.96);backdrop-
     <h1>Tu negocio existe.<br>Tus clientes buscan.<br>El problema: <em>no te encuentran.</em></h1>
     <p class="hero-sub">En <strong>30 segundos</strong> sabés exactamente por qué no aparecés en Google, Maps, ChatGPT y Perplexity — y qué cambiar esta semana.</p>
     <div class="hero-cta-group">
-      <a href="#analizar" class="btn-primary">Ver por qué no aparezco en Google — gratis <span class="btn-arrow">→</span></a>
+      <button class="btn-primary" onclick="scrollToForm()">
+        Ver por qué no aparezco en Google — gratis <span class="btn-arrow">→</span>
+      </button>
       <div class="hero-guarantee">
         <span>Sin registro</span><span>30 segundos</span><span>100% gratis para empezar</span>
       </div>
@@ -319,35 +346,34 @@ nav{position:sticky;top:0;z-index:100;background:rgba(242,242,240,.96);backdrop-
   </div>
 </section>
 
-<!-- 7. FORMULARIO / CTA -->
+<!-- 7. FORMULARIO -->
 <div class="demo-section" id="analizar">
   <div class="demo-inner">
     <div class="section-label">Probalo ahora</div>
     <h2 class="section-title">Analizá tu negocio <em>gratis</em></h2>
     <p class="section-sub">Sin registro. Sin tarjeta. En 30 segundos sabés dónde estás perdiendo clientes.</p>
     <div class="demo-layout">
+
+      <!-- FORM: al submit guarda en sessionStorage y redirige a /app -->
       <div class="demo-form">
         <div class="form-group">
-          <label class="form-label">¿Qué hacés o vendés? <span style="color:var(--accent)">*</span></label>
-          <input class="form-input" type="text" placeholder="Ej: restaurante italiano, psicóloga infantil, taller mecánico...">
+          <label class="form-label" for="landingSearch">¿Qué hacés o vendés? <span style="color:var(--accent)">*</span></label>
+          <input class="form-input" type="text" id="landingSearch" placeholder="Ej: restaurante italiano, psicóloga infantil, taller mecánico..." autocomplete="off">
         </div>
         <div class="form-group">
-          <label class="form-label">Nombre de tu negocio</label>
-          <input class="form-input" type="text" placeholder="Ej: El Porteño, Dra. García, Mecánica Ríos...">
+          <label class="form-label" for="landingName">Nombre de tu negocio <span class="form-optional">· opcional</span></label>
+          <input class="form-input" type="text" id="landingName" placeholder="Ej: El Porteño, Dra. García, Mecánica Ríos..." autocomplete="off">
         </div>
         <div class="form-group">
-          <label class="form-label">Ciudad o barrio <span class="form-optional">(mejora el análisis)</span></label>
-          <input class="form-input" type="text" placeholder="Ej: Palermo, Buenos Aires · Polanco, CDMX...">
+          <label class="form-label" for="landingWebsite">Sitio web <span class="form-optional">· opcional</span></label>
+          <input class="form-input" type="url" id="landingWebsite" placeholder="https://tunegocio.com" autocomplete="off">
         </div>
-        <div class="form-group">
-          <label class="form-label">Sitio web <span class="form-optional">(opcional)</span></label>
-          <input class="form-input" type="url" placeholder="https://tunegocio.com">
-        </div>
-        <a href="https://getsignalatam.lat/" target="_blank" class="btn-primary" style="width:100%;display:flex;justify-content:center;margin-top:8px">
+        <button class="btn-primary" style="width:100%;margin-top:8px" onclick="submitLandingForm()">
           Ver por qué no aparezco en Google <span class="btn-arrow">→</span>
-        </a>
+        </button>
         <p style="text-align:center;font-family:var(--mono);font-size:10px;color:var(--dim);margin-top:12px;letter-spacing:.04em">Sin registro · Resultado inmediato · 100% gratis</p>
       </div>
+
       <div class="demo-promise">
         <div class="promise-item reveal"><div class="promise-icon">🗺️</div><div><div class="promise-title">Google Maps: el canal más perdido</div><div class="promise-body">El 67% de los negocios tienen su ficha incompleta. Signal te dice qué falta y cómo completarlo en minutos.</div></div></div>
         <div class="promise-item reveal reveal-delay-1"><div class="promise-icon">🤖</div><div><div class="promise-title">ChatGPT y Perplexity: el nuevo Google</div><div class="promise-body">Si no tenés el contenido correcto, la IA no sabe que existís. Signal te da el texto exacto para que te recomienden.</div></div></div>
@@ -374,7 +400,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(242,242,240,.96);backdrop-
   </div>
 </div>
 
-<!-- 9. PRICING — solo Free + Pro -->
+<!-- 9. PRICING -->
 <section class="pricing-section">
   <div class="section-label">Precios</div>
   <h2 class="section-title">Empezá gratis.<br>Pagá solo si vale <em>la pena.</em></h2>
@@ -393,7 +419,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(242,242,240,.96);backdrop-
         <li class="muted-feat">Texto optimizado para IA</li>
         <li class="muted-feat">Plan de acción de 7 días</li>
       </ul>
-      <a href="https://getsignalatam.lat/" target="_blank" class="btn-pricing-outline">Analizar gratis →</a>
+      <button class="btn-pricing-outline" onclick="scrollToForm()">Analizar gratis →</button>
     </div>
     <div class="pricing-card featured reveal reveal-delay-1">
       <div class="pricing-badge">Precio de lanzamiento 🇦🇷</div>
@@ -410,13 +436,61 @@ nav{position:sticky;top:0;z-index:100;background:rgba(242,242,240,.96);backdrop-
         <li>Estrategia vs. competidores</li>
         <li>Plan de acción de 7 días</li>
       </ul>
-      <a href="https://getsignalatam.lat/" target="_blank" class="btn-pricing-primary">Ver mi plan completo → $24.900</a>
+      <button class="btn-pricing-primary" onclick="scrollToForm()">Ver mi plan completo → $24.900</button>
       <div class="guarantee-note">✓ Garantía de devolución 30 días · Sin preguntas · Pago con Mercado Pago</div>
     </div>
   </div>
 </section>
 
-<!-- 10. FAQ -->
+<!-- 10. POR QUÉ EXISTE SIGNAL -->
+<div class="origin-section">
+  <div class="origin-inner">
+    <div>
+      <div class="origin-label">Nuestra historia</div>
+      <h2 class="origin-title">Por qué<br>existe <em>Signal.</em></h2>
+      <div class="origin-body">
+        <p class="origin-para">
+          Durante años, las agencias le cobraron miles de dólares a negocios pequeños para decirles siempre lo mismo: <strong>"tenés que mejorar tu SEO"</strong>. Sin explicar qué, sin mostrar cómo, sin dar nada concreto para hacer al día siguiente.
+        </p>
+        <p class="origin-para">
+          Signal existe para una sola cosa: que <strong>cualquier negocio en LATAM</strong> entienda en 30 segundos exactamente por qué no aparece — y tenga en la mano lo que necesita para cambiarlo hoy.
+        </p>
+        <p class="origin-para">
+          Sin agencia. Sin suscripción. Sin que te expliquen algo que ya sabías con otras palabras.
+        </p>
+        <div class="origin-quote">
+          <div class="origin-quote-text">"La visibilidad no debería ser un privilegio de quien puede pagar una agencia."</div>
+          <div class="origin-quote-attr">Equipo Kairo · Buenos Aires</div>
+        </div>
+      </div>
+    </div>
+    <div class="origin-stats">
+      <div class="origin-stat reveal">
+        <div class="origin-stat-num">78%</div>
+        <div class="origin-stat-body">
+          <div class="origin-stat-title">de los negocios LATAM fallan en 3+ canales</div>
+          <div class="origin-stat-desc">Google, Maps y ChatGPT — y no lo saben hasta que alguien se los dice.</div>
+        </div>
+      </div>
+      <div class="origin-stat reveal reveal-delay-1">
+        <div class="origin-stat-num">$300k</div>
+        <div class="origin-stat-body">
+          <div class="origin-stat-title">cobra una agencia por lo mismo</div>
+          <div class="origin-stat-desc">Signal lo hace en 30 segundos, por $24.900 ARS, con el contenido listo para copiar.</div>
+        </div>
+      </div>
+      <div class="origin-stat reveal reveal-delay-2">
+        <div class="origin-stat-num">1h</div>
+        <div class="origin-stat-body">
+          <div class="origin-stat-title">es todo lo que necesitás para implementar</div>
+          <div class="origin-stat-desc">Sin contratar a nadie. Sin saber de SEO. Con lo que te damos, alcanza.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 11. FAQ -->
 <div class="faq-section">
   <div class="faq-inner">
     <div class="section-label">Preguntas frecuentes</div>
@@ -439,9 +513,9 @@ nav{position:sticky;top:0;z-index:100;background:rgba(242,242,240,.96);backdrop-
     <h2 class="section-title">Cada día sin aparecer en Google<br>es un cliente que va a <em>tu competencia.</em></h2>
     <p class="section-sub">El diagnóstico es gratis. El plan vale $24.900 ARS. Los dos en 30 segundos.</p>
     <div class="final-btn-group">
-      <a href="https://getsignalatam.lat/" target="_blank" class="btn-primary" style="font-size:16px;padding:15px 44px">
+      <button class="btn-primary" style="font-size:16px;padding:15px 44px" onclick="scrollToForm()">
         Ver por qué no aparezco en Google — gratis <span class="btn-arrow">→</span>
-      </a>
+      </button>
       <div class="final-guarantee">
         <span>Sin registro</span><span>30 segundos</span><span>Garantía de devolución</span><span>$24.900 · Mercado Pago</span>
       </div>
@@ -449,10 +523,10 @@ nav{position:sticky;top:0;z-index:100;background:rgba(242,242,240,.96);backdrop-
   </div>
 </div>
 
-<!-- 12. FOOTER KAIRO -->
+<!-- 12. FOOTER -->
 <footer class="kairo-footer">
   <div class="eco-mark">
-    <a href="https://getsignalatam.lat/" class="eco-item eco-active">SIGNAL<span class="eco-dot-signal">.</span></a>
+    <a href="/" class="eco-item eco-active">SIGNAL<span class="eco-dot-signal">.</span></a>
     <a href="https://getpulseapp.lat/" target="_blank" rel="noopener" class="eco-item">PULSE<span class="eco-dot-pulse">.</span></a>
     <a href="https://getcreceapp.com/" target="_blank" rel="noopener" class="eco-item">CRECE<span class="eco-dot-crece">.</span></a>
     <span class="eco-item eco-inactive">WATCH<span class="eco-dot-watch">.</span></span>
@@ -465,16 +539,56 @@ nav{position:sticky;top:0;z-index:100;background:rgba(242,242,240,.96);backdrop-
 </footer>
 
 <script>
-const reveals=document.querySelectorAll('.reveal');
-const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.1});
-reveals.forEach(r=>obs.observe(r));
+// ── REVEAL ON SCROLL ──
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: .1 });
+reveals.forEach(r => obs.observe(r));
 
-let spots=47;
-const el=document.getElementById('spots');
-setInterval(()=>{if(Math.random()<.3&&spots>12){spots--;if(el)el.textContent=spots}},45000);
+// ── SPOTS COUNTER ──
+let spots = 47;
+const spotsEl = document.getElementById('spots');
+setInterval(() => {
+  if (Math.random() < .3 && spots > 12) {
+    spots--;
+    if (spotsEl) spotsEl.textContent = spots;
+  }
+}, 45000);
 
-document.querySelectorAll('a[href="#analizar"]').forEach(a=>{
-  a.addEventListener('click',e=>{e.preventDefault();document.getElementById('analizar').scrollIntoView({behavior:'smooth'})});
+// ── SCROLL TO FORM ──
+function scrollToForm() {
+  document.getElementById('analizar').scrollIntoView({ behavior: 'smooth' });
+  setTimeout(() => document.getElementById('landingSearch').focus(), 600);
+}
+
+// ── SUBMIT: guarda datos y redirige a /app ──
+function submitLandingForm() {
+  const search  = document.getElementById('landingSearch').value.trim();
+  const name    = document.getElementById('landingName').value.trim();
+  const website = document.getElementById('landingWebsite').value.trim();
+
+  // Validación mínima
+  if (!search) {
+    const el = document.getElementById('landingSearch');
+    el.classList.add('input-error');
+    el.focus();
+    setTimeout(() => el.classList.remove('input-error'), 2500);
+    return;
+  }
+
+  // Guardar en sessionStorage para que app.html lo lea al cargar
+  sessionStorage.setItem('signal_prefill', JSON.stringify({ search, name, website }));
+
+  // Redirigir a la app — ella arranca directo en análisis
+  window.location.href = '/app';
+}
+
+// Enter en cualquier campo del form también dispara
+['landingSearch','landingName','landingWebsite'].forEach(id => {
+  document.getElementById(id).addEventListener('keydown', e => {
+    if (e.key === 'Enter') submitLandingForm();
+  });
 });
 </script>
 </body>
