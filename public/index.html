@@ -47,8 +47,15 @@ nav{position:sticky;top:0;z-index:100;background:rgba(242,242,240,.96);backdrop-
 @media(max-width:768px){.nav-count{display:none}}
 
 /* URGENCY */
-.urgency-bar{background:var(--accent);color:#fff;text-align:center;padding:10px 20px;font-family:var(--mono);font-size:11px;letter-spacing:.04em}
+.urgency-bar{background:var(--accent);color:#fff;text-align:center;padding:10px 20px;font-family:var(--mono);font-size:11px;letter-spacing:.04em;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
 .urgency-bar strong{font-weight:600;letter-spacing:.06em}
+.urgency-countdown{display:inline-flex;align-items:center;gap:6px;background:rgba(0,0,0,.18);border-radius:6px;padding:3px 10px}
+.countdown-unit{display:inline-flex;flex-direction:column;align-items:center;min-width:28px}
+.countdown-num{font-size:14px;font-weight:700;line-height:1;letter-spacing:.02em}
+.countdown-label{font-size:8px;letter-spacing:.08em;opacity:.7;text-transform:uppercase;margin-top:1px}
+.countdown-sep{font-size:14px;font-weight:700;opacity:.5;margin-bottom:4px}
+.urgency-bar.expired{background:var(--ink)}
+@media(max-width:480px){.urgency-countdown{display:none}}
 
 /* HERO */
 .hero{padding:90px 5% 80px;max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
@@ -266,8 +273,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 <!-- 1. URGENCY -->
-<div class="urgency-bar">
-  🔒 Precio de lanzamiento: <strong>$24.900 ARS</strong> — Sube a $34.900 el 30 de abril
+<div class="urgency-bar" id="urgencyBar">
+  <span>🔒 Precio de lanzamiento: <strong id="urgencyPrice">$24.900 ARS</strong></span>
+  <div class="urgency-countdown" id="urgencyCountdown">
+    <div class="countdown-unit"><span class="countdown-num" id="cdHours">---</span><span class="countdown-label">horas</span></div>
+    <span class="countdown-sep">:</span>
+    <div class="countdown-unit"><span class="countdown-num" id="cdMins">--</span><span class="countdown-label">min</span></div>
+    <span class="countdown-sep">:</span>
+    <div class="countdown-unit"><span class="countdown-num" id="cdSecs">--</span><span class="countdown-label">seg</span></div>
+  </div>
+  <span id="urgencyMsg">— después sube a $59.900</span>
 </div>
 
 <!-- 2. NAV -->
@@ -318,7 +333,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="score-lock">
         <div class="lock-text"><strong>Tu plan completo de acción</strong>Contenido listo para copiar hoy</div>
-        <div><div class="lock-price-old">$300.000 en agencia</div><div class="lock-price">$24.900</div></div>
+        <div><div class="lock-price-old" id="heroAgencyPrice">$300.000 en agencia</div><div class="lock-price" id="heroProPrice">$24.900</div></div>
       </div>
     </div>
     <div class="floating-badge">✓ Implementable en 1 hora</div>
@@ -490,10 +505,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button class="btn-pricing-outline" onclick="scrollToForm()">Analizar gratis →</button>
     </div>
     <div class="pricing-card featured reveal reveal-delay-1">
-      <div class="pricing-badge">Precio de lanzamiento 🇦🇷</div>
+      <div class="pricing-badge" id="pricingBadge">Precio de lanzamiento 🇦🇷</div>
       <div class="pricing-name">Signal Pro</div>
-      <div class="pricing-old">Valor en agencia: $300.000 ARS</div>
-      <div class="pricing-price"><span class="pricing-currency">$</span><span class="pricing-amount">24.900</span><span class="pricing-period">pago único · ARS</span></div>
+      <div class="pricing-old" id="pricingOld">Valor en agencia: $300.000 ARS</div>
+      <div class="pricing-price"><span class="pricing-currency" id="pricingCurrency">$</span><span class="pricing-amount" id="pricingAmount">24.900</span><span class="pricing-period" id="pricingPeriod">pago único · ARS</span></div>
       <div class="pricing-desc">Todo lo que necesitás para aparecer en Google, Maps y en la IA.</div>
       <ul class="pricing-features">
         <li>Todo lo del plan Free</li>
@@ -504,8 +519,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <li>Estrategia vs. competidores</li>
         <li>Plan de acción de 7 días</li>
       </ul>
-      <button class="btn-pricing-primary" onclick="scrollToForm()">Ver mi plan completo → $24.900</button>
-      <div class="guarantee-note">✓ Garantía de devolución 30 días · Sin preguntas · Pago con Mercado Pago</div>
+      <button class="btn-pricing-primary" id="pricingBtn" onclick="scrollToForm()">Ver mi plan completo → <span id="pricingBtnPrice">$24.900</span></button>
+      <div class="guarantee-note" id="guaranteeNote">✓ Garantía de devolución 30 días · Sin preguntas · Pago con Mercado Pago</div>
     </div>
   </div>
 </section>
@@ -516,12 +531,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="section-label">Preguntas frecuentes</div>
     <h2 class="section-title">Todo lo que necesitás saber</h2>
     <div class="faq-grid">
-      <div class="faq-item reveal"><div class="faq-q">¿Es realmente gratis para empezar?</div><div class="faq-a">Sí. Tu diagnóstico, score y el primer quick win son 100% gratuitos. Sin registro, sin tarjeta. Solo si querés el plan completo pagás $24.900 ARS pago único.</div></div>
+      <div class="faq-item reveal"><div class="faq-q">¿Es realmente gratis para empezar?</div><div class="faq-a">Sí. Tu diagnóstico, score y el primer quick win son 100% gratuitos. Sin registro, sin tarjeta. Solo si querés el plan completo pagás <span id="faqPrice">$24.900 ARS</span> pago único.</div></div>
       <div class="faq-item reveal reveal-delay-1"><div class="faq-q">¿Qué tan confiable es el análisis?</div><div class="faq-a">Signal analiza señales reales — tu presencia en Maps, cómo está estructurada tu web para SEO, y cómo te indexan las herramientas de IA. No son estimaciones genéricas.</div></div>
       <div class="faq-item reveal"><div class="faq-q">¿Necesito saber de SEO para implementar?</div><div class="faq-a">No. El plan viene en lenguaje simple, con pasos claros y contenido listo para copiar y pegar directamente.</div></div>
       <div class="faq-item reveal reveal-delay-1"><div class="faq-q">¿En cuánto tiempo veo resultados?</div><div class="faq-a">Las mejoras en Google Maps suelen verse en 2 a 4 semanas. El quick win del plan free es implementable hoy mismo.</div></div>
       <div class="faq-item reveal"><div class="faq-q">¿Funciona para cualquier negocio?</div><div class="faq-a">Sí. Restaurantes, psicólogos, abogados, contadores, inmobiliarias, clínicas y más — en Argentina, México, Colombia, Perú y Chile.</div></div>
-      <div class="faq-item reveal reveal-delay-1"><div class="faq-q">¿Qué pasa si no estoy satisfecho?</div><div class="faq-a">Garantía de devolución de 30 días sin preguntas. Si no encontrás al menos 3 mejoras accionables, te devolvemos los $24.900 completos.</div></div>
+      <div class="faq-item reveal reveal-delay-1"><div class="faq-q">¿Qué pasa si no estoy satisfecho?</div><div class="faq-a">Garantía de devolución de 30 días sin preguntas. Si no encontrás al menos 3 mejoras accionables, te devolvemos los <span id="faqGuaranteePrice">$24.900</span> completos.</div></div>
     </div>
   </div>
 </div>
@@ -531,13 +546,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div style="max-width:600px;margin:0 auto">
     <div class="section-label">Empezá ahora</div>
     <h2 class="section-title">Cada día sin aparecer en Google<br>es un cliente que va a <em>tu competencia.</em></h2>
-    <p class="section-sub">El diagnóstico es gratis. El plan vale $24.900 ARS. Los dos en 30 segundos.</p>
+    <p class="section-sub">El diagnóstico es gratis. El plan vale <span id="finalCtaPrice">$24.900 ARS</span>. Los dos en 30 segundos.</p>
     <div class="final-btn-group">
       <button class="btn-primary" style="font-size:16px;padding:15px 44px" onclick="scrollToForm()">
         Ver por qué no aparezco en Google — gratis <span class="btn-arrow">→</span>
       </button>
       <div class="final-guarantee">
-        <span>Sin registro</span><span>30 segundos</span><span>Garantía de devolución</span><span>$24.900 · Mercado Pago</span>
+        <span>Sin registro</span><span>30 segundos</span><span>Garantía de devolución</span><span id="finalGuaranteePrice">$24.900 · Mercado Pago</span>
       </div>
     </div>
   </div>
@@ -618,6 +633,208 @@ function submitLandingForm() {
     if (e.key === 'Enter') submitLandingForm();
   });
 });
+</script>
+
+<!-- ══ COUNTDOWN ══ -->
+<script>
+(function() {
+  // Fecha límite: 30 de abril 2026 a las 23:59:59 hora Argentina (UTC-3)
+  const DEADLINE      = new Date('2026-05-01T02:59:59Z');
+  const PRICE_LAUNCH  = '$24.900';
+  const PRICE_REGULAR = '$59.900';
+
+  function pad2(n) { return String(n).padStart(2, '0'); }
+
+  function tick() {
+    const diff = DEADLINE - new Date();
+    if (diff <= 0) { onExpired(); return; }
+
+    // Total de horas restantes (ej: 745), luego minutos y segundos del resto
+    const totalHours = Math.floor(diff / 3600000);
+    const mins       = Math.floor((diff % 3600000) / 60000);
+    const secs       = Math.floor((diff % 60000)   / 1000);
+
+    const el = id => document.getElementById(id);
+    if (el('cdHours')) el('cdHours').textContent = totalHours;   // sin pad — 745 se ve mejor sin ceros
+    if (el('cdMins'))  el('cdMins').textContent  = pad2(mins);
+    if (el('cdSecs'))  el('cdSecs').textContent  = pad2(secs);
+
+    // Últimas 72 hs → parpadeo suave para reforzar urgencia
+    if (diff < 259200000) {
+      const bar = document.getElementById('urgencyBar');
+      if (bar && !bar.dataset.pulsing) {
+        bar.dataset.pulsing = '1';
+        bar.style.animation = 'urgencyPulse 2s ease-in-out infinite';
+        if (!document.getElementById('urgencyPulseStyle')) {
+          const s = document.createElement('style');
+          s.id = 'urgencyPulseStyle';
+          s.textContent = '@keyframes urgencyPulse{0%,100%{opacity:1}50%{opacity:.8}}';
+          document.head.appendChild(s);
+        }
+      }
+    }
+  }
+
+  function onExpired() {
+    clearInterval(window._countdownInterval);
+
+    const el  = id => document.getElementById(id);
+    const set = (id, val) => { const e = el(id); if (e) e.textContent = val; };
+
+    const bar = el('urgencyBar');
+    if (bar) bar.classList.add('expired');
+
+    const cd = el('urgencyCountdown');
+    if (cd) cd.style.display = 'none';
+
+    set('urgencyPrice',    PRICE_REGULAR + ' ARS');
+    set('urgencyMsg',      '— precio regular');
+
+    // Pricing card
+    set('pricingAmount',   '59.900');
+    set('pricingBtnPrice', PRICE_REGULAR);
+    set('pricingOld',      'Precio de lanzamiento: $24.900 ARS');
+    set('pricingBadge',    'Precio regular 🇦🇷');
+
+    // Hero, final CTA, FAQ
+    set('heroProPrice',        PRICE_REGULAR);
+    set('finalCtaPrice',       PRICE_REGULAR + ' ARS');
+    set('finalGuaranteePrice', PRICE_REGULAR + ' · Mercado Pago');
+    set('faqPrice',            PRICE_REGULAR + ' ARS');
+    set('faqGuaranteePrice',   PRICE_REGULAR);
+
+    // GTM
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'countdown_expired', new_price: PRICE_REGULAR });
+  }
+
+  if (new Date() < DEADLINE) {
+    tick();
+    window._countdownInterval = setInterval(tick, 1000);
+  } else {
+    onExpired();
+  }
+})();
+</script>
+
+<!-- ══ GEO PRICING ══ -->
+<script>
+(function() {
+
+  // ── Tabla de precios por país ──
+  const PRICES = {
+    AR: {
+      display:      '$24.900',
+      period:       'pago único · ARS',
+      currency:     '$',
+      amount:       '24.900',
+      badge:        'Precio de lanzamiento 🇦🇷',
+      old:          'Valor en agencia: $300.000 ARS',
+      urgency:      '$24.900 ARS',
+      urgencyMsg:   '— después sube a $59.900',
+      faq:          '$24.900 ARS',
+      faqGuarantee: '$24.900',
+      finalCta:     '$24.900 ARS',
+      finalBtn:     '$24.900 · Mercado Pago',
+      heroLock:     '$24.900',
+      heroAgency:   '$300.000 en agencia',
+      guarantee:    '✓ Garantía de devolución 30 días · Sin preguntas · Pago con Mercado Pago',
+      isARS:        true,
+    },
+    // Todos los demás: USD 25
+    DEFAULT: {
+      display:      'USD 25',
+      period:       'one-time payment',
+      currency:     'USD ',
+      amount:       '25',
+      badge:        'Launch price 🌎',
+      old:          'Agency value: USD 300+',
+      urgency:      'USD 25',
+      urgencyMsg:   'Price goes up April 30',
+      faq:          'USD 25',
+      faqGuarantee: 'USD 25',
+      finalCta:     'USD 25',
+      finalBtn:     'USD 25 · Card / PayPal',
+      heroLock:     'USD 25',
+      heroAgency:   'USD 300+ in an agency',
+      guarantee:    '✓ 30-day money-back guarantee · No questions asked · Secure payment',
+      isARS:        false,
+    }
+  };
+
+  function applyPricing(p) {
+    const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+
+    // Urgency bar: solo actualizar precio, el countdown maneja el resto
+    // Para no-AR: ocultar countdown (no aplica), mostrar precio en USD
+    if (!p.isARS) {
+      set('urgencyPrice',        p.urgency);
+      set('urgencyMsg',          p.urgencyMsg);
+      // Ocultar countdown para usuarios no-AR (el countdown es ARS-específico)
+      const cd = document.getElementById('urgencyCountdown');
+      if (cd) cd.style.display = 'none';
+    }
+    // Para AR: el countdown ya maneja urgencyPrice y urgencyMsg — no tocar
+
+    set('heroProPrice',       p.heroLock);
+    set('heroAgencyPrice',    p.heroAgency);
+    set('pricingBadge',       p.badge);
+    set('pricingOld',         p.old);
+    set('pricingCurrency',    p.currency);
+    set('pricingAmount',      p.amount);
+    set('pricingPeriod',      p.period);
+    set('pricingBtnPrice',    p.display);
+    set('guaranteeNote',      p.guarantee);
+    set('faqPrice',           p.faq);
+    set('faqGuaranteePrice',  p.faqGuarantee);
+    set('finalCtaPrice',      p.finalCta);
+    set('finalGuaranteePrice',p.finalBtn);
+
+    // Testimonial Sandra L. menciona "$24.900" — update si no es AR
+    if (!p.isARS) {
+      document.querySelectorAll('.testi-text').forEach(el => {
+        el.innerHTML = el.innerHTML.replace(/\$24\.900/g, 'USD 25');
+      });
+    }
+
+    // GTM: informar país y precio detectado
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'geo_price_applied',
+      geo_country: p._country || 'DEFAULT',
+      geo_price_display: p.display,
+      geo_is_ars: p.isARS
+    });
+  }
+
+  // ── Detectar país por IP ──
+  fetch('https://ipapi.co/json/', { cache: 'force-cache' })
+    .then(r => r.json())
+    .then(data => {
+      const country = (data.country_code || '').toUpperCase();
+      const price   = PRICES[country] || PRICES.DEFAULT;
+      price._country = country;
+      applyPricing(price);
+
+      // Guardar en sessionStorage para que app.html lo lea
+      try {
+        sessionStorage.setItem('signal_geo', JSON.stringify({
+          country,
+          isARS: price.isARS,
+          display: price.display,
+          amount: price.amount,
+          currency: price.currency,
+          period: price.period,
+          guarantee: price.guarantee
+        }));
+      } catch(e) {}
+    })
+    .catch(() => {
+      // Sin geo: Argentina por defecto (mayoría del tráfico)
+      applyPricing(PRICES.AR);
+    });
+
+})();
 </script>
 
 <!-- ══ SIGNAL GTM TRACKING ══ -->
