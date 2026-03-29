@@ -29,16 +29,13 @@
 html{scroll-behavior:smooth}
 body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column}
 
-/* PROGRESS BAR */
 .progress-bar{position:fixed;top:0;left:0;height:2px;background:var(--accent);transition:width .45s ease;z-index:200;opacity:.7}
 
-/* NAV */
 nav{position:fixed;top:0;left:0;right:0;padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:62px;z-index:100;background:rgba(242,242,240,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border2)}
-.nav-logo{font-family:var(--mono);font-size:15px;letter-spacing:.06em;color:var(--ink);text-decoration:none;cursor:pointer}
+.nav-logo{font-family:var(--mono);font-size:15px;letter-spacing:.06em;color:var(--ink);text-decoration:none}
 .nav-logo .dot{color:var(--accent)}
 .nav-hint{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}
 
-/* SCREENS */
 .screen{display:none;min-height:calc(100vh - 63px);padding-top:62px;flex:1}
 .screen.active{display:flex;flex-direction:column}
 
@@ -51,8 +48,6 @@ nav{position:fixed;top:0;left:0;right:0;padding:0 5%;display:flex;align-items:ce
 .landing-title{font-family:var(--serif);font-size:clamp(36px,7vw,58px);font-weight:600;line-height:1.05;letter-spacing:-.03em;margin-bottom:18px;color:var(--ink)}
 .landing-title .accent-word{color:var(--accent);display:block}
 .landing-subtitle{font-size:16px;font-weight:300;color:var(--muted);line-height:1.65;max-width:380px;margin:0 auto 36px}
-
-/* CTA PAIR — mi negocio + competencia */
 .cta-pair{display:flex;flex-direction:column;align-items:center;gap:12px}
 .cta-btn{display:inline-flex;align-items:center;gap:9px;background:var(--accent);color:#fff;font-weight:500;font-size:15px;padding:13px 30px;border-radius:var(--radius);border:none;cursor:pointer;transition:background .18s,transform .18s;box-shadow:0 4px 16px rgba(107,79,168,.3)}
 .cta-btn:hover{background:var(--accent-hover);transform:translateY(-1px)}
@@ -66,23 +61,17 @@ nav{position:fixed;top:0;left:0;right:0;padding:0 5%;display:flex;align-items:ce
 .step-pill .num{font-size:10px;font-weight:500;color:var(--accent);background:var(--accent-dim);border:1px solid var(--accent-border);width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .step-arrow{color:var(--dim);font-size:14px}
 
-/* ── FORM — 2 PASOS ── */
+/* ── FORM ── */
 #form-screen{align-items:center;justify-content:center;padding:80px 24px}
 .form-container{max-width:520px;width:100%;animation:fadeUp .45s ease both}
 .back-btn{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;color:var(--dim);background:none;border:none;cursor:pointer;padding:0;margin-bottom:32px;letter-spacing:.06em;text-transform:uppercase;transition:color .2s}
 .back-btn:hover{color:var(--muted)}
-
-/* Step dots */
 .step-dots{display:flex;align-items:center;gap:6px;margin-bottom:28px}
 .step-dot{width:6px;height:6px;border-radius:50%;background:var(--border2);transition:background .3s}
 .step-dot.active{background:var(--accent);width:20px;border-radius:3px}
 .step-dot.done{background:var(--green)}
-
-/* Step panels */
 .form-step{display:none}
 .form-step.active{display:block}
-
-/* Step 1 — big search input */
 .step1-label{font-family:var(--serif);font-size:26px;font-weight:600;letter-spacing:-.02em;line-height:1.2;margin-bottom:8px;color:var(--ink)}
 .step1-hint{font-size:14px;color:var(--muted);margin-bottom:24px;font-weight:300}
 .big-input-wrap{position:relative;margin-bottom:12px}
@@ -92,8 +81,6 @@ nav{position:fixed;top:0;left:0;right:0;padding:0 5%;display:flex;align-items:ce
 .examples{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
 .example-pill{font-family:var(--mono);font-size:11px;color:var(--muted);background:var(--surface);border:1px solid var(--border2);padding:5px 12px;border-radius:100px;cursor:pointer;transition:border-color .18s,color .18s,background .18s}
 .example-pill:hover{border-color:var(--accent-border);color:var(--accent);background:var(--accent-dim)}
-
-/* Step 2 — detalles */
 .step2-label{font-family:var(--serif);font-size:22px;font-weight:600;letter-spacing:-.02em;line-height:1.2;margin-bottom:8px;color:var(--ink)}
 .step2-hint{font-size:14px;color:var(--muted);margin-bottom:24px;font-weight:300}
 .field{display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
@@ -102,14 +89,9 @@ nav{position:fixed;top:0;left:0;right:0;padding:0 5%;display:flex;align-items:ce
 .field input{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);padding:12px 15px;color:var(--ink);font-family:var(--sans);font-size:15px;font-weight:300;outline:none;transition:border-color .18s,box-shadow .18s;width:100%}
 .field input::placeholder{color:var(--dim)}
 .field input:focus{border-color:var(--accent-border);box-shadow:0 0 0 3px var(--accent-dim)}
-.field-error{border-color:rgba(163,45,45,.4)!important}
-
-/* Shared submit btn */
 .submit-btn{width:100%;background:var(--accent);color:#fff;font-weight:500;font-size:15px;padding:14px;border-radius:var(--radius);border:none;cursor:pointer;transition:background .18s,transform .18s;display:flex;align-items:center;justify-content:center;gap:9px;margin-top:8px;box-shadow:0 4px 16px rgba(107,79,168,.3)}
 .submit-btn:hover:not(:disabled){background:var(--accent-hover);transform:translateY(-1px)}
 .submit-btn:disabled{opacity:.4;cursor:not-allowed}
-
-/* Modo competencia badge */
 .competencia-badge{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--warning);background:var(--warning-soft);border:1px solid rgba(122,79,10,.2);padding:4px 12px;border-radius:100px;margin-bottom:20px}
 
 /* ── LOADING ── */
@@ -148,38 +130,26 @@ nav{position:fixed;top:0;left:0;right:0;padding:0 5%;display:flex;align-items:ce
 .diag-status-pill.bajo{color:var(--danger);border-color:rgba(163,45,45,.3);background:var(--danger-soft)}
 .diag-headline{font-family:var(--serif);font-size:18px;font-weight:600;letter-spacing:-.01em;line-height:1.35;color:var(--ink);margin-bottom:6px}
 .diag-insight{font-size:13px;color:var(--muted);line-height:1.5;font-weight:300}
-
-/* CLIENTES PERDIDOS WOW */
 .clientes-perdidos{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:rgba(163,45,45,.05);border:1px solid rgba(163,45,45,.15);border-radius:var(--radius);margin-top:16px}
 .cp-icon{font-size:20px;flex-shrink:0;margin-top:2px}
 .cp-text{font-size:13px;color:var(--ink);line-height:1.5;font-weight:300}
 .cp-text strong{color:var(--danger);font-weight:500;font-size:15px;display:block;margin-bottom:2px}
-
-/* SHARE ROW */
 .share-row{display:flex;align-items:center;gap:8px;margin-top:10px;flex-wrap:wrap}
 .share-label{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}
 .share-btn{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;color:var(--muted);background:var(--surface);border:1px solid var(--border2);padding:5px 12px;border-radius:100px;cursor:pointer;transition:border-color .18s,color .18s;text-decoration:none}
 .share-btn:hover{border-color:var(--accent-border);color:var(--accent)}
-
-/* IMPACT */
 .impact-indicators{display:flex;align-items:center;margin:16px 0;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--radius);overflow:hidden}
 .impact-item{flex:1;display:flex;flex-direction:column;gap:4px;padding:12px 14px}
 .impact-label{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
 .impact-value{font-size:13px;font-weight:500;color:var(--green);letter-spacing:-.01em}
 .impact-sep{width:1px;height:36px;background:var(--border2);flex-shrink:0}
-
-/* PREDICTION */
 .diag-prediction{display:flex;align-items:flex-start;gap:10px;padding:12px 16px;background:var(--surface2);border-radius:var(--radius);border:1px solid var(--border2);margin-top:12px}
 .diag-prediction-icon{width:28px;height:28px;border-radius:6px;background:var(--green-soft);border:1px solid rgba(26,122,74,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;margin-top:2px}
 .diag-prediction-text{font-size:13px;color:var(--ink);line-height:1.5;font-weight:300}
 .diag-prediction-text strong{color:var(--green);font-weight:500}
-
-/* SECTIONS */
 .section-header{display:flex;align-items:baseline;gap:10px;margin:24px 0 10px}
 .section-title-sm{font-size:13px;font-weight:500;letter-spacing:-.01em;color:var(--ink)}
 .section-count{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.05em}
-
-/* ACTIONS */
 .actions-stack{display:flex;flex-direction:column;gap:6px}
 .action-row{display:flex;align-items:flex-start;gap:14px;padding:14px 16px;background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);transition:border-color .18s,box-shadow .18s}
 .action-row:hover{border-color:var(--accent-border);box-shadow:var(--shadow)}
@@ -194,16 +164,12 @@ nav{position:fixed;top:0;left:0;right:0;padding:0 5%;display:flex;align-items:ce
 .tag-dif-facil{color:var(--info);border-color:rgba(26,74,122,.25);background:var(--info-soft)}
 .tag-dif-medio{color:var(--warning);border-color:rgba(122,79,10,.25);background:var(--warning-soft)}
 .tag-dif-dificil{color:var(--danger);border-color:rgba(163,45,45,.25);background:var(--danger-soft)}
-
-/* QUICK WIN */
 .quickwin-block{background:var(--surface);border:1px solid rgba(122,79,10,.2);border-radius:var(--radius);overflow:hidden;margin-top:6px}
 .quickwin-header{padding:12px 16px;border-bottom:1px solid var(--border2);display:flex;align-items:center;justify-content:space-between}
 .quickwin-label{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .quickwin-dot{width:5px;height:5px;border-radius:50%;background:var(--warning);flex-shrink:0}
 .quickwin-body{padding:14px 16px}
 .quickwin-text{font-size:14px;color:var(--ink);line-height:1.6;font-weight:300;padding:12px 14px;background:var(--warning-soft);border-radius:var(--radius);border-left:2px solid rgba(122,79,10,.3)}
-
-/* AGGRESSIVE */
 .aggressive-block{background:var(--surface);border:1px solid rgba(163,45,45,.15);border-radius:var(--radius);overflow:hidden;margin-top:6px}
 .aggressive-header{padding:12px 16px;border-bottom:1px solid var(--border2);display:flex;align-items:center;justify-content:space-between}
 .aggressive-label{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
@@ -213,13 +179,9 @@ nav{position:fixed;top:0;left:0;right:0;padding:0 5%;display:flex;align-items:ce
 .agg-row+.agg-row{border-top:1px solid var(--border2)}
 .agg-label-text{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);padding-top:2px}
 .agg-content{font-size:14px;line-height:1.55;color:var(--ink);font-weight:300}
-
-/* DIVIDER */
 .content-divider{display:flex;align-items:center;gap:12px;margin:28px 0 12px}
 .content-divider-line{flex:1;height:1px;background:var(--border2)}
 .content-divider-label{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);white-space:nowrap}
-
-/* RESULT CARDS */
 .result-cards{display:flex;flex-direction:column;gap:6px}
 .result-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);overflow:hidden;transition:border-color .18s,box-shadow .18s}
 .result-card:hover{border-color:var(--accent-border);box-shadow:var(--shadow)}
@@ -240,8 +202,6 @@ nav{position:fixed;top:0;left:0;right:0;padding:0 5%;display:flex;align-items:ce
 .keyword-tag:hover{border-color:var(--accent-border);color:var(--ink)}
 .section-sublabel{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-bottom:10px}
 .ai-description{font-size:14px;line-height:1.7;color:var(--muted);font-weight:300;padding:13px 15px;background:var(--surface2);border-radius:var(--radius);border-left:2px solid var(--accent-border)}
-
-/* PAYWALL */
 .paywall-gate{position:relative;margin-top:6px}
 .paywall-blur{filter:blur(4px);pointer-events:none;user-select:none;opacity:.5}
 .locked-section{position:relative}
@@ -259,8 +219,6 @@ nav{position:fixed;top:0;left:0;right:0;padding:0 5%;display:flex;align-items:ce
 .paywall-btn:hover{background:var(--accent-hover);transform:translateY(-1px)}
 .paywall-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
 .paywall-microcopy{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.04em;margin-top:10px}
-
-/* BOTTOM ACTIONS */
 .results-actions{display:flex;gap:10px;margin-top:28px;flex-wrap:wrap}
 .action-btn{display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:var(--radius);font-size:13px;font-weight:500;cursor:pointer;transition:all .18s;border:1px solid var(--border2);background:var(--surface);color:var(--muted);flex:1;min-width:140px;justify-content:center}
 .action-btn:hover{color:var(--ink);border-color:var(--border);transform:translateY(-1px)}
@@ -306,7 +264,6 @@ nav{position:fixed;top:0;left:0;right:0;padding:0 5%;display:flex;align-items:ce
       Clientes que te buscan<br><span class="accent-word">no te encuentran.</span>
     </h1>
     <p class="landing-subtitle">Descubrí por qué tu negocio es invisible en Google y en IA — y qué hacer para cambiarlo hoy.</p>
-
     <div class="cta-pair">
       <button class="cta-btn" onclick="startForm(false)">
         Ver mi diagnóstico gratis
@@ -316,7 +273,6 @@ nav{position:fixed;top:0;left:0;right:0;padding:0 5%;display:flex;align-items:ce
         🕵️ Analizar a mi competencia →
       </button>
     </div>
-
     <p class="landing-note">Sin registro · Gratis · Resultado en 30 segundos</p>
     <div class="how-it-works">
       <div class="step-pill"><span class="num">1</span>Describí el negocio</div>
@@ -332,19 +288,13 @@ nav{position:fixed;top:0;left:0;right:0;padding:0 5%;display:flex;align-items:ce
 <div class="screen" id="form-screen">
   <div class="form-container">
     <button class="back-btn" onclick="goTo('landing',0)">← Volver</button>
-
-    <!-- Badge modo competencia -->
     <div class="competencia-badge" id="competenciaBadge" style="display:none">
       🕵️ Modo competencia — analizando a otro negocio
     </div>
-
-    <!-- Step dots -->
     <div class="step-dots">
       <div class="step-dot active" id="dot1"></div>
       <div class="step-dot" id="dot2"></div>
     </div>
-
-    <!-- PASO 1: búsqueda -->
     <div class="form-step active" id="formStep1">
       <h2 class="step1-label" id="step1Title">¿Qué búsqueda querés ganar?</h2>
       <p class="step1-hint" id="step1Hint">Escribí como lo haría tu cliente en Google.</p>
@@ -363,8 +313,6 @@ nav{position:fixed;top:0;left:0;right:0;padding:0 5%;display:flex;align-items:ce
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
     </div>
-
-    <!-- PASO 2: detalles -->
     <div class="form-step" id="formStep2">
       <h2 class="step2-label" id="step2Title">Un poco más sobre el negocio</h2>
       <p class="step2-hint">Opcional — pero hace el análisis mucho más preciso.</p>
@@ -402,7 +350,6 @@ nav{position:fixed;top:0;left:0;right:0;padding:0 5%;display:flex;align-items:ce
 <!-- ══ RESULTS ══ -->
 <div class="screen" id="results-screen">
   <div class="results-container">
-
     <div class="diag-block">
       <div class="diag-top">
         <div class="diag-score-wrap">
@@ -417,8 +364,6 @@ nav{position:fixed;top:0;left:0;right:0;padding:0 5%;display:flex;align-items:ce
           <div class="diag-insight" id="diagInsight"></div>
         </div>
       </div>
-
-      <!-- MOMENTO WOW -->
       <div class="clientes-perdidos" id="clientesPerdidosBlock" style="display:none">
         <span class="cp-icon">📉</span>
         <div class="cp-text">
@@ -426,8 +371,6 @@ nav{position:fixed;top:0;left:0;right:0;padding:0 5%;display:flex;align-items:ce
           <span>clientes que buscan exactamente esto van a la competencia cada mes.</span>
         </div>
       </div>
-
-      <!-- SHARE ROW -->
       <div class="share-row" id="shareRow" style="display:none">
         <span class="share-label">Compartir</span>
         <a class="share-btn" id="shareWa" href="#" target="_blank">
@@ -443,24 +386,13 @@ nav{position:fixed;top:0;left:0;right:0;padding:0 5%;display:flex;align-items:ce
           Copiar link
         </button>
       </div>
-
       <div class="impact-indicators">
-        <div class="impact-item">
-          <span class="impact-label">Potencial de mejora</span>
-          <span class="impact-value" id="impactPotential">—</span>
-        </div>
+        <div class="impact-item"><span class="impact-label">Potencial de mejora</span><span class="impact-value" id="impactPotential">—</span></div>
         <div class="impact-sep"></div>
-        <div class="impact-item">
-          <span class="impact-label">Tiempo estimado</span>
-          <span class="impact-value" id="impactTime">—</span>
-        </div>
+        <div class="impact-item"><span class="impact-label">Tiempo estimado</span><span class="impact-value" id="impactTime">—</span></div>
         <div class="impact-sep"></div>
-        <div class="impact-item">
-          <span class="impact-label">Acciones clave</span>
-          <span class="impact-value" id="impactActions">—</span>
-        </div>
+        <div class="impact-item"><span class="impact-label">Acciones clave</span><span class="impact-value" id="impactActions">—</span></div>
       </div>
-
       <div class="diag-prediction">
         <div class="diag-prediction-icon">↑</div>
         <div class="diag-prediction-text" id="diagPredictionText">Calculando predicción...</div>
@@ -566,7 +498,7 @@ nav{position:fixed;top:0;left:0;right:0;padding:0 5%;display:flex;align-items:ce
     </div>
 
     <div class="results-actions">
-      <button class="action-btn" onclick="goTo('form-screen',33);resetForm()">
+      <button class="action-btn" onclick="goTo('landing',0);resetForm()">
         <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M7 4l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         Analizar otro negocio
       </button>
@@ -575,14 +507,12 @@ nav{position:fixed;top:0;left:0;right:0;padding:0 5%;display:flex;align-items:ce
         Copiar reporte completo
       </button>
     </div>
-
   </div>
 </div>
 
-<!-- FOOTER GLOBAL -->
 <footer class="kairo-footer">
   <div class="eco-mark">
-    <a href="https://getsignalatam.lat/" class="eco-item eco-active">SIGNAL<span class="eco-dot-signal">.</span></a>
+    <a href="/" class="eco-item eco-active">SIGNAL<span class="eco-dot-signal">.</span></a>
     <a href="https://getpulseapp.lat/" target="_blank" rel="noopener" class="eco-item">PULSE<span class="eco-dot-pulse">.</span></a>
     <a href="https://getcreceapp.com/" target="_blank" rel="noopener" class="eco-item">CRECE<span class="eco-dot-crece">.</span></a>
     <span class="eco-item eco-inactive">WATCH<span class="eco-dot-watch">.</span></span>
@@ -611,7 +541,52 @@ function goTo(id, progress) {
   if (id === 'form-screen') resetLoadingSteps();
 }
 
-// ── START FORM (normal o competencia) ──
+// ── PREFILL DESDE LANDING ──
+// Si el usuario vino desde index.html con datos pre-cargados, arrancamos directo
+function checkPrefill() {
+  const raw = sessionStorage.getItem('signal_prefill');
+  if (!raw) return false;
+
+  try {
+    const { search, name, website } = JSON.parse(raw);
+    sessionStorage.removeItem('signal_prefill'); // consumir una sola vez
+
+    if (!search) return false;
+
+    // Pre-cargar los campos del form (por si el usuario quiere volver)
+    document.getElementById('bizSearch').value = search;
+    document.getElementById('bizName').value = name || '';
+    document.getElementById('bizWebsite').value = website || '';
+    searchQuery = search;
+    modoCompetencia = false;
+
+    // Arrancar análisis directamente sin pasar por el form
+    document.getElementById('loadingText').textContent = 'Analizando tu visibilidad...';
+    goTo('loading-screen', 66);
+
+    Promise.all([
+      callAPI(search, name || '', website || '', false).catch(err => { console.error(err); return null; }),
+      runLoadingSequence()
+    ]).then(([result]) => {
+      if (!result) {
+        showError('No pudimos generar el reporte. Revisá tu conexión e intentá de nuevo.');
+        goTo('form-screen', 33);
+        showStep(1);
+        return;
+      }
+      resultData = result;
+      render(result, isPro, search, false);
+      goTo('results-screen', 100);
+    });
+
+    return true;
+  } catch (e) {
+    sessionStorage.removeItem('signal_prefill');
+    return false;
+  }
+}
+
+// ── START FORM ──
 function startForm(competencia) {
   modoCompetencia = competencia;
   const badge = document.getElementById('competenciaBadge');
@@ -821,7 +796,6 @@ function render(d, pro, searchQuery, esCompetencia) {
   document.getElementById('diagHeadline').textContent = headline;
   document.getElementById('diagInsight').textContent = d.insight || '';
 
-  // MOMENTO WOW
   const perdMin = d.clientesPerdidosMin;
   const perdMax = d.clientesPerdidosMax;
   if (perdMin && perdMax) {
@@ -829,7 +803,6 @@ function render(d, pro, searchQuery, esCompetencia) {
     document.getElementById('clientesPerdidosBlock').style.display = 'flex';
   }
 
-  // Share row
   const shareText = esCompetencia
     ? `Analicé la visibilidad de "${searchQuery}" en Google, Maps y ChatGPT. Score: ${score}/100. Gratis con Signal:`
     : `Analicé mi visibilidad en Google y IA. Mi score es ${score}/100 — sabé el tuyo gratis:`;
@@ -902,23 +875,6 @@ function applyAccess(pro) {
   document.querySelectorAll('.paywall-blur').forEach(el => el.classList.remove('paywall-blur'));
   document.querySelectorAll('.lock-overlay').forEach(el => el.remove());
   document.getElementById('paywallInline')?.remove();
-  ['aggTitle','aggMeta'].forEach(id => {
-    const row = document.getElementById(id)?.closest('.agg-row');
-    if (row && !row.querySelector('.copy-btn')) row.insertAdjacentHTML('beforeend', mkCopyBtn(id));
-  });
-  [['seoTitle'],['metaDesc'],['webPara'],['aiDesc']].forEach(([id]) => {
-    const header = document.getElementById(id)?.closest('.result-card')?.querySelector('.card-header');
-    if (header && !header.querySelector('.copy-btn')) header.insertAdjacentHTML('beforeend', mkCopyBtn(id));
-  });
-  const kwHeader = document.getElementById('keywordsList')?.closest('.result-card')?.querySelector('.card-header');
-  if (kwHeader && !kwHeader.querySelector('.copy-btn'))
-    kwHeader.insertAdjacentHTML('beforeend',
-      `<button class="copy-btn" onclick="copyKeywords(this)"><svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>Copiar todas</button>`
-    );
-}
-
-function mkCopyBtn(id) {
-  return `<button class="copy-btn" onclick="copyText(this,'${id}')"><svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>Copiar</button>`;
 }
 
 // ── UPGRADE ──
@@ -964,11 +920,9 @@ function checkPaymentReturn() {
       : 'El pago no se completó. Tu reporte sigue disponible — intentá de nuevo.');
   }
 }
-checkPaymentReturn();
 
-// ── COPY & SHARE ──
+// ── COPY ──
 const CHECK_ICON = `<svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-
 function flash(btn, orig) {
   btn.classList.add('copied');
   btn.innerHTML = `${CHECK_ICON} Copiado`;
@@ -1016,6 +970,14 @@ function showError(msg) {
   t.textContent = msg;
   document.body.appendChild(t);
   setTimeout(() => t.remove(), 5000);
+}
+
+// ── INIT ──
+// Orden de prioridad: pago → prefill de landing → landing normal
+checkPaymentReturn();
+if (!checkPrefill()) {
+  // Si no hay prefill ni retorno de pago, mostrar landing normalmente
+  // (la pantalla ya arranca en #landing por defecto)
 }
 </script>
 </body>
