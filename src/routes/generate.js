@@ -1,41 +1,43 @@
-const ANTHROPIC_API = 'https://api.anthropic.com/v1/messages';
+import { validateGenerateInput } from '../middleware/security.js'; // ← AGREGAR
+import Router from 'express';
 
-export async function generate(req, res) {
-  // ── Validate ──
-  const { model, max_tokens, system, messages } = req.body;
+const router = Router();
 
-  if (!messages || !Array.isArray(messages) || messages.length === 0) {
-    return res.status(400).json({ error: 'messages is required' });
-  }
+// Agregar validateGenerateInput como segundo argumento — antes de tu handler
+router.post('/generate', validateGenerateInput, async (req, res) => {
+  // req.body ya viene limpio y validado desde el middleware
+  const { name, what, location, website } = req.body;
 
-  if (!process.env.ANTHROPIC_API_KEY) {
-    console.error('Missing ANTHROPIC_API_KEY');
-    return res.status(500).json({ error: 'Server configuration error' });
-  }
+  // ... tu código actual sin cambios
+});
 
-  // ── Proxy to Anthropic ──
-  try {
-    const upstream = await fetch(ANTHROPIC_API, {
-      method: 'POST',
-      headers: {
-        'Content-Type':    'application/json',
-        'x-api-key':       process.env.ANTHROPIC_API_KEY,
-        'anthropic-version': '2023-06-01',
-      },
-      body: JSON.stringify({ model, max_tokens, system, messages }),
-    });
+export default router;
+```
 
-    const data = await upstream.json();
+---
 
-    if (!upstream.ok) {
-      console.error('Anthropic error:', data);
-      return res.status(upstream.status).json({ error: data?.error?.message || 'Upstream error' });
-    }
+### Railway Variables — Lo hacés desde el dashboard, no en código
+```
+railway.app → tu proyecto → Variables → Raw Editor → pegar esto:
+```
+```
+ANTHROPIC_API_KEY=sk-ant-TU_KEY_REAL
+MP_ACCESS_TOKEN=APP_USR-TU_TOKEN_REAL
+NODE_ENV=production
+PORT=3000
+```
 
-    return res.json(data);
+Verificá que **ninguna de estas keys aparezca en ningún archivo del repo**. Buscá en GitHub con `Ctrl+F` en cada archivo de `src/routes/`.
 
-  } catch (err) {
-    console.error('Generate error:', err);
-    return res.status(500).json({ error: 'Internal server error' });
-  }
-}
+---
+
+### Checklist — en orden, antes de hacer push
+```
+□ 1. Crear src/middleware/security.js con el código de arriba
+□ 2. Agregar trust proxy + securityHeaders + rateLimit en server.js
+□ 3. Agregar validateGenerateInput en la route de /generate
+□ 4. Verificar que ANTHROPIC_API_KEY y MP_ACCESS_TOKEN NO están en el código
+□ 5. Agregar esas keys en Railway Variables dashboard
+□ 6. Push a main → Railway redeploya automático
+□ 7. Probar que /api/generate responde normal
+□ 8. Probar que al llamarlo 9 veces seguidas devuelve 429
