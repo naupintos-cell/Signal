@@ -3,6 +3,7 @@ import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import { generate } from './routes/generate.js';
 import { checkout } from './routes/checkout.js';
+import { subscribe } from './routes/subscribe.js';
 import { securityHeaders, rateLimit, validateGenerateInput } from './middleware/security.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -22,6 +23,7 @@ app.use('/api/', rateLimit({ windowMs: 60_000, max: 8 }));
 // Rutas API
 app.post('/api/generate', validateGenerateInput, generate);
 app.post('/api/checkout', checkout);
+app.post('/api/subscribe', subscribe);
 
 // Archivos estáticos
 app.use(express.static(join(__dirname, '../public')));
