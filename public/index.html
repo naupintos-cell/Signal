@@ -180,8 +180,9 @@ nav{position:sticky;top:0;z-index:100;background:rgba(242,242,240,.96);backdrop-
 
 /* PRICING */
 .pricing-section{padding:88px 5%;max-width:1120px;margin:0 auto}
-.pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;max-width:700px}
-@media(max-width:768px){.pricing-grid{grid-template-columns:1fr}}
+.pricing-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:48px;max-width:1060px}
+@media(max-width:900px){.pricing-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.pricing-grid{grid-template-columns:1fr}}
 .pricing-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:28px 24px;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s}
 .pricing-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
 .pricing-card.featured{border:2px solid var(--accent);position:relative;padding-top:42px;box-shadow:0 0 0 2px var(--accent),var(--shadow-lg)}
@@ -274,17 +275,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- 1. URGENCY -->
 <div class="urgency-bar" id="urgencyBar">
-  <span>🔒 Precio de lanzamiento: <strong id="urgencyPrice">$24.900 ARS</strong></span>
-  <div class="urgency-countdown" id="urgencyCountdown">
-    <div class="countdown-unit"><span class="countdown-num" id="cdDays">--</span><span class="countdown-label">días</span></div>
-    <span class="countdown-sep">:</span>
-    <div class="countdown-unit"><span class="countdown-num" id="cdHours">--</span><span class="countdown-label">hs</span></div>
-    <span class="countdown-sep">:</span>
-    <div class="countdown-unit"><span class="countdown-num" id="cdMins">--</span><span class="countdown-label">min</span></div>
-    <span class="countdown-sep">:</span>
-    <div class="countdown-unit"><span class="countdown-num" id="cdSecs">--</span><span class="countdown-label">seg</span></div>
-  </div>
-  <span id="urgencyMsg">— después sube a $59.900</span>
+  <span>🔒 Precio de lanzamiento: <strong id="urgencyPrice">desde $41.200 ARS</strong></span>
+  <span id="urgencyMsg">— precios al tipo de cambio del día</span>
 </div>
 
 <!-- 2. NAV -->
@@ -335,7 +327,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="score-lock">
         <div class="lock-text"><strong>Tu plan completo de acción</strong>Contenido listo para copiar hoy</div>
-        <div><div class="lock-price-old" id="heroAgencyPrice">$300.000 en agencia</div><div class="lock-price" id="heroProPrice">$24.900</div></div>
+        <div><div class="lock-price-old" id="heroAgencyPrice">$300.000+ en agencia</div><div class="lock-price" id="heroProPrice">desde $41.200</div></div>
       </div>
     </div>
     <div class="floating-badge">✓ Implementable en 1 hora</div>
@@ -390,7 +382,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="origin-stat-num">$300k</div>
         <div class="origin-stat-body">
           <div class="origin-stat-title">cobra una agencia por lo mismo</div>
-          <div class="origin-stat-desc">Signal lo hace en 30 segundos, por $24.900 ARS, con el contenido listo para copiar.</div>
+          <div class="origin-stat-desc">Signal lo hace en 30 segundos, desde $41.200 ARS, con el contenido listo para copiar.</div>
         </div>
       </div>
       <div class="origin-stat reveal reveal-delay-2">
@@ -463,7 +455,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="promise-item reveal"><div class="promise-icon">🗺️</div><div><div class="promise-title">Google Maps: el canal más perdido</div><div class="promise-body">El 67% de los negocios tienen su ficha incompleta. Signal te dice qué falta y cómo completarlo en minutos.</div></div></div>
         <div class="promise-item reveal reveal-delay-1"><div class="promise-icon">🤖</div><div><div class="promise-title">ChatGPT y Perplexity: el nuevo Google</div><div class="promise-body">Si no tenés el contenido correcto, la IA no sabe que existís. Signal te da el texto exacto para que te recomienden.</div></div></div>
         <div class="promise-item reveal reveal-delay-2"><div class="promise-icon">⚡</div><div><div class="promise-title">Contenido listo para pegar</div><div class="promise-body">Tu título SEO, meta descripción y párrafo para IA — con tu nombre, tu rubro y tu ciudad. Copiás y pegás.</div></div></div>
-        <div class="promise-item reveal reveal-delay-3"><div class="promise-icon">💰</div><div><div class="promise-title">Garantía de devolución de 30 días</div><div class="promise-body">Si no encontrás al menos 3 mejoras accionables, te devolvemos los $24.900. Sin preguntas.</div></div></div>
+        <div class="promise-item reveal reveal-delay-3"><div class="promise-icon">💰</div><div><div class="promise-title">Garantía de devolución de 30 días</div><div class="promise-body">Si no encontrás al menos 3 mejoras accionables, te devolvemos el pago. Sin preguntas.</div></div></div>
       </div>
     </div>
   </div>
@@ -478,7 +470,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="testi-card reveal"><div class="testi-stars">★★★★★</div><div class="testi-text">"Puse el nombre de mi clínica y en 30 segundos supe que no tenía categoría secundaria en Maps. Lo cambié esa tarde. En dos semanas subí del puesto 12 al 4."</div><div class="testi-author"><div class="testi-avatar av-1">VR</div><div><div class="testi-name">Valentina R.</div><div class="testi-role">Psicóloga · Palermo, Buenos Aires</div></div></div><span class="testi-result">↑ Del puesto 12 al 4 en Maps</span></div>
       <div class="testi-card reveal reveal-delay-1"><div class="testi-stars">★★★★★</div><div class="testi-text">"Pagué agencias durante 8 meses sin resultados. Con Signal en 30 segundos supe exactamente qué faltaba. En 3 semanas ya veía diferencia en las llamadas."</div><div class="testi-author"><div class="testi-avatar av-2">MO</div><div><div class="testi-name">Martín O.</div><div class="testi-role">Ferretería · Mendoza</div></div></div><span class="testi-result">+60% llamadas desde Google</span></div>
       <div class="testi-card reveal reveal-delay-2"><div class="testi-stars">★★★★★</div><div class="testi-text">"Me dieron el texto para ChatGPT listo para pegar. A la semana busqué abogados de familia en mi ciudad y aparecí por primera vez."</div><div class="testi-author"><div class="testi-avatar av-3">CF</div><div><div class="testi-name">Carlos F.</div><div class="testi-role">Abogado · Rosario</div></div></div><span class="testi-result">Aparece en ChatGPT primera vez</span></div>
-      <div class="testi-card reveal"><div class="testi-stars">★★★★★</div><div class="testi-text">"Por $24.900 tuve un informe más claro y accionable que lo que me entregó la agencia en 3 meses."</div><div class="testi-author"><div class="testi-avatar av-4">SL</div><div><div class="testi-name">Sandra L.</div><div class="testi-role">Nutricionista · Bogotá</div></div></div><span class="testi-result">Ahorró $1.200 en agencia</span></div>
+      <div class="testi-card reveal"><div class="testi-stars">★★★★★</div><div class="testi-text">"Tuve un informe más claro y accionable que lo que me entregó la agencia en 3 meses. Y sin pagar lo que cobra una agencia."</div><div class="testi-author"><div class="testi-avatar av-4">SL</div><div><div class="testi-name">Sandra L.</div><div class="testi-role">Nutricionista · Bogotá</div></div></div><span class="testi-result">Ahorró $1.200 en agencia</span></div>
       <div class="testi-card reveal reveal-delay-1"><div class="testi-stars">★★★★★</div><div class="testi-text">"Mi restaurante estaba invisible en Maps a pesar de 6 años. Signal me mostró que no tenía horarios actualizados ni fotos recientes."</div><div class="testi-author"><div class="testi-avatar av-5">RV</div><div><div class="testi-name">Roberto V.</div><div class="testi-role">Restaurante · Miraflores, Lima</div></div></div><span class="testi-result">+40% visitas desde Maps</span></div>
       <div class="testi-card reveal reveal-delay-2"><div class="testi-stars">★★★★★</div><div class="testi-text">"Soy consultora de marketing y uso Signal como primer paso con cualquier PyME. Es el diagnóstico más claro del mercado."</div><div class="testi-author"><div class="testi-avatar av-6">AP</div><div><div class="testi-name">Andrea P.</div><div class="testi-role">Consultora Marketing · CDMX</div></div></div><span class="testi-result">Lo usa con 20+ clientes</span></div>
     </div>
@@ -507,10 +499,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button class="btn-pricing-outline" onclick="scrollToForm()">Analizar gratis →</button>
     </div>
     <div class="pricing-card featured reveal reveal-delay-1">
-      <div class="pricing-badge" id="pricingBadge">Precio de lanzamiento 🇦🇷</div>
+      <div class="pricing-badge" id="pricingBadge">Más elegido 🇦🇷</div>
       <div class="pricing-name">Signal Pro</div>
-      <div class="pricing-old" id="pricingOld">Valor en agencia: $300.000 ARS</div>
-      <div class="pricing-price"><span class="pricing-currency" id="pricingCurrency">$</span><span class="pricing-amount" id="pricingAmount">24.900</span><span class="pricing-period" id="pricingPeriod">pago único · ARS</span></div>
+      <div class="pricing-old" id="pricingOld">Valor en agencia: $300.000+ ARS</div>
+      <div class="pricing-price"><span class="pricing-currency" id="pricingCurrency">$</span><span class="pricing-amount" id="pricingAmount">112.200</span><span class="pricing-period" id="pricingPeriod">pago único · ARS</span></div>
+      <div class="pricing-usd" id="pricingUSD" style="font-family:var(--mono);font-size:11px;color:var(--dim);margin-bottom:6px;">≈ USD 79 · al cambio oficial</div>
       <div class="pricing-desc">Todo lo que necesitás para aparecer en Google, Maps y en la IA.</div>
       <ul class="pricing-features">
         <li>Todo lo del plan Free</li>
@@ -518,11 +511,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <li>Título y meta descripción listos</li>
         <li>Párrafo optimizado para ChatGPT</li>
         <li>Checklist de Google Maps</li>
-        <li>Estrategia vs. competidores</li>
+        <li>Análisis vs. 3 competidores locales</li>
         <li>Plan de acción de 7 días</li>
+        <li>Re-diagnóstico a los 30 días</li>
+        <li>Soporte por email 30 días</li>
       </ul>
-      <button class="btn-pricing-primary" id="pricingBtn" onclick="scrollToForm()">Ver mi plan completo → <span id="pricingBtnPrice">$24.900</span></button>
+      <button class="btn-pricing-primary" id="pricingBtn" onclick="scrollToForm()">Ver mi plan completo → <span id="pricingBtnPrice">$112.200</span></button>
       <div class="guarantee-note" id="guaranteeNote">✓ Garantía de devolución 30 días · Sin preguntas · Pago con Mercado Pago</div>
+    </div>
+    <div class="pricing-card reveal reveal-delay-2">
+      <div class="pricing-name">Signal Agency</div>
+      <div class="pricing-price"><span class="pricing-currency" id="agencyCurrency">$</span><span class="pricing-amount" id="agencyAmount">69.600</span><span class="pricing-period" id="agencyPeriod">/ mes · ARS</span></div>
+      <div class="pricing-usd" id="agencyUSD" style="font-family:var(--mono);font-size:11px;color:var(--dim);margin-bottom:6px;">≈ USD 49/mes · hasta 10 negocios</div>
+      <div class="pricing-desc">Para consultores y agencias que usan Signal con sus clientes.</div>
+      <ul class="pricing-features">
+        <li>Todo lo de Pro por negocio</li>
+        <li>Hasta 10 negocios por mes</li>
+        <li>Panel multi-cliente</li>
+        <li>Reportes en PDF con tu marca</li>
+        <li>Actualizaciones mensuales</li>
+      </ul>
+      <button class="btn-pricing-outline" id="agencyBtn" onclick="handleAgencyContact()">Contactar para Agency →</button>
+      <div class="guarantee-note">Factura disponible · Pago mensual</div>
     </div>
   </div>
 </section>
@@ -533,12 +543,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="section-label">Preguntas frecuentes</div>
     <h2 class="section-title">Todo lo que necesitás saber</h2>
     <div class="faq-grid">
-      <div class="faq-item reveal"><div class="faq-q">¿Es realmente gratis para empezar?</div><div class="faq-a">Sí. Tu diagnóstico, score y el primer quick win son 100% gratuitos. Sin registro, sin tarjeta. Solo si querés el plan completo pagás <span id="faqPrice">$24.900 ARS</span> pago único.</div></div>
+      <div class="faq-item reveal"><div class="faq-q">¿Es realmente gratis para empezar?</div><div class="faq-a">Sí. Tu diagnóstico, score y el primer quick win son 100% gratuitos. Sin registro, sin tarjeta. Solo si querés el plan completo pagás <span id="faqPrice">$112.200 ARS</span> pago único (Signal Pro). El precio es en ARS al tipo de cambio oficial del día.</div></div>
       <div class="faq-item reveal reveal-delay-1"><div class="faq-q">¿Qué tan confiable es el análisis?</div><div class="faq-a">Signal analiza señales reales — tu presencia en Maps, cómo está estructurada tu web para SEO, y cómo te indexan las herramientas de IA. No son estimaciones genéricas.</div></div>
       <div class="faq-item reveal"><div class="faq-q">¿Necesito saber de SEO para implementar?</div><div class="faq-a">No. El plan viene en lenguaje simple, con pasos claros y contenido listo para copiar y pegar directamente.</div></div>
       <div class="faq-item reveal reveal-delay-1"><div class="faq-q">¿En cuánto tiempo veo resultados?</div><div class="faq-a">Las mejoras en Google Maps suelen verse en 2 a 4 semanas. El quick win del plan free es implementable hoy mismo.</div></div>
       <div class="faq-item reveal"><div class="faq-q">¿Funciona para cualquier negocio?</div><div class="faq-a">Sí. Restaurantes, psicólogos, abogados, contadores, inmobiliarias, clínicas y más — en Argentina, México, Colombia, Perú y Chile.</div></div>
-      <div class="faq-item reveal reveal-delay-1"><div class="faq-q">¿Qué pasa si no estoy satisfecho?</div><div class="faq-a">Garantía de devolución de 30 días sin preguntas. Si no encontrás al menos 3 mejoras accionables, te devolvemos los <span id="faqGuaranteePrice">$24.900</span> completos.</div></div>
+      <div class="faq-item reveal reveal-delay-1"><div class="faq-q">¿Qué pasa si no estoy satisfecho?</div><div class="faq-a">Garantía de devolución de 30 días sin preguntas. Si no encontrás al menos 3 mejoras accionables, te devolvemos los <span id="faqGuaranteePrice">$112.200</span> completos.</div></div>
     </div>
   </div>
 </div>
@@ -548,13 +558,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div style="max-width:600px;margin:0 auto">
     <div class="section-label">Empezá ahora</div>
     <h2 class="section-title">Cada día sin aparecer en Google<br>es un cliente que va a <em>tu competencia.</em></h2>
-    <p class="section-sub">El diagnóstico es gratis. El plan vale <span id="finalCtaPrice">$24.900 ARS</span>. Los dos en 30 segundos.</p>
+    <p class="section-sub">El diagnóstico es gratis. El plan vale <span id="finalCtaPrice">desde $41.200 ARS</span>. Los dos en 30 segundos.</p>
     <div class="final-btn-group">
       <button class="btn-primary" style="font-size:16px;padding:15px 44px" onclick="scrollToForm()">
         Ver por qué no aparezco en Google — gratis <span class="btn-arrow">→</span>
       </button>
       <div class="final-guarantee">
-        <span>Sin registro</span><span>30 segundos</span><span>Garantía de devolución</span><span id="finalGuaranteePrice">$24.900 · Mercado Pago</span>
+        <span>Sin registro</span><span>30 segundos</span><span>Garantía de devolución</span><span id="finalGuaranteePrice">Signal Pro · Mercado Pago</span>
       </div>
     </div>
   </div>
@@ -637,206 +647,86 @@ function submitLandingForm() {
 });
 </script>
 
-<!-- ══ COUNTDOWN ══ -->
+<!-- ══ AGENCY CONTACT ══ -->
 <script>
-(function() {
-  // Fecha límite: 30 de abril 2026 a las 23:59:59 hora Argentina (UTC-3)
-  const DEADLINE      = new Date('2026-05-01T02:59:59Z');
-  const PRICE_LAUNCH  = '$24.900';
-  const PRICE_REGULAR = '$59.900';
-
-  function pad2(n) { return String(n).padStart(2, '0'); }
-
-  function tick() {
-    const diff = DEADLINE - new Date();
-    if (diff <= 0) { onExpired(); return; }
-
-    const days  = Math.floor(diff / 86400000);
-    const hours = Math.floor((diff % 86400000) / 3600000);
-    const mins  = Math.floor((diff % 3600000)  / 60000);
-    const secs  = Math.floor((diff % 60000)    / 1000);
-
-    const el = id => document.getElementById(id);
-    if (el('cdDays'))  el('cdDays').textContent  = pad2(days);
-    if (el('cdHours')) el('cdHours').textContent = pad2(hours);
-    if (el('cdMins'))  el('cdMins').textContent  = pad2(mins);
-    if (el('cdSecs'))  el('cdSecs').textContent  = pad2(secs);
-
-    // Últimas 72 hs → parpadeo suave para reforzar urgencia
-    if (diff < 259200000) {
-      const bar = document.getElementById('urgencyBar');
-      if (bar && !bar.dataset.pulsing) {
-        bar.dataset.pulsing = '1';
-        bar.style.animation = 'urgencyPulse 2s ease-in-out infinite';
-        if (!document.getElementById('urgencyPulseStyle')) {
-          const s = document.createElement('style');
-          s.id = 'urgencyPulseStyle';
-          s.textContent = '@keyframes urgencyPulse{0%,100%{opacity:1}50%{opacity:.8}}';
-          document.head.appendChild(s);
-        }
-      }
-    }
-  }
-
-  function onExpired() {
-    clearInterval(window._countdownInterval);
-
-    const el  = id => document.getElementById(id);
-    const set = (id, val) => { const e = el(id); if (e) e.textContent = val; };
-
-    const bar = el('urgencyBar');
-    if (bar) bar.classList.add('expired');
-
-    const cd = el('urgencyCountdown');
-    if (cd) cd.style.display = 'none';
-
-    set('urgencyPrice',    PRICE_REGULAR + ' ARS');
-    set('urgencyMsg',      '— precio regular');
-
-    // Pricing card
-    set('pricingAmount',   '59.900');
-    set('pricingBtnPrice', PRICE_REGULAR);
-    set('pricingOld',      'Precio de lanzamiento: $24.900 ARS');
-    set('pricingBadge',    'Precio regular 🇦🇷');
-
-    // Hero, final CTA, FAQ
-    set('heroProPrice',        PRICE_REGULAR);
-    set('finalCtaPrice',       PRICE_REGULAR + ' ARS');
-    set('finalGuaranteePrice', PRICE_REGULAR + ' · Mercado Pago');
-    set('faqPrice',            PRICE_REGULAR + ' ARS');
-    set('faqGuaranteePrice',   PRICE_REGULAR);
-
-    // GTM
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: 'countdown_expired', new_price: PRICE_REGULAR });
-  }
-
-  if (new Date() < DEADLINE) {
-    tick();
-    window._countdownInterval = setInterval(tick, 1000);
-  } else {
-    onExpired();
-  }
-})();
+function handleAgencyContact() {
+  window.location.href = 'mailto:hola@kairoinc.lat?subject=Signal Agency&body=Hola, me interesa Signal Agency para usar con mis clientes.';
+}
 </script>
 
-<!-- ══ GEO PRICING ══ -->
+<!-- ══ TIPO DE CAMBIO EN TIEMPO REAL ══ -->
 <script>
 (function() {
+  // Precios base en USD
+  const USD_PRICES = { starter: 29, pro: 79, agency: 49 };
 
-  // ── Tabla de precios por país ──
-  const PRICES = {
-    AR: {
-      display:      '$24.900',
-      period:       'pago único · ARS',
-      currency:     '$',
-      amount:       '24.900',
-      badge:        'Precio de lanzamiento 🇦🇷',
-      old:          'Valor en agencia: $300.000 ARS',
-      urgency:      '$24.900 ARS',
-      urgencyMsg:   '— después sube a $59.900',
-      faq:          '$24.900 ARS',
-      faqGuarantee: '$24.900',
-      finalCta:     '$24.900 ARS',
-      finalBtn:     '$24.900 · Mercado Pago',
-      heroLock:     '$24.900',
-      heroAgency:   '$300.000 en agencia',
-      guarantee:    '✓ Garantía de devolución 30 días · Sin preguntas · Pago con Mercado Pago',
-      isARS:        true,
-    },
-    // Todos los demás: USD 25
-    DEFAULT: {
-      display:      'USD 25',
-      period:       'one-time payment',
-      currency:     'USD ',
-      amount:       '25',
-      badge:        'Launch price 🌎',
-      old:          'Agency value: USD 300+',
-      urgency:      'USD 25',
-      urgencyMsg:   'Price goes up April 30',
-      faq:          'USD 25',
-      faqGuarantee: 'USD 25',
-      finalCta:     'USD 25',
-      finalBtn:     'USD 25 · Card / PayPal',
-      heroLock:     'USD 25',
-      heroAgency:   'USD 300+ in an agency',
-      guarantee:    '✓ 30-day money-back guarantee · No questions asked · Secure payment',
-      isARS:        false,
-    }
-  };
+  // Fallback al oficial de ayer si la API falla
+  const FALLBACK_RATE = 1420;
 
-  function applyPricing(p) {
-    const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
-
-    // Urgency bar: solo actualizar precio, el countdown maneja el resto
-    // Para no-AR: ocultar countdown (no aplica), mostrar precio en USD
-    if (!p.isARS) {
-      set('urgencyPrice',        p.urgency);
-      set('urgencyMsg',          p.urgencyMsg);
-      // Ocultar countdown para usuarios no-AR (el countdown es ARS-específico)
-      const cd = document.getElementById('urgencyCountdown');
-      if (cd) cd.style.display = 'none';
-    }
-    // Para AR: el countdown ya maneja urgencyPrice y urgencyMsg — no tocar
-
-    set('heroProPrice',       p.heroLock);
-    set('heroAgencyPrice',    p.heroAgency);
-    set('pricingBadge',       p.badge);
-    set('pricingOld',         p.old);
-    set('pricingCurrency',    p.currency);
-    set('pricingAmount',      p.amount);
-    set('pricingPeriod',      p.period);
-    set('pricingBtnPrice',    p.display);
-    set('guaranteeNote',      p.guarantee);
-    set('faqPrice',           p.faq);
-    set('faqGuaranteePrice',  p.faqGuarantee);
-    set('finalCtaPrice',      p.finalCta);
-    set('finalGuaranteePrice',p.finalBtn);
-
-    // Testimonial Sandra L. menciona "$24.900" — update si no es AR
-    if (!p.isARS) {
-      document.querySelectorAll('.testi-text').forEach(el => {
-        el.innerHTML = el.innerHTML.replace(/\$24\.900/g, 'USD 25');
-      });
-    }
-
-    // GTM: informar país y precio detectado
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: 'geo_price_applied',
-      geo_country: p._country || 'DEFAULT',
-      geo_price_display: p.display,
-      geo_is_ars: p.isARS
-    });
+  function formatARS(usd, rate) {
+    const ars = Math.round(usd * rate / 100) * 100; // redondeo a $100
+    return ars.toLocaleString('es-AR');
   }
 
-  // ── Detectar país por IP ──
-  fetch('https://ipapi.co/json/', { cache: 'force-cache' })
+  function applyRates(rate) {
+    const starterARS = formatARS(USD_PRICES.starter, rate);
+    const proARS     = formatARS(USD_PRICES.pro, rate);
+    const agencyARS  = formatARS(USD_PRICES.agency, rate);
+
+    const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+
+    // Pricing section
+    set('pricingAmount',   proARS);
+    set('pricingPeriod',   'pago único · ARS');
+    set('pricingBtnPrice', '$' + proARS);
+    set('pricingBadge',    'Más elegido 🇦🇷');
+    set('pricingOld',      'Valor en agencia: $300.000+ ARS');
+    set('pricingCurrency', '$');
+    set('pricingUSD',      '≈ USD ' + USD_PRICES.pro + ' · al cambio oficial ($' + Math.round(rate) + ')');
+    set('agencyAmount',    agencyARS);
+    set('agencyPeriod',    '/ mes · ARS');
+    set('agencyUSD',       '≈ USD ' + USD_PRICES.agency + '/mes · hasta 10 negocios · ($' + Math.round(rate) + ')');
+
+    // Urgency bar
+    set('urgencyPrice', 'desde $' + starterARS + ' ARS');
+    set('urgencyMsg',   '— al tipo de cambio oficial del día');
+
+    // Hero
+    set('heroProPrice',   'desde $' + starterARS);
+    set('heroAgencyPrice','$300.000+ en agencia');
+
+    // FAQ & final
+    set('faqPrice',          '$' + proARS + ' ARS');
+    set('faqGuaranteePrice', '$' + proARS);
+    set('finalCtaPrice',     'desde $' + starterARS + ' ARS');
+    set('finalGuaranteePrice','Signal Pro · Mercado Pago');
+    set('guaranteeNote',     '✓ Garantía de devolución 30 días · Sin preguntas · Pago con Mercado Pago');
+
+    // Guardar en sessionStorage para app.html
+    try {
+      sessionStorage.setItem('signal_pricing', JSON.stringify({
+        rate, starterARS, proARS, agencyARS,
+        starterUSD: USD_PRICES.starter,
+        proUSD:     USD_PRICES.pro,
+        agencyUSD:  USD_PRICES.agency
+      }));
+    } catch(e) {}
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'exchange_rate_applied', usd_ars_rate: rate, pro_ars: proARS });
+  }
+
+  // Intentar obtener tipo de cambio oficial desde API pública
+  fetch('https://api.bluelytics.com.ar/v2/latest', { cache: 'no-cache' })
     .then(r => r.json())
     .then(data => {
-      const country = (data.country_code || '').toUpperCase();
-      const price   = PRICES[country] || PRICES.DEFAULT;
-      price._country = country;
-      applyPricing(price);
-
-      // Guardar en sessionStorage para que app.html lo lea
-      try {
-        sessionStorage.setItem('signal_geo', JSON.stringify({
-          country,
-          isARS: price.isARS,
-          display: price.display,
-          amount: price.amount,
-          currency: price.currency,
-          period: price.period,
-          guarantee: price.guarantee
-        }));
-      } catch(e) {}
+      // oficial.value_sell = venta oficial BNA
+      const rate = data?.oficial?.value_sell || FALLBACK_RATE;
+      applyRates(rate);
     })
     .catch(() => {
-      // Sin geo: Argentina por defecto (mayoría del tráfico)
-      applyPricing(PRICES.AR);
+      applyRates(FALLBACK_RATE);
     });
-
 })();
 </script>
 
