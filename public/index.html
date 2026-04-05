@@ -426,45 +426,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </button>
 </div>
 
-<!-- 8. DEMO INTERACTIVO -->
-<div style="padding:88px 5%;background:var(--bg)">
-  <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start">
+<!-- 8. DEMO INTERACTIVO — rediseñado -->
+<div style="padding:88px 5%;background:var(--bg)" id="demo-section">
+  <div style="max-width:1120px;margin:0 auto">
 
-    <!-- IZQUIERDA: INSTRUCTIVO -->
-    <div style="position:sticky;top:80px">
-      <div class="section-label">Demo interactivo</div>
-      <h2 class="section-title">Probá el diagnóstico <em>ahora mismo</em></h2>
-      <p class="section-sub" style="margin-bottom:32px">Este es el flujo real que experimenta cada usuario. Interactuá con el demo a la derecha — desde el ingreso de datos hasta el plan de acción completo.</p>
-      <div style="display:flex;flex-direction:column;gap:0;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border2)">
-        <div style="display:flex;align-items:flex-start;gap:14px;padding:18px 20px;background:var(--surface);border-bottom:1px solid var(--border2)">
-          <span style="font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.08em;color:var(--accent);background:var(--accent-dim);border:1px solid var(--accent-border);border-radius:100px;padding:2px 10px;white-space:nowrap;margin-top:2px;flex-shrink:0">01</span>
-          <div><div style="font-size:14px;font-weight:500;color:var(--ink);margin-bottom:3px">Ingresás tu negocio</div><div style="font-size:12px;color:var(--muted);line-height:1.55;font-weight:300">Escribís qué hacés y la URL de tu sitio. Sin registro ni tarjeta.</div></div>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:14px;padding:18px 20px;background:var(--surface);border-bottom:1px solid var(--border2)">
-          <span style="font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.08em;color:var(--accent);background:var(--accent-dim);border:1px solid var(--accent-border);border-radius:100px;padding:2px 10px;white-space:nowrap;margin-top:2px;flex-shrink:0">02</span>
-          <div><div style="font-size:14px;font-weight:500;color:var(--ink);margin-bottom:3px">Signal analiza en segundos</div><div style="font-size:12px;color:var(--muted);line-height:1.55;font-weight:300">Revisamos tu presencia en Google Search, Maps e IA para calcular tu score de visibilidad.</div></div>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:14px;padding:18px 20px;background:var(--surface);border-bottom:1px solid var(--border2)">
-          <span style="font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.08em;color:var(--accent);background:var(--accent-dim);border:1px solid var(--accent-border);border-radius:100px;padding:2px 10px;white-space:nowrap;margin-top:2px;flex-shrink:0">03</span>
-          <div><div style="font-size:14px;font-weight:500;color:var(--ink);margin-bottom:3px">Resultado gratuito</div><div style="font-size:12px;color:var(--muted);line-height:1.55;font-weight:300">Tu score /100, los 3 problemas principales y un quick win que podés implementar hoy.</div></div>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:14px;padding:18px 20px;background:var(--surface)">
-          <span style="font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.08em;color:var(--accent);background:var(--accent-dim);border:1px solid var(--accent-border);border-radius:100px;padding:2px 10px;white-space:nowrap;margin-top:2px;flex-shrink:0">04</span>
-          <div><div style="font-size:14px;font-weight:500;color:var(--ink);margin-bottom:3px">Plan completo desbloqueado</div><div style="font-size:12px;color:var(--muted);line-height:1.55;font-weight:300">El plan de 7 días, textos listos para copiar y la guía de mejoras — todo personalizado.</div></div>
-        </div>
-      </div>
-      <div style="margin-top:24px;display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.04em">
-        <span style="color:var(--accent);font-size:16px;animation:arrowBounce 2s ease-in-out infinite;display:inline-block">→</span>
-        Interactuá con el demo
-      </div>
+    <!-- HEADER CENTRADO -->
+    <div style="text-align:center;margin-bottom:48px">
+      <div class="section-label" style="text-align:center;margin-bottom:14px">Demo interactivo</div>
+      <h2 class="section-title" style="text-align:center">Probá el diagnóstico <em>ahora mismo</em></h2>
+      <p class="section-sub" style="margin:0 auto;text-align:center">El flujo real. Elegí un ejemplo — y mirá exactamente lo que recibís, incluyendo los textos listos para copiar.</p>
     </div>
 
-    <!-- DERECHA: DEMO FRAME -->
-    <div>
-      <div id="demoFrame" style="background:var(--bg);border-radius:var(--radius-lg);border:1px solid var(--border2);overflow:hidden">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start">
+
+    <!-- IZQUIERDA: DEMO FRAME -->
+    <div style="position:sticky;top:80px">
+      <div id="demoFrame" style="background:var(--surface);border-radius:var(--radius-lg);border:1px solid var(--border2);overflow:hidden;box-shadow:var(--shadow-lg)">
 
         <!-- TOPBAR -->
-        <div style="background:var(--surface);border-bottom:1px solid var(--border2);padding:10px 14px;display:flex;align-items:center;gap:8px">
+        <div style="background:var(--surface2);border-bottom:1px solid var(--border2);padding:9px 14px;display:flex;align-items:center;gap:8px">
           <div style="display:flex;gap:5px">
             <div style="width:9px;height:9px;border-radius:50%;background:#ff5f57"></div>
             <div style="width:9px;height:9px;border-radius:50%;background:#febc2e"></div>
@@ -578,7 +558,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <button onclick="dGoForm()" style="display:block;width:100%;background:none;color:var(--muted);font-family:var(--sans);font-size:12px;padding:7px;border:none;cursor:pointer">← Probar con otro negocio</button>
         </div>
 
-        <!-- SC4: FULL RESULT -->
+        <!-- SC4: FULL RESULT — con textos reales para copiar -->
         <div id="dsc4" style="display:none;padding:22px 20px;animation:dFade .3s ease">
           <div style="background:var(--accent);color:#fff;border-radius:var(--radius);padding:12px 14px;margin-bottom:12px">
             <div style="font-family:var(--mono);font-size:8px;letter-spacing:.08em;text-transform:uppercase;opacity:.65;margin-bottom:3px">Plan completo desbloqueado</div>
@@ -586,25 +566,57 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div style="font-size:11px;opacity:.7;font-weight:300;margin-top:2px" id="dFRUrl">dralopez.com.ar</div>
           </div>
           <div style="font-family:var(--mono);font-size:8px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:7px">Plan de acción — 7 días</div>
-          <div style="display:flex;align-items:flex-start;gap:9px;padding:9px;background:var(--surface2);border-radius:var(--radius);margin-bottom:5px;border:1px solid var(--border2)"><span style="font-family:var(--mono);font-size:8px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);background:var(--accent-dim);border-radius:100px;padding:2px 7px;white-space:nowrap;margin-top:1px;flex-shrink:0">Día 1</span><div><div style="font-size:11px;font-weight:500;color:var(--ink);margin-bottom:2px" id="dPlan1t">Completá tu ficha de Google Maps</div><div style="font-size:10px;color:var(--muted);line-height:1.5;font-weight:300" id="dPlan1b">Actualizá horarios, agregá tu especialidad al nombre y subí fotos. Seguí la guía paso a paso incluida.</div></div></div>
-          <div style="display:flex;align-items:flex-start;gap:9px;padding:9px;background:var(--surface2);border-radius:var(--radius);margin-bottom:5px;border:1px solid var(--border2)"><span style="font-family:var(--mono);font-size:8px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);background:var(--accent-dim);border-radius:100px;padding:2px 7px;white-space:nowrap;margin-top:1px;flex-shrink:0">Día 2</span><div><div style="font-size:11px;font-weight:500;color:var(--ink);margin-bottom:2px">Reemplazá tu meta descripción</div><div style="font-size:10px;color:var(--muted);line-height:1.5;font-weight:300">Usá el texto generado abajo. Listo para pegar en tu CMS sin modificar.</div></div></div>
-          <div style="display:flex;align-items:flex-start;gap:9px;padding:9px;background:var(--surface2);border-radius:var(--radius);margin-bottom:12px;border:1px solid var(--border2)"><span style="font-family:var(--mono);font-size:8px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);background:var(--accent-dim);border-radius:100px;padding:2px 7px;white-space:nowrap;margin-top:1px;flex-shrink:0">Día 3–4</span><div><div style="font-size:11px;font-weight:500;color:var(--ink);margin-bottom:2px">Agregá el párrafo de IA a tu web</div><div style="font-size:10px;color:var(--muted);line-height:1.5;font-weight:300">Copiá el texto de abajo y pegalo en tu página "Sobre mí". Suele mejorar la descubribilidad en asistentes de IA.</div></div></div>
+          <div style="display:flex;align-items:flex-start;gap:9px;padding:9px;background:var(--surface2);border-radius:var(--radius);margin-bottom:5px;border:1px solid var(--border2)"><span style="font-family:var(--mono);font-size:8px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);background:var(--accent-dim);border-radius:100px;padding:2px 7px;white-space:nowrap;margin-top:1px;flex-shrink:0">Día 1</span><div><div style="font-size:11px;font-weight:500;color:var(--ink);margin-bottom:2px" id="dPlan1t">Completá tu ficha de Google Maps</div><div style="font-size:10px;color:var(--muted);line-height:1.5;font-weight:300" id="dPlan1b">Actualizá horarios, agregá tu especialidad al nombre y subí fotos.</div></div></div>
+          <div style="display:flex;align-items:flex-start;gap:9px;padding:9px;background:var(--surface2);border-radius:var(--radius);margin-bottom:5px;border:1px solid var(--border2)"><span style="font-family:var(--mono);font-size:8px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);background:var(--accent-dim);border-radius:100px;padding:2px 7px;white-space:nowrap;margin-top:1px;flex-shrink:0">Día 2</span><div><div style="font-size:11px;font-weight:500;color:var(--ink);margin-bottom:2px">Reemplazá tu meta descripción</div><div style="font-size:10px;color:var(--muted);line-height:1.5;font-weight:300">Usá el texto generado abajo. Listo para pegar en tu CMS.</div></div></div>
+          <div style="display:flex;align-items:flex-start;gap:9px;padding:9px;background:var(--surface2);border-radius:var(--radius);margin-bottom:12px;border:1px solid var(--border2)"><span style="font-family:var(--mono);font-size:8px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);background:var(--accent-dim);border-radius:100px;padding:2px 7px;white-space:nowrap;margin-top:1px;flex-shrink:0">Días 3–4</span><div><div style="font-size:11px;font-weight:500;color:var(--ink);margin-bottom:2px">Agregá el párrafo de IA a tu web</div><div style="font-size:10px;color:var(--muted);line-height:1.5;font-weight:300">Copiá el texto de abajo y pegalo en tu página "Sobre mí".</div></div></div>
           <div style="background:var(--accent-dim);border:1px solid var(--accent-border);border-radius:var(--radius);padding:10px;margin-bottom:10px">
-            <div style="font-family:var(--mono);font-size:8px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:5px">Texto para "Sobre mí" — copiá y pegá</div>
+            <div style="font-family:var(--mono);font-size:8px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:5px">Párrafo para tu web / "Sobre mí"</div>
             <div style="font-size:11px;color:var(--ink);line-height:1.6;font-style:italic;font-family:var(--serif)" id="dCopy1"></div>
-            <button id="dCopyBtn1" onclick="dCopy('dCopy1','dCopyBtn1')" style="display:inline-flex;align-items:center;gap:4px;background:var(--accent);color:#fff;border:none;border-radius:5px;padding:4px 10px;font-family:var(--mono);font-size:8px;letter-spacing:.04em;cursor:pointer;margin-top:7px">📋 Copiar texto</button>
+            <button id="dCopyBtn1" onclick="dCopy('dCopy1','dCopyBtn1')" style="display:inline-flex;align-items:center;gap:4px;background:var(--accent);color:#fff;border:none;border-radius:5px;padding:5px 11px;font-family:var(--mono);font-size:8px;letter-spacing:.04em;cursor:pointer;margin-top:8px;transition:background .18s">📋 Copiar texto</button>
           </div>
           <div style="background:var(--accent-dim);border:1px solid var(--accent-border);border-radius:var(--radius);padding:10px;margin-bottom:14px">
             <div style="font-family:var(--mono);font-size:8px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:5px">Meta descripción SEO — pegá en tu CMS</div>
             <div style="font-size:11px;color:var(--ink);line-height:1.6;font-style:italic;font-family:var(--serif)" id="dCopy2"></div>
-            <button id="dCopyBtn2" onclick="dCopy('dCopy2','dCopyBtn2')" style="display:inline-flex;align-items:center;gap:4px;background:var(--accent);color:#fff;border:none;border-radius:5px;padding:4px 10px;font-family:var(--mono);font-size:8px;letter-spacing:.04em;cursor:pointer;margin-top:7px">📋 Copiar texto</button>
+            <button id="dCopyBtn2" onclick="dCopy('dCopy2','dCopyBtn2')" style="display:inline-flex;align-items:center;gap:4px;background:var(--accent);color:#fff;border:none;border-radius:5px;padding:5px 11px;font-family:var(--mono);font-size:8px;letter-spacing:.04em;cursor:pointer;margin-top:8px;transition:background .18s">📋 Copiar</button>
           </div>
-          <button onclick="scrollToForm()" style="display:block;width:100%;background:var(--accent);color:#fff;font-family:var(--sans);font-size:13px;font-weight:500;padding:11px 16px;border-radius:var(--radius);border:none;cursor:pointer;margin-bottom:6px">Analizar mi negocio ahora →</button>
+          <button onclick="scrollToForm()" style="display:block;width:100%;background:var(--green);color:#fff;font-family:var(--sans);font-size:13px;font-weight:500;padding:11px 16px;border-radius:var(--radius);border:none;cursor:pointer;margin-bottom:6px">Analizar mi negocio real →</button>
           <button onclick="dGoResult()" style="display:block;width:100%;background:none;color:var(--muted);font-family:var(--sans);font-size:12px;padding:7px;border:none;cursor:pointer">← Ver resultado gratuito</button>
         </div>
 
       </div>
     </div>
+
+    <!-- DERECHA: POR QUÉ + CTA -->
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div style="display:flex;align-items:flex-start;gap:14px">
+        <div style="width:40px;height:40px;border-radius:8px;flex-shrink:0;background:var(--accent-dim);border:1px solid var(--accent-border);display:flex;align-items:center;justify-content:center;font-size:18px">🗺️</div>
+        <div><div style="font-size:15px;font-weight:500;color:var(--ink);margin-bottom:4px">Google Maps: el canal más perdido</div><div style="font-size:13px;color:var(--muted);line-height:1.6;font-weight:300">El 67% de los negocios tiene la ficha incompleta. Signal te dice exactamente qué falta y cómo completarlo en minutos.</div></div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:14px">
+        <div style="width:40px;height:40px;border-radius:8px;flex-shrink:0;background:var(--accent-dim);border:1px solid var(--accent-border);display:flex;align-items:center;justify-content:center;font-size:18px">🤖</div>
+        <div><div style="font-size:15px;font-weight:500;color:var(--ink);margin-bottom:4px">ChatGPT y Perplexity: el nuevo Google</div><div style="font-size:13px;color:var(--muted);line-height:1.6;font-weight:300">Si no tenés el contenido correcto, la IA no sabe que existís. Signal te da el texto exacto para que te recomienden.</div></div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:14px">
+        <div style="width:40px;height:40px;border-radius:8px;flex-shrink:0;background:var(--accent-dim);border:1px solid var(--accent-border);display:flex;align-items:center;justify-content:center;font-size:18px">⚡</div>
+        <div><div style="font-size:15px;font-weight:500;color:var(--ink);margin-bottom:4px">Tu texto ya escrito — copiás y pegás</div><div style="font-size:13px;color:var(--muted);line-height:1.6;font-weight:300">Con tu nombre, rubro y ciudad. No tenés que redactar nada. Probalo en el paso 4 de la demo.</div></div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:14px">
+        <div style="width:40px;height:40px;border-radius:8px;flex-shrink:0;background:var(--accent-dim);border:1px solid var(--accent-border);display:flex;align-items:center;justify-content:center;font-size:18px">💰</div>
+        <div><div style="font-size:15px;font-weight:500;color:var(--ink);margin-bottom:4px">Garantía de devolución de 30 días</div><div style="font-size:13px;color:var(--muted);line-height:1.6;font-weight:300">Si no encontrás al menos 3 mejoras accionables, te devolvemos el pago. Sin preguntas.</div></div>
+      </div>
+
+      <!-- CTA CARD -->
+      <div style="background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:24px;text-align:center;box-shadow:var(--shadow)">
+        <p style="font-family:var(--serif);font-size:18px;font-weight:600;color:var(--ink);margin-bottom:6px;letter-spacing:-.01em">Probaste la demo — ahora analizá tu negocio real</p>
+        <p style="font-size:13px;color:var(--muted);font-weight:300;margin-bottom:18px;line-height:1.6">El diagnóstico es gratis. En 30 segundos sabés dónde estás perdiendo clientes.</p>
+        <button class="btn-primary" onclick="scrollToForm()" style="margin:0 auto">
+          Ver por qué no aparezco en Google <span class="btn-arrow">→</span>
+        </button>
+        <p style="font-family:var(--mono);font-size:10px;color:var(--dim);margin-top:12px;letter-spacing:.04em">Sin registro · Sin tarjeta · 100% gratis para empezar</p>
+      </div>
+    </div>
+
+    </div><!-- /grid -->
   </div>
 </div>
 
@@ -616,10 +628,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script>
 var dRubros={
-  'Psicóloga infantil':{url:'https://dralopez.com.ar',score:34,ch:[31,38,14],p1t:'Ficha de Google Maps incompleta',p1b:'Sin horarios ni fotos recientes. Esto podría estar afectando tu visibilidad en búsquedas locales.',p2t:'Meta descripción sin palabras clave locales',p2b:'Google puede tener dificultades para entender tu zona y especialidad. Suele mejorar la descubribilidad.',qw:'Agregá tu especialidad y zona en el nombre de tu ficha de Google Maps. Ejemplo: "Dra. López — Psicóloga infantil · Palermo". Tarda 3 minutos.',plan1t:'Completá tu ficha de Google Maps',plan1b:'Actualizá horarios, agregá tu especialidad al nombre y subí fotos. Seguí la guía paso a paso incluida.',copy1:'"Soy psicóloga infantil con más de 8 años de experiencia acompañando niños y familias. Atiendo en consultorio en Palermo, Buenos Aires, y de forma online. Especializada en dificultades de aprendizaje, ansiedad y desarrollo emocional."',copy2:'"Psicóloga infantil en Palermo, Buenos Aires. Acompaño niños y familias en dificultades de aprendizaje, ansiedad y desarrollo emocional. Turnos presenciales y online."'},
-  'Taller mecánico':{url:'https://tallercentro.com.ar',score:29,ch:[25,44,10],p1t:'Sin horario de atención en Google Maps',p1b:'Los usuarios no pueden saber cuándo abrís. Esto podría reducir las llamadas directas desde Maps.',p2t:'Descripción del negocio muy genérica',p2b:'Sin mencionar marcas, servicios específicos ni zona. Puede dificultar que aparezcas en búsquedas especializadas.',qw:'Cargá tus horarios de atención en Google Maps hoy. Es la acción con mayor impacto inmediato para negocios de servicio.',plan1t:'Actualizá horarios y servicios en Maps',plan1b:'Cargá horarios, agregá marcas con las que trabajás y completá los servicios específicos. 15 minutos de trabajo.',copy1:'"Taller mecánico en el centro de Buenos Aires con más de 15 años de trayectoria. Realizamos service, diagnóstico computarizado, frenos, suspensión y más. Atención personalizada y presupuesto sin cargo."',copy2:'"Taller mecánico en Buenos Aires centro. Service, frenos, suspensión y diagnóstico computarizado. Presupuesto sin cargo. Más de 15 años de trayectoria."'},
-  'Estudio contable':{url:'https://estudiomv.com.ar',score:38,ch:[35,28,18],p1t:'Baja presencia en búsquedas locales de Maps',p1b:'Tu ficha tiene poca información sobre especialidades y zona. Podría estar afectando cómo te encuentran nuevos clientes.',p2t:'Sitio web sin estructura clara para IA',p2b:'Los asistentes de IA tienen dificultades para resumir tus servicios. Esto puede limitar las recomendaciones.',qw:'Agregá categorías secundarias a tu ficha: "Asesor fiscal", "Contador de pequeñas empresas". Mejora la precisión de búsqueda.',plan1t:'Completá tu perfil de Google Maps',plan1b:'Agregá especialidades, zona de atención y descripción de servicios. Diferenciá monotributistas de pymes.',copy1:'"Estudio contable y fiscal en Buenos Aires. Asesoramos a monotributistas, pymes y sociedades en liquidación de impuestos, sueldos y contabilidad general. Más de 20 años de experiencia."',copy2:'"Estudio contable en Buenos Aires. Monotributistas, pymes y sociedades. Liquidación de impuestos, sueldos y contabilidad. Consulta inicial sin cargo."'},
-  'Restaurante familiar':{url:'https://elranchogrande.com.ar',score:31,ch:[28,42,11],p1t:'Sin fotos recientes en tu ficha de Maps',p1b:'Las fichas sin fotos actualizadas suelen recibir menos clics. Las imágenes de platos y ambiente tienen alto impacto.',p2t:'Meta descripción no incluye zona ni tipo de cocina',p2b:'Esto puede dificultar que aparezcas cuando alguien busca un tipo específico de restaurante en tu barrio.',qw:'Subí 5 fotos nuevas a tu ficha de Google Maps esta semana. Platos, ambiente y exterior. Es la mejora con mayor efecto visible.',plan1t:'Renová las fotos en Google Maps',plan1b:'Subí imágenes actualizadas de platos, salón y exterior. Priorizá fotos con buena luz natural y platos destacados.',copy1:'"Restaurante familiar en Villa del Parque, Buenos Aires, con cocina casera y ambiente cálido. Especialidad en asados, pastas y platos del día. Abierto al mediodía y a la noche, de martes a domingo."',copy2:'"Restaurante familiar en Villa del Parque, Buenos Aires. Cocina casera, asados y pastas. Abierto martes a domingo, mediodía y noche. Reservas por WhatsApp."'}
+  'Psicóloga infantil':{url:'https://dralopez.com.ar',score:34,ch:[31,38,14],
+    p1t:'Ficha de Google Maps incompleta',p1b:'Sin horarios ni fotos recientes. Esto podría estar afectando tu visibilidad en búsquedas locales.',
+    p2t:'Meta descripción sin palabras clave locales',p2b:'Google no puede entender tu zona y especialidad, lo que limita tu descubribilidad.',
+    qw:'Agregá tu especialidad y zona en el nombre de tu ficha de Google Maps. Ejemplo: "Dra. López — Psicóloga infantil · Palermo". Tarda 3 minutos.',
+    plan1t:'Completá tu ficha de Google Maps',plan1b:'Actualizá horarios, agregá tu especialidad al nombre y subí fotos de tu consultorio.',
+    copy1:'Soy psicóloga infantil con más de 8 años de experiencia acompañando niños y familias en Buenos Aires. Atiendo en consultorio en Palermo y de forma online. Especializada en dificultades de aprendizaje, ansiedad y desarrollo emocional en niños de 3 a 12 años.',
+    copy2:'Psicóloga infantil en Palermo, Buenos Aires. Acompaño niños y familias en dificultades de aprendizaje, ansiedad y desarrollo emocional. Turnos presenciales y online. Primeras consultas disponibles.'},
+  'Taller mecánico':{url:'https://tallercentro.com.ar',score:29,ch:[25,44,10],
+    p1t:'Sin horario de atención en Google Maps',p1b:'Los usuarios no saben cuándo abrís. Esto reduce las llamadas directas desde Maps.',
+    p2t:'Descripción del negocio muy genérica',p2b:'Sin marcas, servicios específicos ni zona. Limita que aparezcas en búsquedas especializadas.',
+    qw:'Cargá tus horarios de atención en Google Maps hoy. Es la acción con mayor impacto inmediato para negocios de servicio.',
+    plan1t:'Actualizá horarios y servicios en Maps',plan1b:'Cargá horarios, agregá marcas con las que trabajás y completá los servicios específicos. 15 minutos.',
+    copy1:'Taller mecánico en el centro de Buenos Aires con más de 15 años de trayectoria. Realizamos service, diagnóstico computarizado, frenos, suspensión y revisión técnica obligatoria. Atención personalizada y presupuesto sin cargo. Trabajamos con todas las marcas.',
+    copy2:'Taller mecánico en Buenos Aires centro. Service, frenos, suspensión y diagnóstico computarizado. Presupuesto sin cargo. Más de 15 años de trayectoria. Turnos por WhatsApp.'},
+  'Estudio contable':{url:'https://estudiomv.com.ar',score:38,ch:[35,28,18],
+    p1t:'Baja presencia en búsquedas locales de Maps',p1b:'Tu ficha tiene poca información sobre especialidades y zona. Afecta cómo te encuentran nuevos clientes.',
+    p2t:'Sitio web sin estructura clara para IA',p2b:'Los asistentes de IA tienen dificultades para resumir tus servicios, lo que limita las recomendaciones.',
+    qw:'Agregá categorías secundarias a tu ficha: "Asesor fiscal", "Contador de pequeñas empresas". Mejora la precisión de búsqueda.',
+    plan1t:'Completá tu perfil de Google Maps',plan1b:'Agregá especialidades, zona de atención y descripción de servicios. Diferenciá monotributistas de pymes.',
+    copy1:'Estudio contable y fiscal en Buenos Aires especializado en monotributistas, pymes y sociedades. Más de 20 años de experiencia en liquidación de impuestos, sueldos, contabilidad general y asesoramiento impositivo. Consulta inicial sin cargo. Atendemos de forma presencial y remota.',
+    copy2:'Estudio contable en Buenos Aires. Monotributistas, pymes y sociedades. Liquidación de impuestos, sueldos y contabilidad. Más de 20 años de experiencia. Consulta inicial sin cargo.'},
+  'Restaurante familiar':{url:'https://elranchogrande.com.ar',score:31,ch:[28,42,11],
+    p1t:'Sin fotos recientes en tu ficha de Maps',p1b:'Las fichas sin fotos actualizadas reciben menos clics. Las imágenes de platos y ambiente tienen alto impacto.',
+    p2t:'Meta descripción no incluye zona ni tipo de cocina',p2b:'Esto dificulta que aparezcas cuando alguien busca un restaurante específico en tu barrio.',
+    qw:'Subí 5 fotos nuevas a tu ficha de Google Maps esta semana. Platos, ambiente y exterior con buena luz natural.',
+    plan1t:'Renová las fotos en Google Maps',plan1b:'Subí imágenes actualizadas de platos, salón y exterior. Priorizá fotos con buena luz y platos destacados.',
+    copy1:'Restaurante familiar en Villa del Parque, Buenos Aires, con más de 10 años en el barrio. Cocina casera con especialidad en asados, pastas y platos del día elaborados con ingredientes frescos. Ambiente cálido, ideal para familias y grupos. Abrimos de martes a domingo, mediodía y noche.',
+    copy2:'Restaurante familiar en Villa del Parque, Buenos Aires. Cocina casera, asados y pastas. Más de 10 años en el barrio. Abierto martes a domingo. Reservas por WhatsApp.'}
 };
 var dCurrentRubro='Psicóloga infantil';
 
@@ -670,8 +706,8 @@ function dGoFull(){
   document.getElementById('dPlan1b').textContent=r.plan1b;
   document.getElementById('dCopy1').textContent=r.copy1;
   document.getElementById('dCopy2').textContent=r.copy2;
-  document.getElementById('dCopyBtn1').textContent='📋 Copiar texto';
-  document.getElementById('dCopyBtn2').textContent='📋 Copiar texto';
+  document.getElementById('dCopyBtn1').innerHTML='📋 Copiar texto';
+  document.getElementById('dCopyBtn2').innerHTML='📋 Copiar';
   dSetStep(4);
 }
 
@@ -723,9 +759,12 @@ function dAnimateScore(){
 }
 
 function dCopy(elId,btnId){
-  var text=document.getElementById(elId).textContent;
+  var text=document.getElementById(elId).textContent.trim();
   if(navigator.clipboard){navigator.clipboard.writeText(text).catch(function(){});}
-  document.getElementById(btnId).textContent='✓ Copiado';
+  var btn=document.getElementById(btnId);
+  btn.innerHTML='✓ Copiado';
+  btn.style.background='var(--green)';
+  setTimeout(function(){btn.innerHTML='📋 Copiar texto';btn.style.background='var(--accent)';},2500);
 }
 </script>
 
