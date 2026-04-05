@@ -309,11 +309,11 @@ nav{position:fixed;top:0;left:0;right:0;padding:0 5%;display:flex;align-items:ce
     <div class="competencia-badge" id="competenciaBadge" style="display:none">
       🕵️ Modo competencia — analizando a otro negocio
     </div>
-    <h2 class="form-headline" id="formHeadline">¿Qué búsqueda querés ganar?</h2>
-    <p class="form-subhead" id="formSubhead">Completá los datos para un análisis preciso.</p>
+    <h2 class="form-headline" id="formHeadline">¿Qué hacés o vendés?</h2>
+    <p class="form-subhead" id="formSubhead">Completá los datos para un análisis preciso de tu visibilidad.</p>
 
     <div class="big-input-wrap">
-      <input class="big-input" id="bizSearch" type="text" placeholder="Ej: psicóloga en Palermo" autocomplete="off">
+      <input class="big-input" id="bizSearch" type="text" placeholder="Ej: psicóloga infantil, taller mecánico, restaurante familiar..." autocomplete="off">
     </div>
     <div class="examples" id="examplesContainer">
       <span class="example-pill" onclick="setExample(this)">psicóloga en Palermo</span>
@@ -324,15 +324,15 @@ nav{position:fixed;top:0;left:0;right:0;padding:0 5%;display:flex;align-items:ce
     </div>
 
     <div class="field">
+      <label for="bizName">Nombre del negocio <span class="optional">· opcional</span></label>
+      <input type="text" id="bizName" placeholder="Ej: Clínica Bienestar, Dra. García..." autocomplete="off">
+    </div>
+
+    <div class="field">
       <label for="bizWebsite">Sitio web <span class="required-mark">*</span></label>
       <input type="url" id="bizWebsite" placeholder="https://tu-sitio.com" autocomplete="off">
       <span class="field-error" id="bizWebsiteError">Ingresá la URL de tu sitio (ej: https://tu-negocio.com)</span>
       <span class="field-hint">Necesario para analizar tu posicionamiento real.</span>
-    </div>
-
-    <div class="field">
-      <label for="bizName">Nombre del negocio <span class="optional">· opcional</span></label>
-      <input type="text" id="bizName" placeholder="Ej: Clínica Bienestar, Dra. García..." autocomplete="off">
     </div>
 
     <button class="submit-btn" id="submitBtn" onclick="submitForm()">
@@ -351,10 +351,10 @@ nav{position:fixed;top:0;left:0;right:0;padding:0 5%;display:flex;align-items:ce
   <div class="loading-domain" id="loadingDomain"></div>
   <p class="loading-text" id="loadingText">Analizando tu visibilidad...</p>
   <div class="loading-steps">
-    <div class="loading-step" id="step-1"><div class="step-icon">1</div><span>Evaluando posicionamiento actual</span></div>
-    <div class="loading-step" id="step-2"><div class="step-icon">2</div><span>Detectando oportunidades perdidas</span></div>
-    <div class="loading-step" id="step-3"><div class="step-icon">3</div><span>Identificando oportunidades sin aprovechar</span></div>
-    <div class="loading-step" id="step-4"><div class="step-icon">4</div><span>Generando tu contenido personalizado</span></div>
+    <div class="loading-step" id="step-1"><div class="step-icon">1</div><span>Analizando tu sitio web y ficha de Maps</span></div>
+    <div class="loading-step" id="step-2"><div class="step-icon">2</div><span>Evaluando cómo te encuentra Google</span></div>
+    <div class="loading-step" id="step-3"><div class="step-icon">3</div><span>Revisando visibilidad en ChatGPT y Perplexity</span></div>
+    <div class="loading-step" id="step-4"><div class="step-icon">4</div><span>Escribiendo tu contenido personalizado</span></div>
   </div>
   <div class="timeout-warning" id="timeoutWarning">
     ⏳ Esto está tardando más de lo habitual — seguimos procesando...
@@ -440,11 +440,12 @@ nav{position:fixed;top:0;left:0;right:0;padding:0 5%;display:flex;align-items:ce
           <div class="unlock-item"><span class="unlock-check">✓</span><span>Texto para ChatGPT generado con tu nombre, rubro y ciudad</span></div>
           <div class="unlock-item"><span class="unlock-check">✓</span><span>Las 3 acciones de mayor impacto ordenadas por prioridad</span></div>
         </div>
+        <div style="font-family:var(--mono);font-size:11px;color:var(--muted);text-align:center;margin-bottom:10px;letter-spacing:.03em">Una agencia cobra $300.000+ ARS por lo mismo.</div>
         <button class="paywall-btn" id="paywallBtn" onclick="handleUpgrade()">
           Ver lo que ya escribimos para mi negocio — <span id="paywallBtnPrice">$112.200 ARS</span>
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 1l7 7-7 7M1 8h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
-        <div class="paywall-microcopy" id="paywallMicrocopy">Pago único · Sin suscripción · Mercado Pago</div>
+        <div class="paywall-microcopy" id="paywallMicrocopy">Pago único · Sin suscripción · Mercado Pago · Garantía de devolución 30 días — sin preguntas</div>
       </div>
     </div>
 
@@ -489,11 +490,11 @@ nav{position:fixed;top:0;left:0;right:0;padding:0 5%;display:flex;align-items:ce
     <div class="locked-section" id="contentSection">
       <div class="result-cards paywall-blur">
         <div class="result-card">
-          <div class="card-header"><div class="card-label"><span class="card-dot dot-seo"></span>Título SEO</div></div>
+          <div class="card-header"><div class="card-label"><span class="card-dot dot-seo"></span>Título SEO</div><button class="copy-btn" onclick="copyText(this,'seoTitle')"><svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>Copiar</button></div>
           <div class="card-body"><p class="card-content title-content" id="seoTitle">—</p><p class="char-hint" id="seoTitleLen"></p></div>
         </div>
         <div class="result-card">
-          <div class="card-header"><div class="card-label"><span class="card-dot dot-seo"></span>Meta descripción</div></div>
+          <div class="card-header"><div class="card-label"><span class="card-dot dot-seo"></span>Meta descripción</div><button class="copy-btn" onclick="copyText(this,'metaDesc')"><svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>Copiar</button></div>
           <div class="card-body"><p class="card-content meta-content" id="metaDesc">—</p></div>
         </div>
         <div class="result-card">
@@ -501,11 +502,11 @@ nav{position:fixed;top:0;left:0;right:0;padding:0 5%;display:flex;align-items:ce
           <div class="card-body"><div class="keywords-list" id="keywordsList"></div></div>
         </div>
         <div class="result-card">
-          <div class="card-header"><div class="card-label"><span class="card-dot dot-web"></span>Párrafo para tu web</div></div>
+          <div class="card-header"><div class="card-label"><span class="card-dot dot-web"></span>Párrafo para tu web</div><button class="copy-btn" onclick="copyText(this,'webPara')"><svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>Copiar</button></div>
           <div class="card-body"><p class="card-content" id="webPara">—</p></div>
         </div>
         <div class="result-card">
-          <div class="card-header"><div class="card-label"><span class="card-dot dot-ai"></span>Descripción para IA</div></div>
+          <div class="card-header"><div class="card-label"><span class="card-dot dot-ai"></span>Descripción para IA</div><button class="copy-btn" onclick="copyText(this,'aiDesc')"><svg width="10" height="10" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V3.5A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" stroke-width="1.5"/></svg>Copiar</button></div>
           <div class="card-body">
             <p class="section-sublabel">Para ChatGPT · Perplexity · AI Search</p>
             <div class="ai-description" id="aiDesc">—</div>
@@ -557,14 +558,14 @@ function startForm(competencia) {
   const examples = document.getElementById('examplesContainer');
   if (competencia) {
     badge.style.display = 'inline-flex';
-    headline.textContent = '¿Qué negocio querés espiar?';
+    headline.textContent = '¿Qué negocio querés analizar?';
     subhead.textContent  = 'Ingresá el sitio web del competidor para un análisis preciso.';
     examples.innerHTML   = `<span class="example-pill" onclick="setExample(this)">restaurante sushi Palermo</span><span class="example-pill" onclick="setExample(this)">psicólogo infantil CABA</span><span class="example-pill" onclick="setExample(this)">estudio contable Mendoza</span><span class="example-pill" onclick="setExample(this)">gym funcional Córdoba</span>`;
   } else {
     badge.style.display = 'none';
-    headline.textContent = '¿Qué búsqueda querés ganar?';
-    subhead.textContent  = 'Completá los datos para un análisis preciso.';
-    examples.innerHTML   = `<span class="example-pill" onclick="setExample(this)">psicóloga en Palermo</span><span class="example-pill" onclick="setExample(this)">restaurante italiano CDMX</span><span class="example-pill" onclick="setExample(this)">taller mecánico Córdoba</span><span class="example-pill" onclick="setExample(this)">abogado familia Rosario</span><span class="example-pill" onclick="setExample(this)">nutricionista online</span>`;
+    headline.textContent = '¿Qué hacés o vendés?';
+    subhead.textContent  = 'Completá los datos para un análisis preciso de tu visibilidad.';
+    examples.innerHTML   = `<span class="example-pill" onclick="setExample(this)">psicóloga infantil Palermo</span><span class="example-pill" onclick="setExample(this)">restaurante italiano CDMX</span><span class="example-pill" onclick="setExample(this)">taller mecánico Córdoba</span><span class="example-pill" onclick="setExample(this)">abogado familia Rosario</span><span class="example-pill" onclick="setExample(this)">nutricionista online</span>`;
   }
   goTo('form-screen', 33);
 }
