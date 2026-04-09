@@ -56,9 +56,9 @@ export async function checkout(req, res) {
       ],
       payer: email ? { email } : undefined,
       back_urls: {
-        success: `${baseUrl}/?payment=success&report=${reportId || ''}&plan=${planKey}`,
-        failure: `${baseUrl}/?payment=failure`,
-        pending: `${baseUrl}/?payment=pending`,
+        success: `${baseUrl}/app?payment=success&report=${reportId || ''}&plan=${planKey}`,
+        failure: `${baseUrl}/app?payment=failure`,
+        pending: `${baseUrl}/app?payment=pending`,
       },
       auto_return:          'approved',
       statement_descriptor: 'SIGNAL KAIRO',
