@@ -877,7 +877,6 @@ function buildPDFHTML(d) {
   const webP     = g('webPara');
   const aiD      = g('aiDesc');
   const today    = new Date().toLocaleDateString('es-AR',{day:'2-digit',month:'long',year:'numeric'});
-
   const allActions = Array.from(document.querySelectorAll('#actionsStack .action-row, #actionsStackLocked .action-row'));
   const actionsHTML = allActions.map((row, i) => {
     const text = row.querySelector('.action-row-text')?.textContent?.trim() || '';
@@ -886,162 +885,104 @@ function buildPDFHTML(d) {
     const diff   = tags[1] || '';
     const impactColor = impact.includes('Alto') ? '#1a7a4a' : impact.includes('Medio') ? '#7a4f0a' : '#666';
     const diffColor   = diff.includes('Fácil') ? '#1a4a7a' : diff.includes('Difícil') ? '#a32d2d' : '#7a4f0a';
-    return `<div class="avoid-break" style="display:flex;gap:14px;padding:14px 0;border-bottom:1px solid #f0f0ec;align-items:flex-start">
+    return `<div class="ab" style="display:flex;gap:14px;padding:14px 0;border-bottom:1px solid #f0f0ec;align-items:flex-start">
       <div style="min-width:24px;height:24px;border-radius:50%;background:#ede9f7;color:#6b4fa8;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:monospace;flex-shrink:0">${i+1}</div>
-      <div>
-        <div style="font-size:13.5px;color:#1a1a1a;line-height:1.55;margin-bottom:8px;font-weight:300">${text}</div>
-        <div style="display:flex;gap:6px;flex-wrap:wrap">
-          <span style="font-family:monospace;font-size:10px;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:4px;border:1px solid ${impactColor}40;background:${impactColor}15;color:${impactColor}">${impact}</span>
-          <span style="font-family:monospace;font-size:10px;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:4px;border:1px solid ${diffColor}40;background:${diffColor}15;color:${diffColor}">${diff}</span>
-        </div>
-      </div>
-    </div>`;
+      <div><div style="font-size:13.5px;color:#1a1a1a;line-height:1.55;margin-bottom:8px;font-weight:300">${text}</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <span style="font-family:monospace;font-size:10px;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:4px;border:1px solid ${impactColor}40;background:${impactColor}15;color:${impactColor}">${impact}</span>
+        <span style="font-family:monospace;font-size:10px;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:4px;border:1px solid ${diffColor}40;background:${diffColor}15;color:${diffColor}">${diff}</span>
+      </div></div></div>`;
   }).join('');
 
-  return `<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+  return `<!DOCTYPE html><html><head><meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'DM Sans',system-ui,sans-serif;background:#ffffff;color:#1a1a1a;font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
-.page{width:794px;padding:48px 56px;background:#fff}
-.avoid-break{page-break-inside:avoid;break-inside:avoid}
-</style>
-</head>
-<body>
-<div class="page">
+<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'DM Sans',system-ui,sans-serif;background:#fff;color:#1a1a1a;-webkit-font-smoothing:antialiased}.page{width:794px;padding:48px 56px;background:#fff}.ab{page-break-inside:avoid;break-inside:avoid}</style>
+</head><body><div class="page">
 
-  <!-- HEADER -->
-  <div class="avoid-break" style="display:flex;align-items:center;justify-content:space-between;padding-bottom:20px;border-bottom:2.5px solid #6b4fa8;margin-bottom:32px">
-    <div style="display:flex;align-items:center;gap:14px">
-      <div style="width:36px;height:36px;border-radius:50%;background:#6b4fa8;display:flex;align-items:center;justify-content:center">
-        <span style="font-family:'Instrument Serif',Georgia,serif;font-size:18px;font-weight:700;color:#fff">S</span>
-      </div>
-      <div>
-        <div style="font-family:'DM Mono',monospace;font-size:16px;letter-spacing:.08em;font-weight:500;color:#1a1a1a">SIGNAL<span style="color:#6b4fa8">.</span></div>
-        <div style="font-family:'DM Mono',monospace;font-size:10px;color:#aaa;letter-spacing:.04em">Diagnóstico de visibilidad digital</div>
-      </div>
-    </div>
-    <div style="text-align:right">
-      <div style="font-family:'DM Mono',monospace;font-size:10px;color:#aaa;letter-spacing:.04em">${today}</div>
-      <div style="font-family:'DM Mono',monospace;font-size:10px;color:#aaa;letter-spacing:.04em;margin-top:2px">getsignalatam.lat</div>
-    </div>
+<div class="ab" style="display:flex;align-items:center;justify-content:space-between;padding-bottom:20px;border-bottom:2.5px solid #6b4fa8;margin-bottom:32px">
+  <div style="display:flex;align-items:center;gap:14px">
+    <div style="width:36px;height:36px;border-radius:50%;background:#6b4fa8;display:flex;align-items:center;justify-content:center"><span style="font-family:'Instrument Serif',Georgia,serif;font-size:18px;font-weight:700;color:#fff">S</span></div>
+    <div><div style="font-family:'DM Mono',monospace;font-size:16px;letter-spacing:.08em;font-weight:500">SIGNAL<span style="color:#6b4fa8">.</span></div><div style="font-family:'DM Mono',monospace;font-size:10px;color:#aaa;letter-spacing:.04em">Diagnóstico de visibilidad digital</div></div>
   </div>
-
-  <!-- SCORE BLOCK -->
-  <div class="avoid-break" style="background:#fafaf8;border:1px solid #e2e2de;border-radius:12px;padding:28px;margin-bottom:20px;position:relative;overflow:hidden">
-    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,${scoreColor},${scoreColor}44,transparent)"></div>
-    <div style="display:flex;gap:28px;align-items:flex-start;margin-bottom:20px">
-      <div style="flex-shrink:0;text-align:center;padding-top:4px;min-width:90px">
-        <div style="font-family:'Instrument Serif',Georgia,serif;font-size:72px;font-weight:700;line-height:.9;color:${scoreColor};letter-spacing:-.04em">${score}</div>
-        <div style="font-family:'DM Mono',monospace;font-size:12px;color:#aaa;margin-top:4px">/100</div>
-      </div>
-      <div style="flex:1;padding-top:8px">
-        <div style="display:inline-block;font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border-radius:100px;border:1.5px solid ${scoreColor};background:${statusBg};color:${scoreColor};margin-bottom:10px">${status}</div>
-        <div style="font-family:'Instrument Serif',Georgia,serif;font-size:20px;font-weight:600;line-height:1.25;color:#1a1a1a;margin-bottom:8px">${headline}</div>
-        <div style="font-size:13px;color:#666;font-weight:300;line-height:1.6">${insight}</div>
-      </div>
-    </div>
-    ${cpNum ? `<div style="display:flex;gap:14px;padding:14px 16px;background:rgba(163,45,45,.05);border:1px solid rgba(163,45,45,.18);border-radius:8px;margin-bottom:16px;align-items:flex-start">
-      <span style="font-size:20px;flex-shrink:0">📉</span>
-      <div>
-        <div style="font-family:'Instrument Serif',Georgia,serif;font-size:17px;font-weight:600;color:#a32d2d;margin-bottom:3px">${cpNum}</div>
-        <div style="font-size:12.5px;color:#555;font-weight:300">búsquedas mensuales que van a tu competencia en lugar de a vos.</div>
-      </div>
-    </div>` : ''}
-    <div style="display:flex;border:1px solid #e2e2de;border-radius:8px;overflow:hidden;margin-bottom:16px">
-      <div style="flex:1;padding:12px 16px;background:#fff"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#bbb;margin-bottom:4px">Potencial de mejora</div><div style="font-size:13px;font-weight:500;color:#1a7a4a">${pot}</div></div>
-      <div style="width:1px;background:#e2e2de"></div>
-      <div style="flex:1;padding:12px 16px;background:#fff"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#bbb;margin-bottom:4px">Tiempo estimado</div><div style="font-size:13px;font-weight:500;color:#1a7a4a">${tiempo}</div></div>
-      <div style="width:1px;background:#e2e2de"></div>
-      <div style="flex:1;padding:12px 16px;background:#fff"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#bbb;margin-bottom:4px">Acciones clave</div><div style="font-size:13px;font-weight:500;color:#1a7a4a">${acc}</div></div>
-    </div>
-    <div style="display:flex;gap:12px;padding:14px 16px;background:#f0faf4;border:1px solid rgba(26,122,74,.2);border-radius:8px;align-items:flex-start">
-      <div style="width:30px;height:30px;border-radius:7px;background:rgba(26,122,74,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;margin-top:1px">↑</div>
-      <div style="font-size:13px;color:#1a1a1a;line-height:1.6;font-weight:300">${pred}</div>
-    </div>
-  </div>
-
-  <!-- ACCIONES -->
-  <div style="margin-bottom:20px">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
-      <div style="font-size:13px;font-weight:600;color:#1a1a1a;letter-spacing:-.01em">Lo que tenés que hacer</div>
-      <div style="font-family:'DM Mono',monospace;font-size:10px;color:#bbb;letter-spacing:.04em">${allActions.length} acciones</div>
-    </div>
-    <div style="background:#fff;border:1px solid #e2e2de;border-radius:10px;padding:4px 20px 0">
-      ${actionsHTML}
-    </div>
-  </div>
-
-  <!-- QUICK WIN -->
-  <div class="avoid-break" style="background:#fff;border:1px solid #e2d99a;border-radius:10px;overflow:hidden;margin-bottom:14px">
-    <div style="padding:11px 18px;border-bottom:1px solid #f0ead0;background:#fffdf0;display:flex;align-items:center;gap:8px">
-      <div style="width:6px;height:6px;border-radius:50%;background:#b8860b;flex-shrink:0"></div>
-      <span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#7a5c0a;font-weight:500">Quick win — Aplicá esto hoy</span>
-    </div>
-    <div style="margin:14px;padding:13px 16px;font-size:13.5px;color:#1a1a1a;line-height:1.65;font-weight:300;border-left:3px solid #d4a017;background:#fffdf5;border-radius:6px">${qw}</div>
-  </div>
-
-  <!-- POSICIONAMIENTO AGRESIVO -->
-  <div class="avoid-break" style="background:#fff;border:1px solid #f0d0d0;border-radius:10px;overflow:hidden;margin-bottom:20px">
-    <div style="padding:11px 18px;border-bottom:1px solid #f5e8e8;background:#fff8f8;display:flex;align-items:center;gap:8px">
-      <div style="width:6px;height:6px;border-radius:50%;background:#a32d2d;flex-shrink:0"></div>
-      <span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#a32d2d;font-weight:500">Posicionamiento agresivo</span>
-    </div>
-    <div style="padding:16px 18px">
-      <div style="display:grid;grid-template-columns:70px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid #f5e8e8">
-        <span style="font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;color:#bbb;padding-top:2px">Título</span>
-        <p style="font-size:13.5px;color:#1a1a1a;line-height:1.5;font-weight:300">${aggT}</p>
-      </div>
-      <div style="display:grid;grid-template-columns:70px 1fr;gap:12px;padding:10px 0">
-        <span style="font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;color:#bbb;padding-top:2px">Meta</span>
-        <p style="font-size:13.5px;color:#555;line-height:1.5;font-weight:300">${aggM}</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- DIVIDER -->
-  <div style="display:flex;align-items:center;gap:14px;margin:28px 0 20px">
-    <div style="flex:1;height:1px;background:#e8e8e4"></div>
-    <span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#bbb;white-space:nowrap">Contenido listo para usar</span>
-    <div style="flex:1;height:1px;background:#e8e8e4"></div>
-  </div>
-
-  <!-- CONTENIDO CARDS -->
-  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
-    <div class="avoid-break" style="background:#fff;border:1px solid #e2e2de;border-radius:10px;overflow:hidden">
-      <div style="padding:10px 18px;border-bottom:1px solid #f0f0ec;display:flex;align-items:center;gap:8px"><div style="width:6px;height:6px;border-radius:50%;background:#6b4fa8"></div><span style="font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;color:#888;letter-spacing:.08em">Título SEO</span></div>
-      <div style="padding:16px 18px;font-family:'Instrument Serif',Georgia,serif;font-size:20px;font-weight:600;line-height:1.3;letter-spacing:-.01em;color:#1a1a1a">${seoT}</div>
-    </div>
-    <div class="avoid-break" style="background:#fff;border:1px solid #e2e2de;border-radius:10px;overflow:hidden">
-      <div style="padding:10px 18px;border-bottom:1px solid #f0f0ec;display:flex;align-items:center;gap:8px"><div style="width:6px;height:6px;border-radius:50%;background:#6b4fa8"></div><span style="font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;color:#888;letter-spacing:.08em">Meta descripción</span></div>
-      <div style="padding:16px 18px;font-size:13.5px;color:#555;line-height:1.65;font-weight:300">${metaD}</div>
-    </div>
-    <div class="avoid-break" style="background:#fff;border:1px solid #e2e2de;border-radius:10px;overflow:hidden">
-      <div style="padding:10px 18px;border-bottom:1px solid #f0f0ec;display:flex;align-items:center;gap:8px"><div style="width:6px;height:6px;border-radius:50%;background:#6b4fa8"></div><span style="font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;color:#888;letter-spacing:.08em">Palabras clave</span></div>
-      <div style="padding:14px 18px;font-family:'DM Mono',monospace;font-size:11.5px;color:#666;line-height:1.8">${kws}</div>
-    </div>
-    <div class="avoid-break" style="background:#fff;border:1px solid #e2e2de;border-radius:10px;overflow:hidden">
-      <div style="padding:10px 18px;border-bottom:1px solid #f0f0ec;display:flex;align-items:center;gap:8px"><div style="width:6px;height:6px;border-radius:50%;background:#1a4a7a"></div><span style="font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;color:#888;letter-spacing:.08em">Párrafo para tu web</span></div>
-      <div style="padding:16px 18px;font-size:13.5px;color:#1a1a1a;line-height:1.7;font-weight:300">${webP}</div>
-    </div>
-    <div class="avoid-break" style="background:#fff;border:1px solid #e2e2de;border-radius:10px;overflow:hidden">
-      <div style="padding:10px 18px;border-bottom:1px solid #f0f0ec;display:flex;align-items:center;gap:8px"><div style="width:6px;height:6px;border-radius:50%;background:#1a7a4a"></div><span style="font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;color:#888;letter-spacing:.08em">Descripción para IA · ChatGPT · Perplexity</span></div>
-      <div style="margin:14px 18px;padding:14px 16px;background:rgba(107,79,168,.04);border-left:3px solid rgba(107,79,168,.3);border-radius:6px;font-size:13.5px;color:#444;line-height:1.75;font-weight:300">${aiD}</div>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <div class="avoid-break" style="border-top:1px solid #e8e8e4;padding-top:18px;display:flex;align-items:center;justify-content:space-between">
-    <span style="font-family:'DM Mono',monospace;font-size:10px;color:#ccc;letter-spacing:.04em">Built by <strong style="color:#999;font-weight:500">KAIRO</strong> · Make it simple — 2026</span>
-    <span style="font-family:'DM Mono',monospace;font-size:10px;color:#ccc;letter-spacing:.04em">getsignalatam.lat</span>
-  </div>
-
+  <div style="text-align:right"><div style="font-family:'DM Mono',monospace;font-size:10px;color:#aaa;letter-spacing:.04em">${today}</div><div style="font-family:'DM Mono',monospace;font-size:10px;color:#aaa;letter-spacing:.04em;margin-top:2px">getsignalatam.lat</div></div>
 </div>
-</body>
-</html>`;
+
+<div class="ab" style="background:#fafaf8;border:1px solid #e2e2de;border-radius:12px;padding:28px;margin-bottom:20px;position:relative;overflow:hidden">
+  <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,${scoreColor},${scoreColor}44,transparent)"></div>
+  <div style="display:flex;gap:28px;align-items:flex-start;margin-bottom:20px">
+    <div style="flex-shrink:0;text-align:center;padding-top:4px;min-width:90px">
+      <div style="font-family:'Instrument Serif',Georgia,serif;font-size:72px;font-weight:700;line-height:.9;color:${scoreColor};letter-spacing:-.04em">${score}</div>
+      <div style="font-family:'DM Mono',monospace;font-size:12px;color:#aaa;margin-top:4px">/100</div>
+    </div>
+    <div style="flex:1;padding-top:8px">
+      <div style="display:inline-block;font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border-radius:100px;border:1.5px solid ${scoreColor};background:${statusBg};color:${scoreColor};margin-bottom:10px">${status}</div>
+      <div style="font-family:'Instrument Serif',Georgia,serif;font-size:20px;font-weight:600;line-height:1.25;color:#1a1a1a;margin-bottom:8px">${headline}</div>
+      <div style="font-size:13px;color:#666;font-weight:300;line-height:1.6">${insight}</div>
+    </div>
+  </div>
+  ${cpNum ? `<div style="display:flex;gap:14px;padding:14px 16px;background:rgba(163,45,45,.05);border:1px solid rgba(163,45,45,.18);border-radius:8px;margin-bottom:16px;align-items:flex-start"><span style="font-size:20px;flex-shrink:0">📉</span><div><div style="font-family:'Instrument Serif',Georgia,serif;font-size:17px;font-weight:600;color:#a32d2d;margin-bottom:3px">${cpNum}</div><div style="font-size:12.5px;color:#555;font-weight:300">búsquedas mensuales que van a tu competencia en lugar de a vos.</div></div></div>` : ''}
+  <div style="display:flex;border:1px solid #e2e2de;border-radius:8px;overflow:hidden;margin-bottom:16px">
+    <div style="flex:1;padding:12px 16px;background:#fff"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#bbb;margin-bottom:4px">Potencial de mejora</div><div style="font-size:13px;font-weight:500;color:#1a7a4a">${pot}</div></div>
+    <div style="width:1px;background:#e2e2de"></div>
+    <div style="flex:1;padding:12px 16px;background:#fff"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#bbb;margin-bottom:4px">Tiempo estimado</div><div style="font-size:13px;font-weight:500;color:#1a7a4a">${tiempo}</div></div>
+    <div style="width:1px;background:#e2e2de"></div>
+    <div style="flex:1;padding:12px 16px;background:#fff"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#bbb;margin-bottom:4px">Acciones clave</div><div style="font-size:13px;font-weight:500;color:#1a7a4a">${acc}</div></div>
+  </div>
+  <div style="display:flex;gap:12px;padding:14px 16px;background:#f0faf4;border:1px solid rgba(26,122,74,.2);border-radius:8px;align-items:flex-start">
+    <div style="width:30px;height:30px;border-radius:7px;background:rgba(26,122,74,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;margin-top:1px">↑</div>
+    <div style="font-size:13px;color:#1a1a1a;line-height:1.6;font-weight:300">${pred}</div>
+  </div>
+</div>
+
+<div style="margin-bottom:20px">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><div style="font-size:13px;font-weight:600;color:#1a1a1a">Lo que tenés que hacer</div><div style="font-family:'DM Mono',monospace;font-size:10px;color:#bbb">${allActions.length} acciones</div></div>
+  <div style="background:#fff;border:1px solid #e2e2de;border-radius:10px;padding:4px 20px 0">${actionsHTML}</div>
+</div>
+
+<div class="ab" style="background:#fff;border:1px solid #e2d99a;border-radius:10px;overflow:hidden;margin-bottom:14px">
+  <div style="padding:11px 18px;border-bottom:1px solid #f0ead0;background:#fffdf0;display:flex;align-items:center;gap:8px"><div style="width:6px;height:6px;border-radius:50%;background:#b8860b"></div><span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#7a5c0a;font-weight:500">Quick win — Aplicá esto hoy</span></div>
+  <div style="margin:14px;padding:13px 16px;font-size:13.5px;color:#1a1a1a;line-height:1.65;font-weight:300;border-left:3px solid #d4a017;background:#fffdf5;border-radius:6px">${qw}</div>
+</div>
+
+<div class="ab" style="background:#fff;border:1px solid #f0d0d0;border-radius:10px;overflow:hidden;margin-bottom:20px">
+  <div style="padding:11px 18px;border-bottom:1px solid #f5e8e8;background:#fff8f8;display:flex;align-items:center;gap:8px"><div style="width:6px;height:6px;border-radius:50%;background:#a32d2d"></div><span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#a32d2d;font-weight:500">Posicionamiento agresivo</span></div>
+  <div style="padding:16px 18px">
+    <div style="display:grid;grid-template-columns:70px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid #f5e8e8"><span style="font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;color:#bbb;padding-top:2px">Título</span><p style="font-size:13.5px;color:#1a1a1a;line-height:1.5;font-weight:300">${aggT}</p></div>
+    <div style="display:grid;grid-template-columns:70px 1fr;gap:12px;padding:10px 0"><span style="font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;color:#bbb;padding-top:2px">Meta</span><p style="font-size:13.5px;color:#555;line-height:1.5;font-weight:300">${aggM}</p></div>
+  </div>
+</div>
+
+<div style="display:flex;align-items:center;gap:14px;margin:28px 0 20px"><div style="flex:1;height:1px;background:#e8e8e4"></div><span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#bbb;white-space:nowrap">Contenido listo para usar</span><div style="flex:1;height:1px;background:#e8e8e4"></div></div>
+
+<div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+  <div class="ab" style="background:#fff;border:1px solid #e2e2de;border-radius:10px;overflow:hidden">
+    <div style="padding:10px 18px;border-bottom:1px solid #f0f0ec;display:flex;align-items:center;gap:8px"><div style="width:6px;height:6px;border-radius:50%;background:#6b4fa8"></div><span style="font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;color:#888;letter-spacing:.08em">Título SEO</span></div>
+    <div style="padding:16px 18px;font-family:'Instrument Serif',Georgia,serif;font-size:20px;font-weight:600;line-height:1.3;color:#1a1a1a">${seoT}</div>
+  </div>
+  <div class="ab" style="background:#fff;border:1px solid #e2e2de;border-radius:10px;overflow:hidden">
+    <div style="padding:10px 18px;border-bottom:1px solid #f0f0ec;display:flex;align-items:center;gap:8px"><div style="width:6px;height:6px;border-radius:50%;background:#6b4fa8"></div><span style="font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;color:#888;letter-spacing:.08em">Meta descripción</span></div>
+    <div style="padding:16px 18px;font-size:13.5px;color:#555;line-height:1.65;font-weight:300">${metaD}</div>
+  </div>
+  <div class="ab" style="background:#fff;border:1px solid #e2e2de;border-radius:10px;overflow:hidden">
+    <div style="padding:10px 18px;border-bottom:1px solid #f0f0ec;display:flex;align-items:center;gap:8px"><div style="width:6px;height:6px;border-radius:50%;background:#6b4fa8"></div><span style="font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;color:#888;letter-spacing:.08em">Palabras clave</span></div>
+    <div style="padding:14px 18px;font-family:'DM Mono',monospace;font-size:11.5px;color:#666;line-height:1.8">${kws}</div>
+  </div>
+  <div class="ab" style="background:#fff;border:1px solid #e2e2de;border-radius:10px;overflow:hidden">
+    <div style="padding:10px 18px;border-bottom:1px solid #f0f0ec;display:flex;align-items:center;gap:8px"><div style="width:6px;height:6px;border-radius:50%;background:#1a4a7a"></div><span style="font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;color:#888;letter-spacing:.08em">Párrafo para tu web</span></div>
+    <div style="padding:16px 18px;font-size:13.5px;color:#1a1a1a;line-height:1.7;font-weight:300">${webP}</div>
+  </div>
+  <div class="ab" style="background:#fff;border:1px solid #e2e2de;border-radius:10px;overflow:hidden">
+    <div style="padding:10px 18px;border-bottom:1px solid #f0f0ec;display:flex;align-items:center;gap:8px"><div style="width:6px;height:6px;border-radius:50%;background:#1a7a4a"></div><span style="font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;color:#888;letter-spacing:.08em">Descripción para IA · ChatGPT · Perplexity</span></div>
+    <div style="margin:14px 18px;padding:14px 16px;background:rgba(107,79,168,.04);border-left:3px solid rgba(107,79,168,.3);border-radius:6px;font-size:13.5px;color:#444;line-height:1.75;font-weight:300">${aiD}</div>
+  </div>
+</div>
+
+<div class="ab" style="border-top:1px solid #e8e8e4;padding-top:18px;display:flex;align-items:center;justify-content:space-between">
+  <span style="font-family:'DM Mono',monospace;font-size:10px;color:#ccc;letter-spacing:.04em">Built by <strong style="color:#999;font-weight:500">KAIRO</strong> · Make it simple — 2026</span>
+  <span style="font-family:'DM Mono',monospace;font-size:10px;color:#ccc;letter-spacing:.04em">getsignalatam.lat</span>
+</div>
+
+</div></body></html>`;
 }
 
 async function downloadPDF(btn) {
@@ -1053,26 +994,24 @@ async function downloadPDF(btn) {
     const { jsPDF } = window.jspdf;
     const htmlContent = buildPDFHTML(resultData);
 
+    // Render in hidden iframe at fixed 794px width
     const iframe = document.createElement('iframe');
-    iframe.style.cssText = 'position:fixed;left:-9999px;top:0;width:794px;height:1px;border:none;visibility:hidden';
+    iframe.style.cssText = 'position:fixed;left:-9999px;top:0;width:794px;height:2000px;border:none;visibility:hidden';
     document.body.appendChild(iframe);
     iframe.contentDocument.open();
     iframe.contentDocument.write(htmlContent);
     iframe.contentDocument.close();
 
-    // Wait for fonts
-    await new Promise(r => setTimeout(r, 2000));
+    // Wait for fonts to load
+    await new Promise(r => setTimeout(r, 2200));
 
-    const pageEl = iframe.contentDocument.querySelector('.page');
+    const iDoc = iframe.contentDocument;
+    const pageEl = iDoc.querySelector('.page');
     const totalH = pageEl.scrollHeight;
     iframe.style.height = totalH + 'px';
-    await new Promise(r => setTimeout(r, 300));
+    await new Promise(r => setTimeout(r, 200));
 
-    // Find all avoid-break elements and their positions
-    const avoidBreaks = Array.from(iframe.contentDocument.querySelectorAll('.avoid-break'));
-    const pageRect = pageEl.getBoundingClientRect();
-
-    // Render full canvas
+    // Capture full canvas
     const canvas = await html2canvas(pageEl, {
       scale: 2,
       useCORS: true,
@@ -1080,81 +1019,61 @@ async function downloadPDF(btn) {
       logging: false,
       width: 794,
       windowWidth: 794,
+      scrollY: 0,
+    });
+
+    // Get positions of all .ab elements using offsetTop (relative to document, not viewport)
+    const blocks = Array.from(iDoc.querySelectorAll('.ab')).map(el => {
+      let top = 0, node = el;
+      while (node && node !== iDoc.body) { top += node.offsetTop || 0; node = node.offsetParent; }
+      const h = el.offsetHeight;
+      return { top: top * 2, bottom: (top + h) * 2 }; // *2 for canvas scale
     });
 
     document.body.removeChild(iframe);
 
     const pdf = new jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait' });
-    const pageW = pdf.internal.pageSize.getWidth();   // 210mm
-    const pageH = pdf.internal.pageSize.getHeight();  // 297mm
+    const pageW = pdf.internal.pageSize.getWidth();
+    const pageH = pdf.internal.pageSize.getHeight();
     const margin = 10;
     const usableW = pageW - margin * 2;
     const usableH = pageH - margin * 2;
+    const pxPerMm = canvas.width / usableW;
+    const pageHpx = usableH * pxPerMm;
 
-    // px per mm ratio
-    const scale = 2; // canvas scale
-    const pxPerMm = (canvas.width / scale) / usableW; // px per mm in original doc
-    const pageHpx = usableH * pxPerMm * scale; // page height in canvas px
-
-    // Build list of "safe cut points" — gaps between avoid-break elements
-    // We'll find positions of each avoid-break block in the full canvas
-    const blockPositions = avoidBreaks.map(el => {
-      const rect = el.getBoundingClientRect();
-      // rect is relative to viewport; pageEl starts at pageRect.top
-      const relTop = rect.top - pageRect.top;
-      const relBottom = rect.bottom - pageRect.top;
-      return { top: relTop * scale * 2, bottom: relBottom * scale * 2 }; // *2 for scale
-    });
-
-    // Generate pages with smart cuts
     let srcY = 0;
     let firstPage = true;
-    const totalCanvasH = canvas.height;
 
-    while (srcY < totalCanvasH) {
+    while (srcY < canvas.height) {
       if (!firstPage) pdf.addPage();
       firstPage = false;
 
-      let cutY = srcY + pageHpx;
+      let cutY = Math.min(srcY + pageHpx, canvas.height);
 
-      if (cutY < totalCanvasH) {
-        // Find a safe cut point: after a block ends, before the next starts
-        // Look for a block that starts within the last 20% of this page slice
-        const safeZoneStart = srcY + pageHpx * 0.75;
-        let bestCut = cutY;
-
-        for (const block of blockPositions) {
-          // If a block straddles our cut point, move cut before it starts
+      if (cutY < canvas.height) {
+        // Check if any block straddles the cut — if so, move cut before that block
+        for (const block of blocks) {
           if (block.top < cutY && block.bottom > cutY) {
-            // block crosses the cut — move cut to before this block
-            const candidateCut = block.top - 10; // 10px gap
-            if (candidateCut > srcY + pageHpx * 0.4) {
-              bestCut = candidateCut;
+            const candidate = block.top - 8;
+            if (candidate > srcY + pageHpx * 0.3) {
+              cutY = candidate;
             }
             break;
           }
-          // If block ends in safe zone, cut after it
-          if (block.bottom >= safeZoneStart && block.bottom < cutY) {
-            bestCut = block.bottom + 10;
-          }
         }
-        cutY = Math.min(bestCut, totalCanvasH);
-      } else {
-        cutY = totalCanvasH;
       }
 
       const sliceHpx = cutY - srcY;
-      const sliceMM = (sliceHpx / scale) / pxPerMm;
+      const sliceMM = sliceHpx / pxPerMm;
 
-      const sliceCanvas = document.createElement('canvas');
-      sliceCanvas.width = canvas.width;
-      sliceCanvas.height = Math.ceil(sliceHpx);
-      const ctx = sliceCanvas.getContext('2d');
+      const sc = document.createElement('canvas');
+      sc.width = canvas.width;
+      sc.height = Math.ceil(sliceHpx);
+      const ctx = sc.getContext('2d');
       ctx.fillStyle = '#ffffff';
-      ctx.fillRect(0, 0, sliceCanvas.width, sliceCanvas.height);
-      ctx.drawImage(canvas, 0, srcY, canvas.width, sliceCanvas.height, 0, 0, canvas.width, sliceCanvas.height);
-
-      pdf.addImage(sliceCanvas.toDataURL('image/jpeg', 0.93), 'JPEG', margin, margin, usableW, sliceMM);
+      ctx.fillRect(0, 0, sc.width, sc.height);
+      ctx.drawImage(canvas, 0, srcY, canvas.width, sc.height, 0, 0, canvas.width, sc.height);
+      pdf.addImage(sc.toDataURL('image/jpeg', 0.93), 'JPEG', margin, margin, usableW, sliceMM);
 
       srcY = cutY;
     }
