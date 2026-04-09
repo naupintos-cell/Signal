@@ -4,38 +4,29 @@ const MP_TOKEN = isProd
   ? process.env.MP_ACCESS_TOKEN_PROD
   : process.env.MP_ACCESS_TOKEN_TEST;
 
-// Precios base en USD por plan
+// Precios fijos en ARS
+// (temporalmente en 100 para prueba de sandbox — subir a producción antes de lanzar)
 const PLANS = {
   starter: {
     id:          'signal-starter',
     title:       'Signal Starter — Diagnóstico completo de visibilidad',
     description: 'Signal Report, meta title + descripción SEO, párrafo para IA, checklist Maps y plan 7 días',
-    usd:         29,
+    ars:         100, // TODO: cambiar a 29900 antes de producción
   },
   pro: {
     id:          'signal-pro',
     title:       'Signal Pro — Sistema completo de visibilidad',
     description: 'Todo Starter + análisis vs competidores, contenido 3 páginas, keywords local, re-diagnóstico 30 días y soporte email',
-    usd:         79,
+    ars:         100, // TODO: cambiar a 79900 antes de producción
   },
   agency: {
     id:          'signal-agency',
     title:       'Signal Agency — Suscripción mensual hasta 10 negocios',
     description: 'Todo Pro por negocio + panel multi-cliente, reportes PDF con marca y actualizaciones mensuales',
-    usd:         49,
+    ars:         100, // TODO: cambiar a 49900 antes de producción
     recurring:   true,
   },
 };
-
-async function getOfficialRate() {
-  try {
-    const res  = await fetch('https://api.bluelytics.com.ar/v2/latest');
-    const data = await res.json();
-    return data?.oficial?.value_sell || 1420;
-  } catch {
-    return 1420; // fallback oficial BNA
-  }
-}
 
 export async function checkout(req, res) {
   const { reportId, email, plan: planKey = 'pro' } = req.body;
@@ -50,9 +41,7 @@ export async function checkout(req, res) {
   const baseUrl = process.env.APP_URL || 'https://getsignalatam.lat';
 
   try {
-    // Obtener tipo de cambio oficial del día
-    const rate      = await getOfficialRate();
-    const unitPrice = Math.round(plan.usd * rate / 100) * 100; // redondeo a $100 ARS
+    const unitPrice = plan.ars;
 
     const preference = {
       items: [
@@ -79,12 +68,9 @@ export async function checkout(req, res) {
         installments:           1,
       },
       expires: false,
-      // Metadata útil para reconciliación
       metadata: {
         plan:      planKey,
-        usd_price: plan.usd,
         ars_price: unitPrice,
-        usd_rate:  rate,
         report_id: reportId || null,
       },
     };
@@ -110,8 +96,6 @@ export async function checkout(req, res) {
       id:       data.id,
       plan:     planKey,
       arsPrice: unitPrice,
-      usdPrice: plan.usd,
-      rate,
     });
 
   } catch (err) {
