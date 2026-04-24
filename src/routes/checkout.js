@@ -4,34 +4,36 @@ const MP_TOKEN = isProd
   ? process.env.MP_ACCESS_TOKEN_PROD
   : process.env.MP_ACCESS_TOKEN_TEST;
 
-// Precios fijos en ARS
-// (temporalmente en 100 para prueba de sandbox — subir a producción antes de lanzar)
+// Precios base en USD — ARS calculado dinámicamente desde el frontend
+// Pro: USD 97 pago único · Agency: USD 79/mes recurrente
 const PLANS = {
-  starter: {
-    id:          'signal-starter',
-    title:       'Signal Starter — Diagnóstico completo de visibilidad',
-    description: 'Signal Report, meta title + descripción SEO, párrafo para IA, checklist Maps y plan 7 días',
-    ars:         100, // TODO: cambiar a 29900 antes de producción
-  },
   pro: {
     id:          'signal-pro',
     title:       'Signal Pro — Sistema completo de visibilidad',
-    description: 'Todo Starter + análisis vs competidores, contenido 3 páginas, keywords local, re-diagnóstico 30 días y soporte email',
-    ars:         100, // TODO: cambiar a 79900 antes de producción
+    description: 'Título SEO, meta descripción, párrafo para IA, análisis vs competidores, checklist Maps, plan 7 días, re-diagnóstico 30 días y soporte email',
+    usd:         97,
+    arsDefault:  137700, // fallback si el cliente no envía clientArsPrice
   },
   agency: {
     id:          'signal-agency',
     title:       'Signal Agency — Suscripción mensual hasta 10 negocios',
-    description: 'Todo Pro por negocio + panel multi-cliente, reportes PDF con marca y actualizaciones mensuales',
-    ars:         100, // TODO: cambiar a 49900 antes de producción
+    description: 'Todo Pro por negocio + panel multi-cliente, reportes PDF con tu marca y actualizaciones mensuales',
+    usd:         79,
+    arsDefault:  112000, // fallback si el cliente no envía clientArsPrice
     recurring:   true,
   },
 };
 
 export async function checkout(req, res) {
-  const { reportId, email, plan: planKey = 'pro' } = req.body;
+  // clientArsPrice: precio calculado en el frontend con el tipo de cambio oficial del día
+  const { reportId, email, plan: planKey = 'pro', clientArsPrice } = req.body;
 
   const plan = PLANS[planKey] || PLANS.pro;
+
+  // Usar precio del frontend si es un número válido, si no usar fallback
+  const arsPrice = (clientArsPrice && Number.isFinite(Number(clientArsPrice)) && Number(clientArsPrice) > 1000)
+    ? Math.round(Number(clientArsPrice))
+    : plan.arsDefault;
 
   if (!MP_TOKEN) {
     console.error(`Missing ${isProd ? 'MP_ACCESS_TOKEN_PROD' : 'MP_ACCESS_TOKEN_TEST'}`);
@@ -41,7 +43,7 @@ export async function checkout(req, res) {
   const baseUrl = process.env.APP_URL || 'https://getsignalatam.lat';
 
   try {
-    const unitPrice = plan.ars;
+    const unitPrice = isProd ? arsPrice : 100; // sandbox siempre usa 100
 
     const preference = {
       items: [
