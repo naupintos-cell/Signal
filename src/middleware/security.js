@@ -41,7 +41,7 @@ export function validateGenerateInput(req, res, next) {
 
   const clean = (s) => String(s).replace(/[\u0000-\u001F<>]/g, '').trim();
   req.body = {
-    model:      model || 'claude-sonnet-4-5',
+    model:      model || 'claude-sonnet-4-6',
     max_tokens: Math.min(parseInt(max_tokens) || 1600, 2048),
     system:     system ? clean(system) : undefined,
     messages:   messages.map(m => ({
