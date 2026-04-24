@@ -205,6 +205,10 @@ nav{position:sticky;top:0;z-index:100;background:rgba(242,242,240,.96);backdrop-
 .btn-pricing-primary:hover{background:var(--accent-hover);transform:translateY(-1px)}
 .guarantee-note{text-align:center;font-family:var(--mono);font-size:10px;color:var(--dim);margin-top:10px;letter-spacing:.03em}
 
+/* PAYMENT PILLS */
+.payment-pills{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px;flex-wrap:wrap}
+.payment-pill{display:inline-flex;align-items:center;gap:4px;font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.04em;padding:3px 9px;border-radius:100px;border:1px solid var(--border2);color:var(--muted);background:var(--surface2)}
+
 /* FAQ */
 .faq-section{padding:88px 5%;background:var(--surface);max-width:100%}
 .faq-inner{max-width:1120px;margin:0 auto}
@@ -275,8 +279,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- 1. URGENCY -->
 <div class="urgency-bar" id="urgencyBar">
-  <span>🔒 Precio de lanzamiento: <strong id="urgencyPrice">desde $41.200 ARS</strong></span>
-  <span id="urgencyMsg">— precios al tipo de cambio del día</span>
+  <span>🔒 Diagnóstico gratis · Plan completo desde <strong id="urgencyPrice">USD 97</strong> · 🇦🇷 Mercado Pago · 🌎 USDT</span><span id="urgencyMsg"></span>
 </div>
 
 <!-- 2. NAV -->
@@ -327,7 +330,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="score-lock">
         <div class="lock-text"><strong>Ya lo escribimos por vos</strong>Título SEO, Maps y texto para IA — listo</div>
-        <div><div class="lock-price-old" id="heroAgencyPrice">$300.000+ en agencia</div><div class="lock-price" id="heroProPrice">desde $41.200</div></div>
+        <div><div class="lock-price-old" id="heroAgencyPrice">$300.000+ en agencia</div><div class="lock-price" id="heroProPrice">USD 97 · pago único</div></div>
       </div>
     </div>
     <div class="floating-badge">✓ Implementable en 1 hora</div>
@@ -348,7 +351,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </div>
 
-<!-- 5. POR QUÉ EXISTE SIGNAL — antes de stats para construir confianza temprano -->
+<!-- 5. POR QUÉ EXISTE SIGNAL -->
 <div class="origin-section">
   <div class="origin-inner">
     <div>
@@ -382,7 +385,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="origin-stat-num">$300k</div>
         <div class="origin-stat-body">
           <div class="origin-stat-title">cobra una agencia por lo mismo</div>
-          <div class="origin-stat-desc">Signal lo hace en 30 segundos, desde $41.200 ARS, con el contenido listo para copiar.</div>
+          <div class="origin-stat-desc">Signal lo hace en 30 segundos, desde USD 97 pago único, con el contenido listo para copiar.</div>
         </div>
       </div>
       <div class="origin-stat reveal reveal-delay-2">
@@ -401,7 +404,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="stats-inner">
     <div class="stat-item reveal"><span class="stat-num">1.<em>847</em></span><span class="stat-label">Negocios LATAM<br>analizados en 30 días</span></div>
     <div class="stat-item reveal reveal-delay-1"><span class="stat-num"><em>78</em>%</span><span class="stat-label">Fallan en al menos 3<br>canales de visibilidad</span></div>
-    <div class="stat-item reveal reveal-delay-2"><span class="stat-num"><em>$24.9k</em></span><span class="stat-label">vs. $300k+ de una<br>auditoría en agencia</span></div>
+    <div class="stat-item reveal reveal-delay-2"><span class="stat-num"><em>USD 97</em></span><span class="stat-label">vs. $300k+ de una<br>auditoría en agencia</span></div>
     <div class="stat-item reveal reveal-delay-3"><span class="stat-num"><em>30</em>s</span><span class="stat-label">Para tener tu diagnóstico<br>completo y listo</span></div>
   </div>
 </div>
@@ -426,11 +429,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </button>
 </div>
 
-<!-- 8. DEMO INTERACTIVO — rediseñado -->
+<!-- 8. DEMO INTERACTIVO -->
 <div style="padding:88px 5%;background:var(--bg)" id="demo-section">
   <div style="max-width:1120px;margin:0 auto">
-
-    <!-- HEADER CENTRADO -->
     <div style="text-align:center;margin-bottom:48px">
       <div class="section-label" style="text-align:center;margin-bottom:14px">Demo interactivo</div>
       <h2 class="section-title" style="text-align:center">Probá el diagnóstico <em>ahora mismo</em></h2>
@@ -438,12 +439,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start">
-
-    <!-- IZQUIERDA: DEMO FRAME -->
     <div style="position:sticky;top:80px">
       <div id="demoFrame" style="background:var(--surface);border-radius:var(--radius-lg);border:1px solid var(--border2);overflow:hidden;box-shadow:var(--shadow-lg)">
-
-        <!-- TOPBAR -->
         <div style="background:var(--surface2);border-bottom:1px solid var(--border2);padding:9px 14px;display:flex;align-items:center;gap:8px">
           <div style="display:flex;gap:5px">
             <div style="width:9px;height:9px;border-radius:50%;background:#ff5f57"></div>
@@ -453,8 +450,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div style="flex:1;background:var(--bg);border:1px solid var(--border2);border-radius:5px;padding:3px 10px;font-family:var(--mono);font-size:9px;color:var(--muted);text-align:center;margin:0 10px">getsignalapp.lat</div>
           <span style="font-family:var(--mono);font-size:8px;letter-spacing:.04em;color:var(--accent);background:var(--accent-dim);border-radius:100px;padding:2px 8px;white-space:nowrap">demo</span>
         </div>
-
-        <!-- STEP BAR -->
         <div id="dSB" style="display:flex;align-items:center;padding:11px 16px;background:var(--surface2);border-bottom:1px solid var(--border2);gap:0">
           <div class="dsi active" id="dsi1" style="display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:9px;letter-spacing:.03em;color:var(--accent);white-space:nowrap"><div class="dsc" style="width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:500;flex-shrink:0;background:var(--accent);border:1px solid var(--accent);color:#fff">1</div><span>Datos</span></div>
           <div class="dsl" id="dsl1" style="flex:1;height:1px;background:var(--border2);margin:0 5px;min-width:4px"></div>
@@ -558,7 +553,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <button onclick="dGoForm()" style="display:block;width:100%;background:none;color:var(--muted);font-family:var(--sans);font-size:12px;padding:7px;border:none;cursor:pointer">← Probar con otro negocio</button>
         </div>
 
-        <!-- SC4: FULL RESULT — con textos reales para copiar -->
+        <!-- SC4: FULL RESULT -->
         <div id="dsc4" style="display:none;padding:22px 20px;animation:dFade .3s ease">
           <div style="background:var(--accent);color:#fff;border-radius:var(--radius);padding:12px 14px;margin-bottom:12px">
             <div style="font-family:var(--mono);font-size:8px;letter-spacing:.08em;text-transform:uppercase;opacity:.65;margin-bottom:3px">Plan completo desbloqueado</div>
@@ -582,7 +577,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <button onclick="scrollToForm()" style="display:block;width:100%;background:var(--green);color:#fff;font-family:var(--sans);font-size:13px;font-weight:500;padding:11px 16px;border-radius:var(--radius);border:none;cursor:pointer;margin-bottom:6px">Analizar mi negocio real →</button>
           <button onclick="dGoResult()" style="display:block;width:100%;background:none;color:var(--muted);font-family:var(--sans);font-size:12px;padding:7px;border:none;cursor:pointer">← Ver resultado gratuito</button>
         </div>
-
       </div>
     </div>
 
@@ -604,8 +598,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div style="width:40px;height:40px;border-radius:8px;flex-shrink:0;background:var(--accent-dim);border:1px solid var(--accent-border);display:flex;align-items:center;justify-content:center;font-size:18px">💰</div>
         <div><div style="font-size:15px;font-weight:500;color:var(--ink);margin-bottom:4px">Garantía de devolución de 30 días</div><div style="font-size:13px;color:var(--muted);line-height:1.6;font-weight:300">Si no encontrás al menos 3 mejoras accionables, te devolvemos el pago. Sin preguntas.</div></div>
       </div>
-
-      <!-- CTA CARD -->
       <div style="background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:24px;text-align:center;box-shadow:var(--shadow)">
         <p style="font-family:var(--serif);font-size:18px;font-weight:600;color:var(--ink);margin-bottom:6px;letter-spacing:-.01em">Probaste la demo — ahora analizá tu negocio real</p>
         <p style="font-size:13px;color:var(--muted);font-weight:300;margin-bottom:18px;line-height:1.6">El diagnóstico es gratis. En 30 segundos sabés dónde estás perdiendo clientes.</p>
@@ -615,8 +607,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p style="font-family:var(--mono);font-size:10px;color:var(--dim);margin-top:12px;letter-spacing:.04em">Sin registro · Sin tarjeta · 100% gratis para empezar</p>
       </div>
     </div>
-
-    </div><!-- /grid -->
+    </div>
   </div>
 </div>
 
@@ -775,8 +766,6 @@ function dCopy(elId,btnId){
     <h2 class="section-title">Analizá tu negocio <em>gratis</em></h2>
     <p class="section-sub">Sin registro. Sin tarjeta. En 30 segundos sabés dónde estás perdiendo clientes.</p>
     <div class="demo-layout">
-
-      <!-- FORM: 2 campos, sitio web obligatorio -->
       <div class="demo-form">
         <div class="form-group">
           <label class="form-label" for="landingSearch">¿Qué hacés o vendés? <span style="color:var(--accent)">*</span></label>
@@ -792,7 +781,6 @@ function dCopy(elId,btnId){
         </button>
         <p style="text-align:center;font-family:var(--mono);font-size:10px;color:var(--dim);margin-top:12px;letter-spacing:.04em">Sin registro · Resultado inmediato · 100% gratis</p>
       </div>
-
       <div class="demo-promise">
         <div class="promise-item reveal"><div class="promise-icon">🗺️</div><div><div class="promise-title">Google Maps: el canal más perdido</div><div class="promise-body">El 67% de los negocios tienen su ficha incompleta. Signal te dice qué falta y cómo completarlo en minutos.</div></div></div>
         <div class="promise-item reveal reveal-delay-1"><div class="promise-icon">🤖</div><div><div class="promise-title">ChatGPT y Perplexity: el nuevo Google</div><div class="promise-body">Si no tenés el contenido correcto, la IA no sabe que existís. Signal te da el texto exacto para que te recomienden.</div></div></div>
@@ -825,6 +813,8 @@ function dCopy(elId,btnId){
   <h2 class="section-title">Empezá gratis.<br>Pagá solo si vale <em>la pena.</em></h2>
   <p class="section-sub">Primero te mostramos el diagnóstico. Después decidís.</p>
   <div class="pricing-grid">
+
+    <!-- FREE -->
     <div class="pricing-card reveal">
       <div class="pricing-name">Signal Free</div>
       <div class="pricing-price"><span class="pricing-currency">$</span><span class="pricing-amount">0</span></div>
@@ -840,12 +830,14 @@ function dCopy(elId,btnId){
       </ul>
       <button class="btn-pricing-outline" onclick="scrollToForm()">Analizar gratis →</button>
     </div>
+
+    <!-- PRO — FEATURED -->
     <div class="pricing-card featured reveal reveal-delay-1">
       <div class="pricing-badge" id="pricingBadge">Más elegido 🇦🇷</div>
       <div class="pricing-name">Signal Pro</div>
       <div class="pricing-old" id="pricingOld">Valor en agencia: $300.000+ ARS</div>
-      <div class="pricing-price"><span class="pricing-currency" id="pricingCurrency">$</span><span class="pricing-amount" id="pricingAmount">112.200</span><span class="pricing-period" id="pricingPeriod">pago único · ARS</span></div>
-      <div class="pricing-usd" id="pricingUSD" style="font-family:var(--mono);font-size:11px;color:var(--dim);margin-bottom:6px;">≈ USD 79 · al cambio oficial</div>
+      <div class="pricing-price"><span class="pricing-currency" id="pricingCurrency">$</span><span class="pricing-amount" id="pricingAmount">137.700</span><span class="pricing-period" id="pricingPeriod">pago único · ARS</span></div>
+      <div class="pricing-usd" id="pricingUSD" style="font-family:var(--mono);font-size:11px;color:var(--dim);margin-bottom:6px;">≈ USD 97 · al cambio oficial</div>
       <div class="pricing-desc">Todo lo que necesitás para aparecer en Google, Maps y en la IA.</div>
       <ul class="pricing-features">
         <li>Todo lo del plan Free</li>
@@ -858,14 +850,19 @@ function dCopy(elId,btnId){
         <li>Re-diagnóstico a los 30 días</li>
         <li>Soporte por email 30 días</li>
       </ul>
-      <button class="btn-pricing-primary" id="pricingBtn" onclick="scrollToForm()">Ver mi plan completo → <span id="pricingBtnPrice">$112.200</span></button>
-      <div class="guarantee-note" id="guaranteeNote">✓ Garantía de devolución 30 días · Sin preguntas · Pago con Mercado Pago</div>
+      <button class="btn-pricing-primary" id="pricingBtn" onclick="scrollToForm()">Ver mi plan completo → <span id="pricingBtnPrice">$137.700</span></button>
+      <div class="guarantee-note" id="guaranteeNote">✓ Garantía 30 días · Sin preguntas · 🇦🇷 Mercado Pago</div>
+      <button onclick="handleUSDTContact('pro')" style="display:flex;align-items:center;justify-content:center;gap:6px;width:100%;margin-top:8px;padding:9px 14px;border-radius:var(--radius);border:1px solid var(--border2);background:var(--surface2);font-family:var(--sans);font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;transition:border-color .18s,color .18s">
+        🌎 Pagar con USDT <span style="font-family:var(--mono);font-size:10px;opacity:.6">(LATAM)</span>
+      </button>
     </div>
+
+    <!-- AGENCY -->
     <div class="pricing-card reveal reveal-delay-2">
       <div class="pricing-name">Signal Agency</div>
-      <div class="pricing-price"><span class="pricing-currency" id="agencyCurrency">$</span><span class="pricing-amount" id="agencyAmount">69.600</span><span class="pricing-period" id="agencyPeriod">/ mes · ARS</span></div>
-      <div class="pricing-usd" id="agencyUSD" style="font-family:var(--mono);font-size:11px;color:var(--dim);margin-bottom:6px;">≈ USD 49/mes · hasta 10 negocios</div>
-      <div class="pricing-desc">Para consultores y agencias que usan Signal con sus clientes.</div>
+      <div class="pricing-price"><span class="pricing-currency" id="agencyCurrency">$</span><span class="pricing-amount" id="agencyAmount">112.000</span><span class="pricing-period" id="agencyPeriod">/ mes · ARS</span></div>
+      <div class="pricing-usd" id="agencyUSD" style="font-family:var(--mono);font-size:11px;color:var(--dim);margin-bottom:6px;">≈ USD 79/mes · hasta 10 negocios</div>
+      <div class="pricing-desc">Para consultores y agencias que usan Signal con sus clientes.<span style="font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:.02em;display:block;margin-top:6px;font-style:italic">Recurrente porque el valor crece cada mes — no es un costo, es infraestructura de captación.</span></div>
       <ul class="pricing-features">
         <li>Todo lo de Pro por negocio</li>
         <li>Hasta 10 negocios por mes</li>
@@ -873,7 +870,10 @@ function dCopy(elId,btnId){
         <li>Reportes en PDF con tu marca</li>
         <li>Actualizaciones mensuales</li>
       </ul>
-      <button class="btn-pricing-outline" id="agencyBtn" onclick="handleAgencyContact()">Contactar para Agency →</button>
+      <button class="btn-pricing-outline" id="agencyBtn" onclick="handleAgencyContact()">🇦🇷 Contactar — Mercado Pago →</button>
+      <button onclick="handleUSDTContact('agency')" style="display:flex;align-items:center;justify-content:center;gap:6px;width:100%;margin-top:8px;padding:9px 14px;border-radius:var(--radius);border:1px solid var(--border2);background:var(--surface2);font-family:var(--sans);font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;transition:border-color .18s,color .18s">
+        🌎 Contactar — USDT <span style="font-family:var(--mono);font-size:10px;opacity:.6">(LATAM)</span>
+      </button>
       <div class="guarantee-note">Factura disponible · Pago mensual</div>
     </div>
   </div>
@@ -885,12 +885,44 @@ function dCopy(elId,btnId){
     <div class="section-label">Preguntas frecuentes</div>
     <h2 class="section-title">Todo lo que necesitás saber</h2>
     <div class="faq-grid">
-      <div class="faq-item reveal"><div class="faq-q">¿Es realmente gratis para empezar?</div><div class="faq-a">Sí. Tu diagnóstico, score y el primer quick win son 100% gratuitos. Sin registro, sin tarjeta. Solo si querés el plan completo pagás <span id="faqPrice">$112.200 ARS</span> pago único (Signal Pro). El precio es en ARS al tipo de cambio oficial del día.</div></div>
-      <div class="faq-item reveal reveal-delay-1"><div class="faq-q">¿Qué tan confiable es el análisis?</div><div class="faq-a">Signal analiza señales reales — tu presencia en Maps, cómo está estructurada tu web para SEO, y cómo te indexan las herramientas de IA. No son estimaciones genéricas.</div></div>
-      <div class="faq-item reveal"><div class="faq-q">¿Necesito saber de SEO para implementar?</div><div class="faq-a">No. El plan viene en lenguaje simple, con pasos claros y contenido listo para copiar y pegar directamente.</div></div>
-      <div class="faq-item reveal reveal-delay-1"><div class="faq-q">¿En cuánto tiempo veo resultados?</div><div class="faq-a">Las mejoras en Google Maps suelen verse en 2 a 4 semanas. El quick win del plan free es implementable hoy mismo.</div></div>
-      <div class="faq-item reveal"><div class="faq-q">¿Funciona para cualquier negocio?</div><div class="faq-a">Sí. Restaurantes, psicólogos, abogados, contadores, inmobiliarias, clínicas y más — en Argentina, México, Colombia, Perú y Chile.</div></div>
-      <div class="faq-item reveal reveal-delay-1"><div class="faq-q">¿Qué pasa si no estoy satisfecho?</div><div class="faq-a">Garantía de devolución de 30 días sin preguntas. Si no encontrás al menos 3 mejoras accionables, te devolvemos los <span id="faqGuaranteePrice">$112.200</span> completos.</div></div>
+      <div class="faq-item reveal">
+        <div class="faq-q">¿Es realmente gratis para empezar?</div>
+        <div class="faq-a">Sí. Tu diagnóstico, score y el primer quick win son 100% gratuitos. Sin registro, sin tarjeta. Solo si querés el plan completo pagás <span id="faqPrice">$137.700 ARS</span> pago único (Signal Pro).<br><br><strong>🇦🇷 Argentina:</strong> pagás con Mercado Pago en ARS al tipo de cambio oficial del día.<br><strong>🌎 LATAM:</strong> pagás con USDT vía Lemon Cash al equivalente en USD.</div>
+      </div>
+      <div class="faq-item reveal reveal-delay-1">
+        <div class="faq-q">¿Qué tan confiable es el análisis?</div>
+        <div class="faq-a">Signal analiza señales reales — tu presencia en Maps, cómo está estructurada tu web para SEO, y cómo te indexan las herramientas de IA. No son estimaciones genéricas.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">¿Necesito saber de SEO para implementar?</div>
+        <div class="faq-a">No. El plan viene en lenguaje simple, con pasos claros y contenido listo para copiar y pegar directamente.</div>
+      </div>
+      <div class="faq-item reveal reveal-delay-1">
+        <div class="faq-q">¿En cuánto tiempo veo resultados?</div>
+        <div class="faq-a">Las mejoras en Google Maps suelen verse en 2 a 4 semanas. El quick win del plan free es implementable hoy mismo.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">¿Funciona para cualquier negocio?</div>
+        <div class="faq-a">Sí. Restaurantes, psicólogos, abogados, contadores, inmobiliarias, clínicas y más — en Argentina, México, Colombia, Perú y Chile.</div>
+      </div>
+      <div class="faq-item reveal reveal-delay-1">
+        <div class="faq-q">¿Qué pasa si no estoy satisfecho?</div>
+        <div class="faq-a">Garantía de devolución de 30 días sin preguntas. Si no encontrás al menos 3 mejoras accionables, te devolvemos los <span id="faqGuaranteePrice">$137.700</span> completos.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">¿Cómo puedo pagar?</div>
+        <div class="faq-a">Aceptamos dos métodos según tu ubicación:<br><br>
+          <strong>🇦🇷 Argentina — Mercado Pago</strong><br>
+          Pagás en pesos (ARS) al tipo de cambio oficial del día. Tarjeta, débito o saldo en cuenta. Proceso inmediato y automático.<br><br>
+          <strong>🌎 LATAM — USDT (TRC-20)</strong><br>
+          Enviás el monto en USD a esta dirección:<br>
+          <span style="display:block;font-family:var(--mono);font-size:11px;background:var(--surface);border:1px solid var(--border2);border-radius:6px;padding:8px 10px;margin:8px 0;word-break:break-all;color:var(--ink)">TAKobVisVDmrNRhEmvETXRGG9Uq98MXbsM</span>
+          Red: <strong>TRC-20 únicamente</strong>. Una vez enviado, mandanos el comprobante a <a href="mailto:hola@kairoinc.lat" style="color:var(--accent);text-decoration:none">hola@kairoinc.lat</a> y activamos tu plan en menos de 1 hora.</div>
+      </div>
+      <div class="faq-item reveal reveal-delay-1">
+        <div class="faq-q">¿Signal Agency tiene contrato mínimo?</div>
+        <div class="faq-a">No. Es mensual y podés cancelar cuando quieras. Pagás mes a mes — en ARS con Mercado Pago si estás en Argentina, o en USDT vía Lemon Cash si estás en el resto de LATAM. Para USDT coordinamos el pago por mail con la dirección de billetera y monto exacto. Factura disponible.</div>
+      </div>
     </div>
   </div>
 </div>
@@ -900,13 +932,13 @@ function dCopy(elId,btnId){
   <div style="max-width:600px;margin:0 auto">
     <div class="section-label">Empezá ahora</div>
     <h2 class="section-title">Cada día sin aparecer en Google<br>es un cliente que va a <em>tu competencia.</em></h2>
-    <p class="section-sub">El diagnóstico es gratis. El plan vale <span id="finalCtaPrice">desde $41.200 ARS</span>. Los dos en 30 segundos.</p>
+    <p class="section-sub">El diagnóstico es gratis. El plan completo vale <span id="finalCtaPrice">USD 97 · pago único</span>. Los dos en 30 segundos.</p>
     <div class="final-btn-group">
       <button class="btn-primary" style="font-size:16px;padding:15px 44px" onclick="scrollToForm()">
         Ver por qué no aparezco en Google — gratis <span class="btn-arrow">→</span>
       </button>
       <div class="final-guarantee">
-        <span>Sin registro</span><span>30 segundos</span><span>Garantía de devolución</span><span id="finalGuaranteePrice">Signal Pro · Mercado Pago</span>
+        <span>Sin registro</span><span>30 segundos</span><span>Garantía de devolución</span><span id="finalGuaranteePrice">Signal Pro · 🇦🇷 Mercado Pago · 🌎 USDT vía Lemon Cash</span>
       </div>
     </div>
   </div>
@@ -936,7 +968,6 @@ function submitLandingForm() {
   const search  = document.getElementById('landingSearch').value.trim();
   const website = document.getElementById('landingWebsite').value.trim();
 
-  // Validar rubro
   if (!search) {
     const el = document.getElementById('landingSearch');
     el.classList.add('input-error');
@@ -945,7 +976,6 @@ function submitLandingForm() {
     return;
   }
 
-  // Validar sitio web
   if (!website) {
     const el = document.getElementById('landingWebsite');
     el.classList.add('input-error');
@@ -960,18 +990,13 @@ function submitLandingForm() {
     return;
   }
 
-  // Normalizar URL
   let url = website;
   if (!/^https?:\/\//i.test(url)) url = 'https://' + url;
 
-  // Guardar en sessionStorage para que app.html lo lea al cargar
   sessionStorage.setItem('signal_prefill', JSON.stringify({ search, name: '', website: url }));
-
-  // Redirigir a la app
   window.location.href = '/app';
 }
 
-// Enter en cualquier campo también dispara
 ['landingSearch','landingWebsite'].forEach(id => {
   document.getElementById(id).addEventListener('keydown', e => {
     if (e.key === 'Enter') submitLandingForm();
@@ -982,21 +1007,74 @@ function submitLandingForm() {
 <!-- ══ AGENCY CONTACT ══ -->
 <script>
 function handleAgencyContact() {
-  window.location.href = 'mailto:hola@kairoinc.lat?subject=Signal Agency&body=Hola, me interesa Signal Agency para usar con mis clientes.';
+  window.location.href = 'mailto:hola@kairoinc.lat?subject=Signal%20Agency%20%E2%80%94%20Mercado%20Pago&body=Hola%2C%20me%20interesa%20Signal%20Agency.%20Estoy%20en%20Argentina%20y%20quiero%20pagar%20con%20Mercado%20Pago.';
+}
+
+function handleUSDTContact(plan) {
+  var cardId = 'usdt-card-' + plan;
+  var existing = document.getElementById(cardId);
+  if (existing) { existing.remove(); return; }
+
+  var btn = event.currentTarget;
+  var planLabel = plan === 'agency' ? 'Signal Agency' : 'Signal Pro';
+  var usdAmt = plan === 'agency' ? '79 USD/mes' : '97 USD';
+  var emailSubject = planLabel + ' — Comprobante USDT TRC-20';
+  var mailLink = 'mailto:hola@kairoinc.lat?subject=' + encodeURIComponent(emailSubject);
+
+  var card = document.createElement('div');
+  card.id = cardId;
+  card.style.cssText = 'margin-top:10px;padding:14px;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--radius);animation:dFade .2s ease';
+
+  var label = document.createElement('div');
+  label.style.cssText = 'font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:10px';
+  label.textContent = 'Pago USDT — ' + planLabel;
+
+  var meta = document.createElement('div');
+  meta.style.cssText = 'font-size:11px;color:var(--muted);margin-bottom:6px;font-weight:300';
+  meta.innerHTML = 'Monto: <strong style="color:var(--ink)">' + usdAmt + '</strong> &nbsp;·&nbsp; Red: <strong style="color:var(--ink)">TRC-20</strong>';
+
+  var addr = document.createElement('div');
+  addr.style.cssText = 'font-family:var(--mono);font-size:10px;color:var(--ink);background:var(--bg);border:1px solid var(--border2);border-radius:6px;padding:9px 11px;word-break:break-all;letter-spacing:.02em;margin-bottom:8px';
+  addr.textContent = 'TAKobVisVDmrNRhEmvETXRGG9Uq98MXbsM';
+
+  var copyBtn = document.createElement('button');
+  copyBtn.id = 'copy-usdt-' + plan;
+  copyBtn.style.cssText = 'display:inline-flex;align-items:center;gap:5px;background:var(--accent);color:#fff;border:none;border-radius:5px;padding:6px 12px;font-family:var(--mono);font-size:9px;letter-spacing:.04em;cursor:pointer;margin-bottom:10px';
+  copyBtn.textContent = '📋 Copiar dirección';
+  copyBtn.onclick = function() { copyUSDT(plan); };
+
+  var note = document.createElement('div');
+  note.style.cssText = 'font-size:11px;color:var(--muted);line-height:1.6;font-weight:300';
+  note.innerHTML = 'Una vez realizada la transferencia, envianos el comprobante a <a href="' + mailLink + '" style="color:var(--accent)">hola@kairoinc.lat</a> y activamos tu plan en menos de 1 hora.';
+
+  card.appendChild(label);
+  card.appendChild(meta);
+  card.appendChild(addr);
+  card.appendChild(copyBtn);
+  card.appendChild(note);
+
+  btn.parentNode.insertBefore(card, btn.nextSibling);
+}
+
+function copyUSDT(plan) {
+  var addr = 'TAKobVisVDmrNRhEmvETXRGG9Uq98MXbsM';
+  if (navigator.clipboard) navigator.clipboard.writeText(addr).catch(function(){});
+  var btn = document.getElementById('copy-usdt-' + plan);
+  if (btn) { btn.innerHTML = '✓ Copiada'; btn.style.background = 'var(--green)';
+    setTimeout(function(){ btn.innerHTML = '📋 Copiar dirección'; btn.style.background = 'var(--accent)'; }, 2500); }
 }
 </script>
 
 <!-- ══ TIPO DE CAMBIO EN TIEMPO REAL ══ -->
 <script>
 (function() {
-  // Precios base en USD
-  const USD_PRICES = { starter: 29, pro: 79, agency: 49 };
+  // ── Precios base en USD (actualizados) ──
+  const USD_PRICES = { starter: 29, pro: 97, agency: 79 };
 
-  // Fallback al oficial de ayer si la API falla
   const FALLBACK_RATE = 1420;
 
   function formatARS(usd, rate) {
-    const ars = Math.round(usd * rate / 100) * 100; // redondeo a $100
+    const ars = Math.round(usd * rate / 100) * 100;
     return ars.toLocaleString('es-AR');
   }
 
@@ -1017,24 +1095,23 @@ function handleAgencyContact() {
     set('pricingUSD',      '≈ USD ' + USD_PRICES.pro + ' · al cambio oficial ($' + Math.round(rate) + ')');
     set('agencyAmount',    agencyARS);
     set('agencyPeriod',    '/ mes · ARS');
-    set('agencyUSD',       '≈ USD ' + USD_PRICES.agency + '/mes · hasta 10 negocios · ($' + Math.round(rate) + ')');
+    set('agencyUSD',       '≈ USD ' + USD_PRICES.agency + '/mes · 🇦🇷 Mercado Pago · 🌎 USDT ($' + Math.round(rate) + '/USD)');
 
     // Urgency bar
-    set('urgencyPrice', 'desde $' + starterARS + ' ARS');
-    set('urgencyMsg',   '— al tipo de cambio oficial del día');
+    set('urgencyPrice', 'USD ' + USD_PRICES.pro);
+    set('urgencyMsg',   '');
 
     // Hero
-    set('heroProPrice',   'desde $' + starterARS);
+    set('heroProPrice',   'USD 97 · pago único');
     set('heroAgencyPrice','$300.000+ en agencia');
 
     // FAQ & final
     set('faqPrice',          '$' + proARS + ' ARS');
     set('faqGuaranteePrice', '$' + proARS);
-    set('finalCtaPrice',     'desde $' + starterARS + ' ARS');
-    set('finalGuaranteePrice','Signal Pro · Mercado Pago');
-    set('guaranteeNote',     '✓ Garantía de devolución 30 días · Sin preguntas · Pago con Mercado Pago');
+    set('finalCtaPrice',     'USD ' + USD_PRICES.pro + ' · pago único');
+    set('finalGuaranteePrice','Signal Pro · 🇦🇷 Mercado Pago · 🌎 USDT vía Lemon Cash');
+    set('guaranteeNote',     '✓ Garantía 30 días · Sin preguntas · 🇦🇷 Mercado Pago · 🌎 USDT vía Lemon Cash');
 
-    // Guardar en sessionStorage para app.html
     try {
       sessionStorage.setItem('signal_pricing', JSON.stringify({
         rate, starterARS, proARS, agencyARS,
@@ -1048,11 +1125,9 @@ function handleAgencyContact() {
     window.dataLayer.push({ event: 'exchange_rate_applied', usd_ars_rate: rate, pro_ars: proARS });
   }
 
-  // Intentar obtener tipo de cambio oficial desde API pública
   fetch('https://api.bluelytics.com.ar/v2/latest', { cache: 'no-cache' })
     .then(r => r.json())
     .then(data => {
-      // oficial.value_sell = venta oficial BNA
       const rate = data?.oficial?.value_sell || FALLBACK_RATE;
       applyRates(rate);
     })
@@ -1067,12 +1142,10 @@ function handleAgencyContact() {
 (function() {
   window.dataLayer = window.dataLayer || [];
 
-  // ── Helpers ──
   function push(obj) { window.dataLayer.push(obj); }
   function getSearchVal() { return (document.getElementById('landingSearch')?.value || '').trim(); }
   function getWebsiteVal() { return (document.getElementById('landingWebsite')?.value || '').trim(); }
 
-  // ── 1. Page view enriquecido ──
   push({
     event: 'page_view',
     page_type: 'landing',
@@ -1080,7 +1153,6 @@ function handleAgencyContact() {
     page_path: window.location.pathname
   });
 
-  // ── 2. Scroll depth (25 / 50 / 75 / 90 %) ──
   var scrollFired = {};
   window.addEventListener('scroll', function() {
     var pct = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
@@ -1092,7 +1164,6 @@ function handleAgencyContact() {
     });
   }, { passive: true });
 
-  // ── 3. CTA clicks — todos los botones / links que llaman scrollToForm ──
   document.addEventListener('click', function(e) {
     var el = e.target.closest('[onclick*="scrollToForm"], .btn-primary, .btn-nav, .btn-pricing-primary, .btn-pricing-outline');
     if (!el) return;
@@ -1104,7 +1175,6 @@ function handleAgencyContact() {
     });
   });
 
-  // ── 4. Form interactions ──
   var formStarted = false;
   ['landingSearch', 'landingWebsite'].forEach(function(id) {
     var el = document.getElementById(id);
@@ -1117,7 +1187,6 @@ function handleAgencyContact() {
     });
   });
 
-  // ── 5. Intercept submitLandingForm para trackear intento y éxito ──
   var _origSubmit = window.submitLandingForm;
   window.submitLandingForm = function() {
     var search  = getSearchVal();
@@ -1141,7 +1210,6 @@ function handleAgencyContact() {
     _origSubmit.apply(this, arguments);
   };
 
-  // ── 6. Pricing section — view y click ──
   var pricingObserver = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
@@ -1153,7 +1221,6 @@ function handleAgencyContact() {
   var pricingEl = document.querySelector('.pricing-section');
   if (pricingEl) pricingObserver.observe(pricingEl);
 
-  // ── 7. FAQ interactions ──
   document.addEventListener('click', function(e) {
     var faqQ = e.target.closest('.faq-q');
     if (faqQ) {
@@ -1165,14 +1232,12 @@ function handleAgencyContact() {
     }
   });
 
-  // ── 8. Time on page (30s / 60s / 120s) ──
   [30, 60, 120].forEach(function(sec) {
     setTimeout(function() {
       push({ event: 'time_on_page', seconds: sec, page_type: 'landing' });
     }, sec * 1000);
   });
 
-  // ── 9. Urgency bar view ──
   var urgencyObserver = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
@@ -1184,7 +1249,6 @@ function handleAgencyContact() {
   var urgencyEl = document.querySelector('.urgency-bar');
   if (urgencyEl) urgencyObserver.observe(urgencyEl);
 
-  // ── 10. Footer ecosystem clicks ──
   document.addEventListener('click', function(e) {
     var ecoLink = e.target.closest('.eco-item[href]');
     if (ecoLink) {
