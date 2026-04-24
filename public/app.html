@@ -442,10 +442,10 @@ nav{position:fixed;top:0;left:0;right:0;padding:0 5%;display:flex;align-items:ce
         </div>
         <div style="font-family:var(--mono);font-size:11px;color:var(--muted);text-align:center;margin-bottom:10px;letter-spacing:.03em">Una agencia cobra $300.000+ ARS por lo mismo.</div>
         <button class="paywall-btn" id="paywallBtn" onclick="handleUpgrade()">
-          Ver lo que ya escribimos para mi negocio — <span id="paywallBtnPrice">$112.200 ARS</span>
+          Ver lo que ya escribimos para mi negocio — <span id="paywallBtnPrice">$137.700 ARS</span>
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 1l7 7-7 7M1 8h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
-        <div class="paywall-microcopy" id="paywallMicrocopy">Pago único · Sin suscripción · Mercado Pago · Garantía de devolución 30 días — sin preguntas</div>
+        <div class="paywall-microcopy" id="paywallMicrocopy">Pago único · Sin suscripción · Garantía 30 días<br>🇦🇷 Mercado Pago &nbsp;·&nbsp; 🌎 USDT vía Lemon Cash</div>
       </div>
     </div>
 
@@ -842,12 +842,12 @@ if (!checkPrefill()) {}
   function applyPricing(pricing) {
     if (!pricing) return;
     const proARS = pricing.proARS;
-    if (proARS) { set('paywallBtnPrice', '$' + proARS + ' ARS'); set('paywallMicrocopy', 'Pago único · Sin suscripción · Mercado Pago · ≈ USD ' + (pricing.proUSD || 79)); }
+    if (proARS) { set('paywallBtnPrice', '$' + proARS + ' ARS'); set('paywallMicrocopy', 'Pago único · Sin suscripción · Garantía 30 días · 🇦🇷 Mercado Pago · 🌎 USDT · ≈ USD ' + (pricing.proUSD || 97)); }
   }
   let pricing = null;
   try { pricing = JSON.parse(sessionStorage.getItem('signal_pricing')); } catch(e) {}
   if (pricing) { applyPricing(pricing); }
-  else { fetch('https://api.bluelytics.com.ar/v2/latest').then(r => r.json()).then(data => { const rate = data?.oficial?.value_sell || 1420; const proARS = Math.round(79 * rate / 100) * 100; applyPricing({ proARS, proUSD: 79, rate }); }).catch(() => { applyPricing({ proARS: '112.200', proUSD: 79 }); }); }
+  else { fetch('https://api.bluelytics.com.ar/v2/latest').then(r => r.json()).then(data => { const rate = data?.oficial?.value_sell || 1420; const proARS = Math.round(97 * rate / 100) * 100; applyPricing({ proARS, proUSD: 97, rate }); }).catch(() => { applyPricing({ proARS: '137.700', proUSD: 97 }); }); }
 })();
 </script>
 
